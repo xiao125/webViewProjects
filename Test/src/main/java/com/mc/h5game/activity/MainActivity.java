@@ -672,6 +672,7 @@ public class MainActivity extends Activity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		LogUtil.log("返回json数据："+jsonObject);
 		return jsonObject;
 	}
 
