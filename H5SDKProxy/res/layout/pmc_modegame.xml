@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:orientation="vertical"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent"
+    android:background="@drawable/pmc_input_frame">
+      
+<TextView   
+    android:id="@+id/content"  
+    android:layout_width="fill_parent"   
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:gravity="center_horizontal"   
+    android:text=""/>  
+    
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+    
+    <TextView 
+    
+    android:id="@+id/bt_nextTime"  
+    android:layout_width="100px"   
+    android:layout_height="60px"
+    android:layout_marginLeft="170dp"
+   	android:text="稍后再说"
+   	android:textSize="10dp"
+   	android:layout_alignParentBottom="true" 
+   	
+    />
+
+    <Button
+        android:id="@+id/bt_scanf"
+        android:layout_width="200px"
+        android:layout_height="60px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="点击访问手游岛"
+        android:textSize="10dp" />
+    
+</RelativeLayout>
+    
+</LinearLayout>  

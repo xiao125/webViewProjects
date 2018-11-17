@@ -1,0 +1,110 @@
+{
+    "frames": {
+        "00000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 61,
+                "y": 148,
+                "w": 54,
+                "h": 125
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 373,
+                "y": 285
+            }
+        },
+        "00001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 71,
+                "y": 275,
+                "w": 47,
+                "h": 125
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 378,
+                "y": 285
+            }
+        },
+        "00002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 66,
+                "y": 1,
+                "w": 48,
+                "h": 132
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 377,
+                "y": 278
+            }
+        },
+        "00003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 148,
+                "w": 58,
+                "h": 144
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 367,
+                "y": 266
+            }
+        },
+        "00004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 63,
+                "h": 145
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 362,
+                "y": 265
+            }
+        },
+        "00005.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 294,
+                "w": 68,
+                "h": 129
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 357,
+                "y": 281
+            }
+        }
+    },
+    "meta": {
+        "image": "0_0.png",
+        "prefix":"action/clothesoutside/160001_1/casting/0/"
+    }
+}

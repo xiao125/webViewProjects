@@ -1,0 +1,156 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_40"
+    android:gravity="center"
+    android:id="@+id/visit_dialog"
+    >
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/mc_dialog_bg_phone"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/mc_automatic_dialog_bg"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_8"
+                android:text="账号绑定"
+                android:layout_centerInParent="true"
+                android:textColor="@color/mc_kn_selecte_log"
+                android:textSize="@dimen/sp_18"
+                />
+
+            <ImageView
+                android:id="@+id/mc_da_lose"
+                android:layout_width="@dimen/dp_15"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginEnd="@dimen/dp_18"
+                android:background="@drawable/mc_select_login_close" />
+
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_10"
+
+            >
+
+
+
+<!--
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="提示"
+                android:textColor="@color/mc_kn_selecte_log"
+                android:textSize="@dimen/sp_20" />-->
+
+            <TextView
+                android:id="@+id/ts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_9"
+                android:lineSpacingMultiplier="1.3"
+                android:text="@string/mc_tips_102"
+                android:singleLine="false"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dp_16" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/mc_tx"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日不在提醒"
+                android:textColor="@color/mc_text_color_hint"
+                android:button="@drawable/mc_select_chanbox"
+
+                />
+
+
+        </RelativeLayout>
+
+
+<!--
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@color/mc_kn_text"
+            />
+-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_25"
+            android:paddingRight="@dimen/dp_25"
+            android:paddingTop="@dimen/dp_10"
+            >
+
+            <Button
+
+                android:id="@+id/visit_bind_account"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:background="@drawable/mc_da_round_btn_green_tk_click"
+                android:text="@string/mc_tips_103"
+                android:textColor="@color/mc_text_color_white"
+                android:layout_weight="1"
+                 android:layout_marginRight="@dimen/dp_15"
+                />
+
+
+
+            <Button
+                android:id="@+id/visit_continue"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:background="@drawable/mc_round_btn_green_tk_click"
+                android:textColor="@color/mc_text_color_white"
+                android:text="@string/mc_tips_104"
+                android:layout_weight="1"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

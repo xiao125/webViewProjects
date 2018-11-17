@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <!--<com.tencent.smtt.sdk.WebView
+         android:id="@+id/wb"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+
+               />-->
+
+
+    <ren.yale.android.cachewebviewlib.CacheWebView
+        android:id="@+id/wb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </ren.yale.android.cachewebviewlib.CacheWebView>
+
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+
+            android:id="@+id/cx"
+            android:background="@drawable/pmc_erro"
+            android:textColor="@color/text_color_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网络出问题了！"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

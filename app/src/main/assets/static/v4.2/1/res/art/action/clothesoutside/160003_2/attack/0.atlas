@@ -1,0 +1,127 @@
+{
+    "frames": {
+        "00000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 59,
+                "y": 1,
+                "w": 68,
+                "h": 120
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 374,
+                "y": 295
+            }
+        },
+        "00001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 129,
+                "y": 1,
+                "w": 65,
+                "h": 120
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 374,
+                "y": 296
+            }
+        },
+        "00002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 56,
+                "h": 112
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 368,
+                "y": 305
+            }
+        },
+        "00003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 318,
+                "y": 1,
+                "w": 59,
+                "h": 132
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 368,
+                "y": 283
+            }
+        },
+        "00004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 379,
+                "y": 1,
+                "w": 70,
+                "h": 144
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 359,
+                "y": 271
+            }
+        },
+        "00005.png": {
+            "frame": {
+                "idx": 0,
+                "x": 196,
+                "y": 1,
+                "w": 62,
+                "h": 124
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 367,
+                "y": 290
+            }
+        },
+        "00006.png": {
+            "frame": {
+                "idx": 0,
+                "x": 260,
+                "y": 1,
+                "w": 56,
+                "h": 125
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 369,
+                "y": 287
+            }
+        }
+    },
+    "meta": {
+        "image": "0_0.png",
+        "prefix":"action/clothesoutside/160003_2/attack/0/"
+    }
+}

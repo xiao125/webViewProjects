@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/mc_float_menu"/>
+    <stroke
+        android:width="1px"
+        android:color="@color/mc_float_menu"/>
+    <corners
+        android:bottomLeftRadius="@dimen/dp_50"
+        android:bottomRightRadius="@dimen/dp_50"
+        android:topLeftRadius="@dimen/dp_50"
+        android:topRightRadius="@dimen/dp_50"/>
+</shape>

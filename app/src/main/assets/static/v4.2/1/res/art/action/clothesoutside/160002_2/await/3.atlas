@@ -1,0 +1,76 @@
+{
+    "frames": {
+        "30000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 40,
+                "h": 120
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 377,
+                "y": 285
+            }
+        },
+        "30001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 126,
+                "y": 1,
+                "w": 40,
+                "h": 119
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 377,
+                "y": 286
+            }
+        },
+        "30002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 43,
+                "y": 1,
+                "w": 40,
+                "h": 120
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 377,
+                "y": 285
+            }
+        },
+        "30003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 85,
+                "y": 1,
+                "w": 39,
+                "h": 120
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 377,
+                "y": 285
+            }
+        }
+    },
+    "meta": {
+        "image": "3_0.png",
+        "prefix":"action/clothesoutside/160002_2/await/3/"
+    }
+}

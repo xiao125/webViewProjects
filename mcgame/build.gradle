@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        flavorDimensions  "1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            //打开资源压缩
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    aaptOptions {
+
+        cruncherEnabled = false
+        useNewCruncher = false
+
+    }
+
+    lintOptions{
+        abortOnError false
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'junit:junit:4.12'
+    compile 'com.android.support.test:runner:0.5'
+    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
+}
+
+def SDK_BASENAME = "mcsdk";
+def SDK_VERSION = "_v2.1.8.1";
+def sdkDestinationPath = "build";
+def zipFile = file('build/intermediates/bundles/release/classes.jar')
+
+task deleteBuild(type: Delete) {
+    delete sdkDestinationPath + SDK_BASENAME + SDK_VERSION + ".jar"
+}
+task makeJar(type: Jar) {
+    from zipTree(zipFile)
+    from fileTree(dir: 'src/main',includes: ['assets/**'])//将assets目录打入jar包
+    //去掉不要的类
+    exclude('com/game/sdkproxy/BuildConfig.class')
+    exclude('com/game/sdkproxy/BuildConfig\$*.class')
+    baseName = SDK_BASENAME + SDK_VERSION
+    destinationDir = file(sdkDestinationPath)
+}
+makeJar.dependsOn(build)
+
+
+
+
+
+
+
+
+
+
+

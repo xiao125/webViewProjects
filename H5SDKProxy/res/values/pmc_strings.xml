@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_app_name">霸业永恒</string>
+    <string name="app_name">拇指吧</string>
+    <string name="quitTip_1">确认要退出吗？</string>
+    <string name="quitTip_2">提示</string>
+    <string name="quitTip_3">确定</string>
+    <string name="quitTip_4">取消</string>
+    
+    <string name="click_to_skip">点击跳过</string>
+      <string name="tip">            开启游戏送豪礼!</string>
+    <string name="content">手机客户端用户通过获取礼包激活码，赢得游戏大礼包!</string>
+    
+    <string name="input_text">请输入激活码</string>
+    <string name="submit_text">确 定</string>
+    <string name="close_text">关 闭</string>
+    <string name="tip_update">为了提升您的游戏体验品质，建议您更新至最新版本</string>
+    <string name="tip_update_right_now">为了提升您的游戏体验品质，建议您更新至最新版本</string>
+    <string name="tip_update_text">立即更新</string>
+    <string name="ghz_shared_text">兄弟，我们再打一场！</string>
+    <string name="pay">选择购买方式</string>
+    <string name="exit_game">真的忍心退出游戏么？</string>
+    <string name="exit_ok">忍痛退出</string>
+    <string name="exit_cancel">手误点错</string>
+    <string name="push_start_time">12:00:00</string>
+    <string name="push_end_time">18:00:00</string>
+    <string name="tips_101">\u3000每个邀请码仅能使用一次\n使用后仅能在该设备进行游戏</string>
+    
+    
+</resources>

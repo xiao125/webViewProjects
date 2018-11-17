@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/mc_Kn_Username" />
+    <corners android:topLeftRadius="@dimen/mc_round_btn_green_tk_corner"
+        android:topRightRadius="@dimen/mc_round_btn_green_tk_corner"
+        android:bottomLeftRadius="@dimen/mc_round_btn_green_tk_corner"
+        android:bottomRightRadius="@dimen/mc_round_btn_green_tk_corner" />
+</shape>

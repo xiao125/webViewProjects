@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="mc_activity_horizontal_margin">16dp</dimen>
+    <dimen name="mc_activity_vertical_margin">16dp</dimen>
+    <dimen name="mc_round_btn_green_tk_corner">2.0dip</dimen>
+    <dimen name="mc_round_btn_green_tk_corner0">5.0dip</dimen>
+    <dimen name="mc_login_user">13sp</dimen>
+    <dimen name="mc_register_user">15sp</dimen>
+    <dimen name="mc_register_user_one">17sp</dimen>
+
+    <dimen name="mc_button">30dp</dimen>
+</resources>

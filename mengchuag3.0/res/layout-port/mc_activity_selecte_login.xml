@@ -1,0 +1,160 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_30"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/mc_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/select_log_close"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_gravity="center"
+                android:background="@drawable/mc_select_login_close" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/mc_login_bg" />
+
+
+        <!-- <LinearLayout android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:background="@drawable/select_login_bg2">
+         <ImageView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@drawable/select_login_back"
+             android:layout_gravity="center_vertical"
+             android:layout_marginLeft="15dp"
+             android:id="@+id/image_back"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp"
+            />
+     </LinearLayout>-->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/mc_tips_62"
+            android:textColor="@color/mc_kn_text" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_16"
+
+            >
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/select_login_ks_login"
+                    android:layout_width="@dimen/dp_65"
+                    android:layout_height="@dimen/dp_65"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/mc_select_login_ks" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/select_login_ks_login"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/mc_tips_70"
+                    android:textColor="@color/mc_kn_selecte_log" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:orientation="vertical">
+
+
+                <ImageButton
+                    android:id="@+id/select_login_account_login"
+                    android:layout_width="@dimen/dp_65"
+                    android:layout_height="@dimen/dp_65"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/mc_select_login_account_login" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/select_login_account_login"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/mc_tips_61"
+                    android:textColor="@color/mc_kn_selecte_log" />
+            </RelativeLayout>
+
+<!--
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <ImageButton
+                    android:id="@+id/select_login_visit_login"
+                    android:layout_width="@dimen/dp_65"
+                    android:layout_height="@dimen/dp_65"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+
+                    android:background="@drawable/mc_visit_login_bg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/select_login_visit_login"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/mc_tips_37"
+                    android:textColor="@color/mc_kn_selecte_log" />
+            </RelativeLayout>
+-->
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+

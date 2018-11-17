@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- alipay -->
+	<color name="mc_app_background_color">#FFC0E7FA</color>
+	<color name="mc_text_color_hint">#FFC7C5C5</color>
+	<color name="mc_text_color_black">#FF000000</color>
+	<color name="mc_text_color_white">#FFFFFFFF</color>
+	<color name="mc_text_color_blue">#FF33A7D3</color>
+	<color name="mc_text_color_gray">#FF505050</color>
+	<color name="mc_text_color_red">#FFE26926</color>
+	<color name="mc_bgcolor">#ffd1dce9</color>
+	<color name="mc_text_color_forget_password">#67d4db</color>
+	<color name="mc_PopViewDividerColor">#FF33A7D3</color>
+	<color name="mc_text_color_loginmanager_tuhao">#8ddd45</color>
+	<color name="mc_kn_text">#BCBCBC</color>
+	<color name="mc_kn_selecte_log">#000000</color>
+	<color name="mc_Kn_Username">#FFCD52</color>
+    <color name="mc_zc_xy">#FFE2263C</color>
+	<color name="mc_kn_dialog_bg">#FFFAF4E8</color>
+	<color name="mc_invitation">#FFFDFDFE</color>
+	<color name="mc_text_bg_bu">#FFF7F7F7</color>
+	<color name="mc_transparent">#00000000</color>
+	<color name="mc_float">#ffffff</color>
+	<color name="mc_float_menu">#80000000</color>
+
+</resources>

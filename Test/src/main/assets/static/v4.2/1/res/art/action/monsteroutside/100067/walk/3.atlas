@@ -1,0 +1,110 @@
+{
+    "frames": {
+        "30020.png": {
+            "frame": {
+                "idx": 0,
+                "x": 125,
+                "y": 260,
+                "w": 115,
+                "h": 129
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 198,
+                "y": 147
+            }
+        },
+        "30021.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 265,
+                "w": 111,
+                "h": 124
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 197,
+                "y": 151
+            }
+        },
+        "30022.png": {
+            "frame": {
+                "idx": 0,
+                "x": 125,
+                "y": 135,
+                "w": 120,
+                "h": 123
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 196,
+                "y": 150
+            }
+        },
+        "30023.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 136,
+                "h": 127
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 195,
+                "y": 148
+            }
+        },
+        "30024.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 130,
+                "w": 122,
+                "h": 133
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 194,
+                "y": 151
+            }
+        },
+        "30025.png": {
+            "frame": {
+                "idx": 0,
+                "x": 139,
+                "y": 1,
+                "w": 112,
+                "h": 132
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 195,
+                "y": 149
+            }
+        }
+    },
+    "meta": {
+        "image": "3_0.png",
+        "prefix":"action/monsteroutside/100067/walk/3/"
+    }
+}

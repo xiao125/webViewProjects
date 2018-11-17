@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linear"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@drawable/pmc_shape"
+        android:gravity="center"
+        android:minHeight="20dp"
+        android:minWidth="20dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/pay"
+            android:textSize="20dip" />
+
+        <View
+            android:id="@+id/textView2"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="#CCCCCC"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/weixin"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#00000000"
+            android:minHeight="20dp"
+            android:minWidth="20dp"
+            android:text="微信支付"
+            android:textColor="#87CEFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/textView1"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#CCCCCC"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/qita"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/weixin"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.05"
+            android:background="#00000000"
+            android:textSize="20dp"
+            android:minHeight="20dp"
+            android:minWidth="20dp"
+            android:text="其他支付"
+            android:textColor="#87CEFF"
+            android:textStyle="bold" />
+        <View
+            android:id="@+id/textView3"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#CCCCCC"
+            android:text="TextView" />
+    </LinearLayout>
+        
+	<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear"
+        android:gravity="bottom"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@drawable/pmc_shape_a"
+        android:layout_marginTop="10dp" >
+            <Button 
+                android:id="@+id/back"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:textSize="30dip"
+                android:text="返回"
+                android:background="@android:color/white"
+                android:textColor="#87CEFF"
+                />
+     </LinearLayout>
+
+</RelativeLayout>
