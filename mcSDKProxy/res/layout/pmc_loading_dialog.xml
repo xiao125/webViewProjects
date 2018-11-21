@@ -8,6 +8,7 @@
 	android:minWidth="180dp"
 	android:gravity="center"
 	android:padding="10dp"
+
 	>
 	<ImageView 
 		android:id="@+id/loading_img"

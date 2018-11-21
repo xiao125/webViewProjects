@@ -1,10 +1,11 @@
-package com.proxy.util;
+package com.mc.h5game.util;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.LayoutRes;
-import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.game.sdkproxy.R;
@@ -50,7 +51,7 @@ public class LoadingFramelayout extends FrameLayout {
         init(context);
     }
     // 构造方法，在我们需要网络加载页面是调用，第二个传入的一个View
-    public LoadingFramelayout(Context context,View view) {
+    public LoadingFramelayout(Context context, View view) {
         super(context);
         addView(view);
         LayoutInflater mInflater = LayoutInflater.from(context);
@@ -67,47 +68,60 @@ public class LoadingFramelayout extends FrameLayout {
         init(context);
     }
     //这里是一个动画效果，我们这里采用6张不同加载时候的图片
-    private void init(Context context) {
-       /* mAnimationDrawable = new AnimationDrawable();
-        mAnimationDrawable.setOneShot(false);
-        mAnimationDrawable.addFrame(ContextCompat.getDrawable(context,R.drawable.pmc_loading_dialog),100);
-        mAnimationDrawable.addFrame(ContextCompat.getDrawable(context,R.drawable.pmc_loading_dialog),100);
-        mAnimationDrawable.addFrame(ContextCompat.getDrawable(context,R.drawable.pmc_loading_dialog),100);
-        mAnimationDrawable.addFrame(ContextCompat.getDrawable(context,R.drawable.pmc_loading_dialog),100);
-        mAnimationDrawable.addFrame(ContextCompat.getDrawable(context,R.drawable.pmc_loading_dialog),100);
-        mAnimationDrawable.addFrame(ContextCompat.getDrawable(context,R.drawable.pmc_loading_dialog),100);
-        mIvLoading.setImageDrawable(mAnimationDrawable);
-        mIvLoading.post(new Runnable() {
+    private void init(final Context context) {
+
+        stopLoading();
+       /* LayoutInflater inflater = LayoutInflater.from(context);
+        View v = inflater.inflate(R.layout.loading_layout, null);
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);
+        final ProgressBar progesss = (ProgressBar)v.findViewById(R.id.progesss1);
+        final TextView progesssValue = (TextView)v.findViewById(R.id.progesss_value1);
+
+        progesss.setProgress(66);
+        progesssValue.setText(new StringBuffer().append(progesss.getProgress()).append("%"));
+        progesssValue.post(new Runnable() {
             @Override
             public void run() {
-                mAnimationDrawable.start();
+                DisplayMetrics dm = getResources().getDisplayMetrics();
+              //  int w = getWindowManager().getDefaultDisplay().getWidth();
+                int w = dm.widthPixels;
+                Log.e("w=====", "" + w);
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) progesssValue.getLayoutParams();
+                int pro = progesss.getProgress();
+                int tW = progesssValue.getWidth();
+                if (w * pro / 100 + tW * 0.3 > w) {
+                    params.leftMargin = (int) (w - tW * 1.1);
+                } else if (w * pro / 100 < tW * 0.7) {
+                    params.leftMargin = 0;
+                } else {
+                    params.leftMargin = (int) (w * pro / 100 - tW * 0.7);
+                }
+                progesssValue.setLayoutParams(params);
             }
         });*/
 
-        stopLoading();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.pmc_loading_dialog, null);
-        LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);
-        ImageView spaceshipImage = (ImageView) v.findViewById(R.id.loading_img);
-        TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);
+       // ImageView spaceshipImage = (ImageView) v.findViewById(R.id.loading_img);
+       // TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);
         // 加载动画
-        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(
+        /*Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(
                 context, R.anim.pmc_loading_animation);
         // 使用ImageView显示动画
         spaceshipImage.startAnimation(hyperspaceJumpAnimation);
-        tipTextView.setText("获取游戏资源中.....");// 设置加载信息
+        tipTextView.setText("拼命加载游戏中.....");// 设置加载信息
 
         loadingDialog = new Dialog(context, R.style.loading_dialog);
         loadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.FILL_PARENT,
                 ViewGroup.LayoutParams.FILL_PARENT));
         loadingDialog.show();
-        loadingDialog.setCancelable(false); //不可以用“返回键”取消
-
-
-
+        loadingDialog.setCancelable(false); //不可以用“返回键”取消*/
 
     }
+
+
+
+
+
     //这一个用于完成加载的调用方法
     public void completeLoading(){
         stopLoading();

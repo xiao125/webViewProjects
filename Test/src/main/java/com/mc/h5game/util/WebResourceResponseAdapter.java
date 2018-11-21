@@ -1,5 +1,6 @@
 package com.mc.h5game.util;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 

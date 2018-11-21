@@ -1,17 +1,31 @@
 package com.mc.h5game.activity;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.webkit.JavascriptInterface;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.mc.h5game.util.LoadingLayout;
 import com.mc.h5game.util.SPreferencesUtil;
 import com.mc.h5game.util.ThreadPoolUtil;
+import com.mc.h5game.util.TimeUtils;
 import com.mc.h5game.util.WebResourceRequestAdapter;
 import com.mc.h5game.util.WebResourceResponseAdapter;
 import com.mc.h5game.x5.X5WebView;
@@ -25,73 +39,45 @@ import com.proxy.callback.SdkCallbackListener;
 import com.proxy.service.HttpService;
 import com.proxy.tools.HttpRequestUtil;
 import com.proxy.util.DeviceUtil;
-import com.proxy.util.LoadingDialog;
 import com.proxy.util.LoadingFramelayout;
 import com.proxy.util.LogUtil;
 import com.proxy.util.Util;
-import com.game.sdkproxy.R;
+import com.rxcqh5.cs.mc.R;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import ren.yale.android.cachewebviewlib.WebViewCacheInterceptorInst;
 
+//import com.game.sdkproxy.R;
+
 @SuppressLint("NewApi")
-public class MainActivity extends Activity {
+public class WebMainHtmlActivity extends Activity {
 
-	private  Activity mativity;
-	//private X5WebView mweview;
-	private WebView mweview;
-
-	private ViewGroup mViewParent;
-	private LoadingFramelayout mLoadingFramelayout;
-	private LoadingLayout mLoadingLayout;
-	private ProgressBar progesss;
-	private RelativeLayout mbgLayout;
-	OpenSDK m_proxy = OpenSDK.getInstance();
-	//热血传奇H5
-	/*private String m_appKey = "uVkyGhiKWm7T2B43n5rEafHleXwPzjRU";
-	private String m_gameId = "rxcqh5";
-	private String m_gameName = "rxcqh5";
-	private String m_platform = "android";	*/
 
 	//传世H5
 	private String m_platform = "android";
 	private String m_appKey = "XovHFMSPKstE0Gwrf8cBudDIV6JN5hC4";
 	private String m_gameId = "cqsjh5";
 	private String m_gameName = "cqsjh5";
-
-	/*
-	 * private String m_appKey = "XHiGC90t5bVLxJdyrwAa4Ov6zkZ2BIQ7"; private
-	 * String m_gameId = "xiyou"; private String m_gameName = "xiyou";
-	 */
-	// private String m_appKey = "XovHFMSPKstE0Gwrf8cBudDIV6JN5hC4";
-	// private String m_gameId = "cqsjh5";
-	// private String m_gameName = "cqsjh5";
-
+	private  Activity mativity;
+	private WebView mweview;
+	private ProgressBar progesss;
+	private RelativeLayout mbgLayout;
+	OpenSDK m_proxy = OpenSDK.getInstance();
 	private int m_screenOrientation = 1;
 	public String HtmlUrl;
 	private String roleDate;
@@ -101,167 +87,65 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mLoadingFramelayout = new LoadingFramelayout(this,R.layout.pmc_hactivity_main);
-		setContentView(mLoadingFramelayout);
+		/*mLoadingFramelayout = new LoadingFramelayout(this, R.layout.webactivity_main);
+		setContentView(mLoadingFramelayout);*/
+		setContentView(R.layout.webactivity_main);
 		mativity = this;
+		Intent intent = getIntent();//获取传来的intent对象
+		HtmlUrl = intent.getStringExtra("HTML_URL");
 		init();
-		Data.getInstance().setGameActivity(mativity);
-		getHtmlUrl();
+		showHtml(HtmlUrl);
+	}
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		if (hasFocus ) {
+			long hotStartTime = TimeUtils.getTimeCalculate(TimeUtils.COLD_START);
+			if (TimeUtils.sColdStartTime > 0 && hotStartTime > 0) {
+				// 真正的冷启动时间 = Application启动时间 + 热启动时间
+				long coldStartTime = TimeUtils.sColdStartTime + hotStartTime;
+
+				LogUtil.log("=======WebMain启动时间==============="+coldStartTime);
+				// 过滤掉异常启动时间
+				if (coldStartTime < 50000) {
+					// 上传冷启动时间coldStartTime
+				}
+			} else if (hotStartTime > 0) {
+				// 过滤掉异常启动时间
+				if (hotStartTime < 30000) {
+					// 上传热启动时间hotStartTime
+				}
+			}
+		}
+
 	}
 
 	private void init() {
 
-		mweview = new com.tencent.smtt.sdk.WebView(this);
-		mViewParent.addView(mweview, new FrameLayout.LayoutParams(
-				FrameLayout.LayoutParams.FILL_PARENT,
-				FrameLayout.LayoutParams.FILL_PARENT));
-		mweview.setBackgroundColor(Color.BLACK);
 		//H5布局
 		mbgLayout = (RelativeLayout)findViewById(R.id.bgLayout);
 		progesss = (ProgressBar) findViewById(R.id.progesss1);
-		mViewParent = (ViewGroup) findViewById(R.id.wb);
-
-		/*mweview = new X5WebView(this, null);
-		mViewParent.addView(mweview, new FrameLayout.LayoutParams(
-				FrameLayout.LayoutParams.FILL_PARENT,
-				FrameLayout.LayoutParams.FILL_PARENT));
-		mweview.setBackgroundColor(Color.BLACK);*/
+		mweview =(com.tencent.smtt.sdk.WebView) findViewById(R.id.wb);
+		mweview.setBackgroundColor(Color.BLACK);
 		mweview.setLayerType(View.LAYER_TYPE_HARDWARE,null);//开启硬件加速
-	}
-
-
-	private void getHtmlUrl() {
-
-		LogUtil.log("进入主Manin页面：");
-
-		final String is_first = (String) SPreferencesUtil.get(
-				MainActivity.this, "is_first", "1"); // 获取到保存的key数据
-		String result = Util.getAssetsFileContent(MainActivity.this,
-				"SDKFile/adChannel.png");
-		final String channel = Util.getJsonStringByName(result, "channel");
-		final String adchannel = Util.getJsonStringByName(result, "adChannel");
-		Map<String, Object> data = new HashMap<String, Object>();
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());// 设置日期格式
-		String time = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
-		if (!"1".equals(is_first)) {
-			Map<String, String> json = Util.readHttpData(MainActivity.this);
-			LogUtil.log("读取log文件数据:" + json);
-			data.put("game_id", json.get("game_id"));
-			data.put("channel", json.get("channel"));
-			data.put("app_key", m_appKey);
-			data.put("platform", json.get("platform"));
-			data.put("adchannel", json.get("adchannel"));
-			data.put("is_first", "0");
-			data.put("time", time);
-		} else { // 首次启动
-			data.put("game_id", m_gameId);
-			data.put("app_key", m_appKey);
-			data.put("channel", channel);
-			data.put("adchannel", adchannel);
-			// data.put("platform", m_platform);
-			data.put("platform", platformData());
-			data.put("is_first", "1");
-			data.put("time", time);
-		}
-
-		GetHtmlUrl(data,is_first);
 
 	}
 
 
-	//请求获取游戏url地址
-	private void GetHtmlUrl(Map<String, Object> data,final String is_first){
 
-		LogUtil.log("开始请求H5游戏地址：");
-
-		HttpService.doHtmlUrl(MainActivity.this, data, new HttpRequestUtil.DataCallBack() {
-			@Override
-			public void requestSuccess(String result) throws Exception {
-				LogUtil.log("获取h5地址result=" + result);
-				mLoadingFramelayout.completeLoading();
-				try {
-					JSONObject jsonObject = new JSONObject(result);
-					int code = jsonObject.getInt("code");
-					if(code == 0){
-						HtmlUrl = jsonObject.getString("loginUrl");
-						if (("1").equals(is_first) && HtmlUrl !=null) {
-							SPreferencesUtil
-									.put(MainActivity.this, "is_first", "0");// 保存sp标识
-							String game_id = jsonObject.getString("game_id");
-							String channel = jsonObject.getString("channel");
-							String platform = jsonObject.getString("platform");
-							String adchannel = jsonObject.getString("ad_channel");
-							Map<String, String> pay_params = new HashMap<String, String>();
-							pay_params.put("game_id", game_id);
-							pay_params.put("channel", channel);
-							pay_params.put("platform", platform);
-							pay_params.put("adchannel", adchannel);
-							Util.writeHttpData(mativity, pay_params); // 保存
-						}
-
-						ThreadPoolUtil.execute(new Runnable() {
-							@Override
-							public void run() {
-								MainActivity.this.runOnUiThread(new Runnable() {
-									@Override
-									public void run() {
-										showHtml(HtmlUrl);
-									}
-								});
-							}
-						});
-					}else {
-						RestartUrl();
-					}
-
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-
-
-				//final String  result = results;
-
-
-			}
-
-			@Override
-			public void requestFailure(String request, IOException e) {
-				RestartUrl();
-			}
-
-			@Override
-			public void requestNoConnect(String msg, String data) {
-				RestartUrl();
-			}
-		});
-
-	}
-
-
-	//错误页面显示
-	private void  RestartUrl(){
-		mLoadingFramelayout.loadingFailed();
-		mLoadingFramelayout.setOnReloadListener(new LoadingFramelayout.OnReloadListener() {
-			@Override
-			public void onReload() {
-				mLoadingFramelayout.startLoading(mativity);
-				getHtmlUrl();
-			}
-		});
-	}
 
 	// 显示HTML页面
 	private void showHtml(String htmlUrl) {
-		// 设置WebSettings属性
-		WebSettingss();
+
+		initWebViewSettings();
 		// 设置webView监听回调
 		WebViewListener();
 		mweview.loadUrl(htmlUrl);
+		WebViewCacheInterceptorInst.getInstance().loadUrl(htmlUrl,mweview.getSettings().getUserAgentString());
 	}
 
-	// 设置WebSettings属性
-	@SuppressLint("NewApi")
-	private void WebSettingss() {
+
+	private void initWebViewSettings() {
 		WebSettings webSettings = mweview.getSettings();
 		webSettings.setJavaScriptEnabled(true);  //支持js
 		webSettings.setDomStorageEnabled(true); //是否使用文档存储
@@ -285,11 +169,27 @@ public class MainActivity extends Activity {
 
 	}
 
+
 	// 设置webView监听回调
 	private void WebViewListener() {
 
 		mweview.setWebViewClient(new WebViewClient() {
 			// 不启动浏览器加载html
+
+			/*@Override
+			public WebResourceResponse shouldInterceptRequest(WebView webView, String url) {
+				return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+						interceptRequest(url));
+			}
+*/
+			@Override
+			public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
+
+				return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+						interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
+			}
+
+
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				LogUtil.log("拦截url:" + url);
@@ -331,7 +231,6 @@ public class MainActivity extends Activity {
 				mbgLayout.setVisibility(View.GONE);
 				LogUtil.log("WebView加载结束时调用url:" + url);
 
-
 			}
 
 			// 该方法传回了错误码，根据错误类型可以进行不同的错误分类处理
@@ -342,24 +241,6 @@ public class MainActivity extends Activity {
 				LogUtil.log("错误码：" + i);
 			}
 
-			@Override
-			public WebResourceResponse shouldInterceptRequest(WebView webView,
-															  String s) {
-				return WebResourceResponseAdapter
-						.adapter(WebViewCacheInterceptorInst.getInstance()
-								.interceptRequest(s));
-			}
-
-			@Override
-			public WebResourceResponse shouldInterceptRequest(WebView webView,
-															  WebResourceRequest webResourceRequest) {
-
-				return WebResourceResponseAdapter
-						.adapter(WebViewCacheInterceptorInst.getInstance()
-								.interceptRequest(
-										WebResourceRequestAdapter
-												.adapter(webResourceRequest)));
-			}
 
 		});
 
@@ -369,13 +250,15 @@ public class MainActivity extends Activity {
 			public void onProgressChanged(WebView webView, int newProgress) { // 页面加载进度
 				LogUtil.log("加载进度=" + newProgress);
 			//	super.onProgressChanged(webView, newProgress);
-				if(newProgress ==100){
-					mbgLayout.setVisibility(View.GONE);
-					progesss.setVisibility(View.GONE);
-				}else {
+				progesss.setProgress(newProgress);
+				if(progesss!=null && newProgress !=100){
 					mbgLayout.setVisibility(View.VISIBLE);
 					progesss.setVisibility(View.VISIBLE);
 					progesss.setProgress(newProgress);
+				}else {
+					//Webview加载完成 就隐藏进度条,显示Webview
+					mbgLayout.setVisibility(View.GONE);
+					progesss.setVisibility(View.GONE);
 				}
 			}
 
@@ -405,7 +288,7 @@ public class MainActivity extends Activity {
 					ThreadPoolUtil.execute(new Runnable() {
 						@Override
 						public void run() {
-							MainActivity.this.runOnUiThread(new Runnable() {
+							WebMainHtmlActivity.this.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
 									activateCallback();
@@ -468,7 +351,7 @@ public class MainActivity extends Activity {
 		@JavascriptInterface
 		public void activate() {
 			LogUtil.log("sdk开始初始化=");
-			Map<String, String> json = Util.readHttpData(MainActivity.this);
+			Map<String, String> json = Util.readHttpData(WebMainHtmlActivity.this);
 			String gameId = json.get("game_id");
 			GameInfo m_gameInfo = new GameInfo(m_gameName,m_appKey, gameId,m_screenOrientation);
 			//初始化中间件
@@ -534,7 +417,7 @@ public class MainActivity extends Activity {
 			ThreadPoolUtil.execute(new Runnable() {
 				@Override
 				public void run() {
-					MainActivity.this.runOnUiThread(new Runnable() {
+					WebMainHtmlActivity.this.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							try {
@@ -712,7 +595,7 @@ public class MainActivity extends Activity {
 
 	// 初始化成功返回的对象数据
 	private JSONObject getJson() {
-		Map<String, String> json = Util.readHttpData(MainActivity.this);
+		Map<String, String> json = Util.readHttpData(WebMainHtmlActivity.this);
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject.put("reason", "初始化成功");
@@ -759,45 +642,16 @@ public class MainActivity extends Activity {
 
 	}
 
-	// 配置不同平台号
-	private String platformData() {
-		String result = Util.getAssetsFileContent(MainActivity.this,
-				"SDKFile/adChannel.png");
-		String adchannel = Util.getJsonStringByName(result, "adChannel");
-		if (adchannel.equals("20180928")) {
-			m_platform = "android13";
-		}
-		if (adchannel.equals("39001001")) {
-			m_platform = "android2";
-		}
-		if (adchannel.equals("39007003")) {
-			m_platform = "android2";
-		}
-		if (adchannel.equals("39007004")) {
-			m_platform = "android2";
-		}
-		if (adchannel.equals("39007005")) {
-			m_platform = "android2";
-		}
-		if (adchannel.equals("39007006")) {
-			m_platform = "android2";
-		}
-		if (adchannel.equals("39007007")) {
-			m_platform = "android2";
-		}
-
-		return m_platform;
-	}
 
 	@Override
 	protected void onPause() {
 		mweview.onPause();
-		mweview.pauseTimers();// 调用pauseTimers()全局停止Js
+		//mweview.pauseTimers();// 调用pauseTimers()全局停止Js
 		super.onPause();
 		if (isInit) {
 			m_proxy.onPause();
 		}
-
+		LogUtil.log("==========onPause()===========");
 	}
 
 	@Override
@@ -808,12 +662,13 @@ public class MainActivity extends Activity {
 		if (isInit) {
 			m_proxy.onResume();
 		}
-
+		LogUtil.log("==========onResume()===========");
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
+		LogUtil.log("==========onStart()===========");
 	}
 
 	@Override
@@ -822,22 +677,21 @@ public class MainActivity extends Activity {
 		if (isInit) {
 			m_proxy.onStop();
 		}
-
+		LogUtil.log("==========onStop()===========");
 	}
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
 		if (mweview != null) {
-			LogUtil.log("onDestroy+++++销毁webview");
 			mweview.clearHistory();
 			((ViewGroup) mweview.getParent()).removeView(mweview);
 			mweview.destroy();
 			mweview = null;
 		}
-		if (isInit) {
+		super.onDestroy();
+		/*if (isInit) {
 			m_proxy.onDestroy();
-		}
+		}*/
 	}
 
 	@Override
@@ -862,7 +716,7 @@ public class MainActivity extends Activity {
 				} else {
 					LogUtil.log("退出游戏3");
 					AlertDialog.Builder builder = new AlertDialog.Builder(
-							MainActivity.this);
+							WebMainHtmlActivity.this);
 					builder.setTitle("游戏");
 					builder.setMessage("真的忍心退出游戏么？");
 					builder.setPositiveButton("忍痛退出",
@@ -890,7 +744,7 @@ public class MainActivity extends Activity {
 			} else {
 				LogUtil.log("退出游戏4");
 				AlertDialog.Builder builder = new AlertDialog.Builder(
-						MainActivity.this);
+						WebMainHtmlActivity.this);
 				builder.setTitle("游戏");
 				builder.setMessage("真的忍心退出游戏么？");
 				builder.setPositiveButton("忍痛退出",

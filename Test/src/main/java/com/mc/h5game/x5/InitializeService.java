@@ -49,6 +49,7 @@ public class InitializeService extends IntentService {
     }
 
     private void performInit() {
+
         //初始化
         WebViewCacheInterceptor.Builder builder =  new WebViewCacheInterceptor.Builder(this);
 
@@ -77,5 +78,6 @@ public class InitializeService extends IntentService {
 
         WebViewCacheInterceptorInst.getInstance().init(builder);
     }
+
 
 }

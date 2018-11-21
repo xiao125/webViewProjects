@@ -17,21 +17,7 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 
 public class X5WebView extends WebView {
-    TextView title;
-    private WebViewClient client = new WebViewClient() {
-        /**
-         * 防止加载网页时调起系统浏览器
-         */
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
-        }
 
-        @Override
-        public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-            return super.shouldInterceptRequest(webView, s);
-        }
-    };
 
     @SuppressLint("SetJavaScriptEnabled")
     public X5WebView(Context arg0, AttributeSet arg1) {
@@ -44,25 +30,25 @@ public class X5WebView extends WebView {
     }
 
     private void initWebViewSettings() {
-        WebSettings webSetting = this.getSettings();
-        webSetting.setJavaScriptEnabled(true);
-        webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
-        webSetting.setAllowFileAccess(true);
-        webSetting.setLayoutAlgorithm(LayoutAlgorithm.NARROW_COLUMNS);
-        webSetting.setSupportZoom(true);
-        webSetting.setBuiltInZoomControls(true);
-        webSetting.setUseWideViewPort(true);
-        webSetting.setSupportMultipleWindows(true);
-        // webSetting.setLoadWithOverviewMode(true);
-        webSetting.setAppCacheEnabled(true);
-        // webSetting.setDatabaseEnabled(true);
-        webSetting.setDomStorageEnabled(true);
-        webSetting.setGeolocationEnabled(true);
-        webSetting.setAppCacheMaxSize(Long.MAX_VALUE);
-        // webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
-        webSetting.setPluginState(WebSettings.PluginState.ON_DEMAND);
-        // webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
-        webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        WebSettings webSettings = this.getSettings();
+        webSettings.setJavaScriptEnabled(true);  //支持js
+        webSettings.setDomStorageEnabled(true); //是否使用文档存储
+        webSettings.setPluginState(WebSettings.PluginState.ON); //是否可使用插件，插件未来将不会得到支持
+        webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);  //提高渲染的优先级
+        //设置自适应屏幕，两者合用
+        webSettings.setUseWideViewPort(true);  //将图片调整到适合webview的大小
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+        webSettings.setSupportZoom(true);  //支持缩放，默认为true。是下面那个的前提。
+        webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。
+        //若上面是false，则该WebView不可缩放，这个不管设置什么都不能缩放。
+        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); //支持内容重新布局
+        webSettings.supportMultipleWindows();  //多窗口
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);  //关闭webview中缓存
+        webSettings.setAllowFileAccess(true);  //设置可以访问文件
+        webSettings.setNeedInitialFocus(true); //当webview调用requestFocus时为webview设置节点
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
+        webSettings.setLoadsImagesAutomatically(true);  //支持自动加载图片
 
 
     }

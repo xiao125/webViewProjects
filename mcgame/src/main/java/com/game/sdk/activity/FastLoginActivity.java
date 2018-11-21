@@ -539,11 +539,21 @@ public class FastLoginActivity extends SdkBaseActivity implements RegistView,Log
     public void loginSuccess(String code, String data) {
         LoadingDialog.dismiss();
         //登录成功之后就保存账号密码
-        DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
+       // DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
         Delegate.listener.callback( SDKStatusCode.SUCCESS,data);
 
-        //查询账号是否绑定手机号
-        queryBindPresenterImp.queryBindAccont(m_userName,m_activity);
+        //是否首次登陆
+        String[] usernames = DBHelper.getInstance().findAllUserName();
+        KnLog.log("是否首次注册登录"+usernames.length);
+        //	数据库中获取用户数据量
+        if (usernames.length != 0) {
+            DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
+            //查询账号是否绑定手机号
+            queryBindPresenterImp.queryBindAccont(m_userName,m_activity);
+        }else {
+            DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
+            finishActivity();
+        }
 
     }
 

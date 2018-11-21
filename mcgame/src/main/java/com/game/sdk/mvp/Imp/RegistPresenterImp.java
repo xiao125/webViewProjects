@@ -53,7 +53,7 @@ public class RegistPresenterImp implements RegistPresenter {
                         String reason = obj.getString("reason");
 
                         if (dataCode == 0){
-                            DBHelper.getInstance().insertOrUpdateUser( name, pas);
+                           // DBHelper.getInstance().insertOrUpdateUser( name, pas);
                             mRegistView.registAccountSuccess(SDKStatusCode.SUCCESS,reason);
                         }else{
                             mRegistView.registAccountFailed(SDKStatusCode.FAILURE,reason);

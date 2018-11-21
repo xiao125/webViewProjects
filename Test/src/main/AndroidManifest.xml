@@ -49,6 +49,13 @@
         <!--进行第三方库初始化，减少启动时间-->
         <service android:name="com.mc.h5game.x5.InitializeService"></service>
 
+        <!--     在AndroidManifest.xml中增加内核首次加载时优化Service声明；    该Service仅在TBS内核首次Dex加载时触发并执行dex2oat任务，任务完成后自动结束。  -->
+        <service
+        android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+        android:label="dexopt"
+        android:process=":dexopt" ></service>
+
+
         <!-- 设置屏幕高宽比例  刘海屏手机的「宽高比」 -->
         <meta-data android:name="android.max_aspect" android:value="2.5" />
         <!-- 华为新增的Meta-data属性  刘海屏-->
@@ -60,6 +67,19 @@
             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
             android:theme="@style/SplashTheme"
             >
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+
+        </activity>
+
+
+        <activity android:name="com.mc.h5game.activity.SplashHtmlActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:theme="@style/SplashTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -67,6 +87,26 @@
 
         </activity>
 
+        <activity
+            android:name="com.mc.h5game.activity.WebMainHtmlActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            >
+        </activity>
+
+        <activity
+            android:name="com.mc.h5game.activity.WebMainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            >
+
+        </activity>
 
         <activity
             android:name="com.mc.h5game.activity.MainActivity"

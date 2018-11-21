@@ -877,7 +877,7 @@ public class Util {
 			@Override
 			public void onClick(View v) {
 				dia.dismiss();
-
+				activity.finish();
 			}
 		});
 

@@ -29,11 +29,11 @@ android {
         }
     }
 
-    sourceSets {
+    /*sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
-    }
+    }*/
 
     lintOptions {
         checkReleaseBuilds false
@@ -60,5 +60,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile project(':mcSDKProxy')
+    //rxpermissions权限
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    //RxJava2
+    implementation  'io.reactivex.rxjava2:rxjava:2.1.16'
     /*implementation 'ren.yale.android:cachewebviewlib:2.0.3'*/
+
 }

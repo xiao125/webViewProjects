@@ -1,14 +1,26 @@
 package com.mc.h5game.activity;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
+//import com.game.sdkproxy.R;
 import com.mc.h5game.util.LoadingLayout;
 import com.mc.h5game.util.SPreferencesUtil;
 import com.mc.h5game.util.ThreadPoolUtil;
@@ -25,46 +37,34 @@ import com.proxy.callback.SdkCallbackListener;
 import com.proxy.service.HttpService;
 import com.proxy.tools.HttpRequestUtil;
 import com.proxy.util.DeviceUtil;
-import com.proxy.util.LoadingDialog;
 import com.proxy.util.LoadingFramelayout;
 import com.proxy.util.LogUtil;
 import com.proxy.util.Util;
-import com.game.sdkproxy.R;
+import com.rxcqh5.cs.mc.R;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import ren.yale.android.cachewebviewlib.WebViewCacheInterceptorInst;
 
 @SuppressLint("NewApi")
-public class MainActivity extends Activity {
+public class WebMainActivity extends Activity {
 
 	private  Activity mativity;
-	//private X5WebView mweview;
-	private WebView mweview;
+	private X5WebView mweview;
 
 	private ViewGroup mViewParent;
 	private LoadingFramelayout mLoadingFramelayout;
@@ -101,32 +101,28 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mLoadingFramelayout = new LoadingFramelayout(this,R.layout.pmc_hactivity_main);
+		mLoadingFramelayout = new LoadingFramelayout(this, R.layout.webactivity_main);
 		setContentView(mLoadingFramelayout);
 		mativity = this;
 		init();
 		Data.getInstance().setGameActivity(mativity);
 		getHtmlUrl();
+
 	}
 
 	private void init() {
 
-		mweview = new com.tencent.smtt.sdk.WebView(this);
-		mViewParent.addView(mweview, new FrameLayout.LayoutParams(
-				FrameLayout.LayoutParams.FILL_PARENT,
-				FrameLayout.LayoutParams.FILL_PARENT));
-		mweview.setBackgroundColor(Color.BLACK);
 		//H5布局
 		mbgLayout = (RelativeLayout)findViewById(R.id.bgLayout);
 		progesss = (ProgressBar) findViewById(R.id.progesss1);
 		mViewParent = (ViewGroup) findViewById(R.id.wb);
-
-		/*mweview = new X5WebView(this, null);
+		mweview = new X5WebView(this, null);
 		mViewParent.addView(mweview, new FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.FILL_PARENT,
 				FrameLayout.LayoutParams.FILL_PARENT));
-		mweview.setBackgroundColor(Color.BLACK);*/
+		mweview.setBackgroundColor(Color.BLACK);
 		mweview.setLayerType(View.LAYER_TYPE_HARDWARE,null);//开启硬件加速
+
 	}
 
 
@@ -135,8 +131,8 @@ public class MainActivity extends Activity {
 		LogUtil.log("进入主Manin页面：");
 
 		final String is_first = (String) SPreferencesUtil.get(
-				MainActivity.this, "is_first", "1"); // 获取到保存的key数据
-		String result = Util.getAssetsFileContent(MainActivity.this,
+				WebMainActivity.this, "is_first", "1"); // 获取到保存的key数据
+		String result = Util.getAssetsFileContent(WebMainActivity.this,
 				"SDKFile/adChannel.png");
 		final String channel = Util.getJsonStringByName(result, "channel");
 		final String adchannel = Util.getJsonStringByName(result, "adChannel");
@@ -144,7 +140,7 @@ public class MainActivity extends Activity {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());// 设置日期格式
 		String time = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
 		if (!"1".equals(is_first)) {
-			Map<String, String> json = Util.readHttpData(MainActivity.this);
+			Map<String, String> json = Util.readHttpData(WebMainActivity.this);
 			LogUtil.log("读取log文件数据:" + json);
 			data.put("game_id", json.get("game_id"));
 			data.put("channel", json.get("channel"));
@@ -174,7 +170,7 @@ public class MainActivity extends Activity {
 
 		LogUtil.log("开始请求H5游戏地址：");
 
-		HttpService.doHtmlUrl(MainActivity.this, data, new HttpRequestUtil.DataCallBack() {
+		HttpService.doHtmlUrl(WebMainActivity.this, data, new HttpRequestUtil.DataCallBack() {
 			@Override
 			public void requestSuccess(String result) throws Exception {
 				LogUtil.log("获取h5地址result=" + result);
@@ -186,7 +182,7 @@ public class MainActivity extends Activity {
 						HtmlUrl = jsonObject.getString("loginUrl");
 						if (("1").equals(is_first) && HtmlUrl !=null) {
 							SPreferencesUtil
-									.put(MainActivity.this, "is_first", "0");// 保存sp标识
+									.put(WebMainActivity.this, "is_first", "0");// 保存sp标识
 							String game_id = jsonObject.getString("game_id");
 							String channel = jsonObject.getString("channel");
 							String platform = jsonObject.getString("platform");
@@ -202,7 +198,7 @@ public class MainActivity extends Activity {
 						ThreadPoolUtil.execute(new Runnable() {
 							@Override
 							public void run() {
-								MainActivity.this.runOnUiThread(new Runnable() {
+								WebMainActivity.this.runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
 										showHtml(HtmlUrl);
@@ -217,11 +213,6 @@ public class MainActivity extends Activity {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-
-
-				//final String  result = results;
-
-
 			}
 
 			@Override
@@ -252,38 +243,11 @@ public class MainActivity extends Activity {
 
 	// 显示HTML页面
 	private void showHtml(String htmlUrl) {
-		// 设置WebSettings属性
-		WebSettingss();
 		// 设置webView监听回调
 		WebViewListener();
 		mweview.loadUrl(htmlUrl);
 	}
 
-	// 设置WebSettings属性
-	@SuppressLint("NewApi")
-	private void WebSettingss() {
-		WebSettings webSettings = mweview.getSettings();
-		webSettings.setJavaScriptEnabled(true);  //支持js
-		webSettings.setDomStorageEnabled(true); //是否使用文档存储
-		webSettings.setPluginState(WebSettings.PluginState.ON); //是否可使用插件，插件未来将不会得到支持
-		webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);  //提高渲染的优先级
-		//设置自适应屏幕，两者合用
-		webSettings.setUseWideViewPort(true);  //将图片调整到适合webview的大小
-		webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-		webSettings.setSupportZoom(true);  //支持缩放，默认为true。是下面那个的前提。
-		webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。
-		//若上面是false，则该WebView不可缩放，这个不管设置什么都不能缩放。
-		webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
-		webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); //支持内容重新布局
-		webSettings.supportMultipleWindows();  //多窗口
-		webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);  //关闭webview中缓存
-		webSettings.setAllowFileAccess(true);  //设置可以访问文件
-		webSettings.setNeedInitialFocus(true); //当webview调用requestFocus时为webview设置节点
-		webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
-		webSettings.setLoadsImagesAutomatically(true);  //支持自动加载图片
-
-
-	}
 
 	// 设置webView监听回调
 	private void WebViewListener() {
@@ -330,7 +294,6 @@ public class MainActivity extends Activity {
 				//LoadingDialog.dismiss();
 				mbgLayout.setVisibility(View.GONE);
 				LogUtil.log("WebView加载结束时调用url:" + url);
-
 
 			}
 
@@ -405,7 +368,7 @@ public class MainActivity extends Activity {
 					ThreadPoolUtil.execute(new Runnable() {
 						@Override
 						public void run() {
-							MainActivity.this.runOnUiThread(new Runnable() {
+							WebMainActivity.this.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
 									activateCallback();
@@ -468,7 +431,7 @@ public class MainActivity extends Activity {
 		@JavascriptInterface
 		public void activate() {
 			LogUtil.log("sdk开始初始化=");
-			Map<String, String> json = Util.readHttpData(MainActivity.this);
+			Map<String, String> json = Util.readHttpData(WebMainActivity.this);
 			String gameId = json.get("game_id");
 			GameInfo m_gameInfo = new GameInfo(m_gameName,m_appKey, gameId,m_screenOrientation);
 			//初始化中间件
@@ -534,7 +497,7 @@ public class MainActivity extends Activity {
 			ThreadPoolUtil.execute(new Runnable() {
 				@Override
 				public void run() {
-					MainActivity.this.runOnUiThread(new Runnable() {
+					WebMainActivity.this.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							try {
@@ -712,7 +675,7 @@ public class MainActivity extends Activity {
 
 	// 初始化成功返回的对象数据
 	private JSONObject getJson() {
-		Map<String, String> json = Util.readHttpData(MainActivity.this);
+		Map<String, String> json = Util.readHttpData(WebMainActivity.this);
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject.put("reason", "初始化成功");
@@ -761,7 +724,7 @@ public class MainActivity extends Activity {
 
 	// 配置不同平台号
 	private String platformData() {
-		String result = Util.getAssetsFileContent(MainActivity.this,
+		String result = Util.getAssetsFileContent(WebMainActivity.this,
 				"SDKFile/adChannel.png");
 		String adchannel = Util.getJsonStringByName(result, "adChannel");
 		if (adchannel.equals("20180928")) {
@@ -862,7 +825,7 @@ public class MainActivity extends Activity {
 				} else {
 					LogUtil.log("退出游戏3");
 					AlertDialog.Builder builder = new AlertDialog.Builder(
-							MainActivity.this);
+							WebMainActivity.this);
 					builder.setTitle("游戏");
 					builder.setMessage("真的忍心退出游戏么？");
 					builder.setPositiveButton("忍痛退出",
@@ -890,7 +853,7 @@ public class MainActivity extends Activity {
 			} else {
 				LogUtil.log("退出游戏4");
 				AlertDialog.Builder builder = new AlertDialog.Builder(
-						MainActivity.this);
+						WebMainActivity.this);
 				builder.setTitle("游戏");
 				builder.setMessage("真的忍心退出游戏么？");
 				builder.setPositiveButton("忍痛退出",
