@@ -42,10 +42,8 @@ public class LoadingLayout extends FrameLayout {
         LogUtil.log("加载进度条");
         mLoadingView = (RelativeLayout) rootView.findViewById(R.id.load_view); //布局最外层 LinearLayout
         progesss = (ProgressBar)rootView.findViewById(R.id.progesss1);
-        progesssValue = (TextView)rootView.findViewById(R.id.progesss_value1);
 
         progesss.setProgress(66);
-        progesssValue.setText(new StringBuffer().append(progesss.getProgress()).append("%"));
         /*progesssValue.post(new Runnable() {
             @Override
             public void run() {

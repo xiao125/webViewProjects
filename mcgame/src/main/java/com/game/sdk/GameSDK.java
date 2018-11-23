@@ -83,7 +83,7 @@ public class GameSDK {
 		Data.getInstance().setGameActivity(activity); //设置全局Actvity
 		setGameInfo(gameInfo);
 		KnLog.log("=============appKey========="+gameInfo.getAppKey()+" GameId="+gameInfo.getGameId());
-		SDK.changeConfig(gameInfo.getAdChannelTxt());
+		//SDK.changeConfig(gameInfo.getAdChannelTxt());
 		MetaData();
 		callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
 		this.isInited = true;

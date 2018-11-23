@@ -218,7 +218,7 @@ public class Util {
 			
 			String retStr = obj.getString(name);
 			
-			if(retStr == null){
+			if(null==retStr){
 				return "";
 			}
 			return obj.getString(name);

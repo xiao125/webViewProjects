@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rxcqh5.cs.mc">
 
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="26"/>
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -96,6 +100,17 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             >
         </activity>
+
+        <activity
+            android:name="com.mc.h5game.activity.WebMainHtmlTestActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            >
+        </activity>
+
 
         <activity
             android:name="com.mc.h5game.activity.WebMainActivity"

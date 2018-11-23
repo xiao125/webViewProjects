@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
     //RxJava2
     implementation  'io.reactivex.rxjava2:rxjava:2.1.16'
-    /*implementation 'ren.yale.android:cachewebviewlib:2.0.3'*/
+    compile 'ren.yale.android:cachewebviewlib:2.1.1'
+
 
 }

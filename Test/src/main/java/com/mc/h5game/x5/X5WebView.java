@@ -2,34 +2,88 @@ package com.mc.h5game.x5;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.os.Build;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import com.mc.h5game.util.WebResourceRequestAdapter;
+import com.mc.h5game.util.WebResourceResponseAdapter;
+import com.proxy.util.LogUtil;
+import com.rxcqh5.cs.mc.R;
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
-import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+
+import ren.yale.android.cachewebviewlib.WebViewCacheInterceptorInst;
 
 public class X5WebView extends WebView {
 
 
-    @SuppressLint("SetJavaScriptEnabled")
-    public X5WebView(Context arg0, AttributeSet arg1) {
-        super(arg0, arg1);
-        //this.setWebViewClient(client);
-        // this.setWebChromeClient(chromeClient);
-        // WebStorage webStorage = WebStorage.getInstance();
-        initWebViewSettings();
-        this.getView().setClickable(true);
+    ProgressBar progressBar;
+    private TextView tvTitle;
+    private RelativeLayout mRelativeLayout;
+    private Context mcontext;
+    private static final int MAX_LENGTH = 8;
+
+    public X5WebView(Context context) {
+        super(context);
+        mcontext = context;
+        initUI();
     }
 
+    public X5WebView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        mcontext = context;
+        initUI();
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    public X5WebView(Context context, AttributeSet arg1) {
+        super(context, arg1);
+        mcontext = context;
+        initUI();
+    }
+
+
+    private void initUI() {
+
+        setHorizontalScrollBarEnabled(false);//水平不显示小方块
+        setVerticalScrollBarEnabled(false); //垂直不显示小方块
+        View headView = LayoutInflater.from(getContext()).inflate(R.layout.loading_layout , null , false) ;
+        progressBar = headView.findViewById(R.id.progesss1);
+        mRelativeLayout = headView.findViewById(R.id.bgLayout);
+        tvTitle = headView.findViewById(R.id.tvloading);
+        addView(headView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        initWebViewSettings();
+    }
+
+
     private void initWebViewSettings() {
+
+        setBackgroundColor(getResources().getColor(android.R.color.white));
+        setWebViewClient(client);
+        setWebChromeClient(chromeClient);
+        setClickable(true);
+        setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
+
+
         WebSettings webSettings = this.getSettings();
         webSettings.setJavaScriptEnabled(true);  //支持js
         webSettings.setDomStorageEnabled(true); //是否使用文档存储
@@ -52,4 +106,105 @@ public class X5WebView extends WebView {
 
 
     }
+
+    private WebChromeClient chromeClient = new WebChromeClient() {
+        @Override
+        public void onReceivedTitle(WebView view, String title) {
+            if (tvTitle == null || TextUtils.isEmpty(title)) {
+                return;
+            }
+            if (title != null && title.length() > MAX_LENGTH) {
+                tvTitle.setText(title.subSequence(0, MAX_LENGTH) + "...");
+            } else {
+                tvTitle.setText(title);
+            }
+        }
+
+        //监听进度
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            progressBar.setProgress(newProgress);
+            if (progressBar != null && newProgress != 100) {
+                //Webview加载没有完成 就显示我们自定义的加载图
+                progressBar.setVisibility(VISIBLE);
+                tvTitle.setText("加载"+newProgress+"%");
+            } else if (progressBar != null) {
+                //Webview加载完成 就隐藏进度条,显示Webview
+                progressBar.setVisibility(GONE);
+                mRelativeLayout.setVisibility(GONE);
+                tvTitle.setVisibility(GONE);
+            }
+        }
+
+        @Override
+        public boolean onConsoleMessage(com.tencent.smtt.export.external.interfaces.ConsoleMessage consoleMessage) { // 查看web
+            // console日志
+            Log.e("console",
+                    "[" + consoleMessage.messageLevel() + "] "
+                            + consoleMessage.message() + "("
+                            + consoleMessage.sourceId() + ":"
+                            + consoleMessage.lineNumber() + ")");
+            return super.onConsoleMessage(consoleMessage);
+        }
+    };
+
+
+    private WebViewClient client = new WebViewClient() {
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
+
+            return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+                    interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            LogUtil.log("拦截url:" + url);
+            if (url.startsWith("weixin://wap/pay?")) {
+                LogUtil.log("微信支付拦截回调");
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                mcontext.startActivity(intent);
+                return true;
+
+            } else if (url.startsWith("alipays://")) {
+                LogUtil.log("支付包拦截回调");
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                mcontext.startActivity(intent);
+                return true;
+            }
+
+            return super.shouldOverrideUrlLoading(view, url);
+        }
+
+        // onPageStarted会在WebView开始加载网页时调用
+        @Override
+        public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+            super.onPageStarted(webView, s, bitmap);
+            // 与js协议接口
+
+        }
+
+        // onPageStarted会在WebView加载网页结束时调用(重定向和加载完 iframes 时都会调用这个方法,判断页面加载完毕不太准确)
+        @Override
+        public void onPageFinished(WebView webView, String url) {
+            super.onPageFinished(webView, url);
+            LogUtil.log("WebView加载结束时调用url:" + url);
+        }
+
+        // 该方法传回了错误码，根据错误类型可以进行不同的错误分类处理
+        @Override
+        public void onReceivedError(WebView webView, int i, String s,
+                                    String s1) {
+            super.onReceivedError(webView, i, s, s1);
+            LogUtil.log("错误码：" + i);
+        }
+
+    };
+
+
 }

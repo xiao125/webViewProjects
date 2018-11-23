@@ -6,70 +6,37 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.mc.h5game.util.LoadingLayout;
-import com.mc.h5game.util.SPreferencesUtil;
 import com.mc.h5game.util.ThreadPoolUtil;
 import com.mc.h5game.util.TimeUtils;
-import com.mc.h5game.util.WebResourceRequestAdapter;
-import com.mc.h5game.util.WebResourceResponseAdapter;
 import com.mc.h5game.x5.X5WebView;
 import com.proxy.Constants;
-import com.proxy.Data;
 import com.proxy.OpenSDK;
 import com.proxy.ResultCode;
 import com.proxy.bean.GameInfo;
 import com.proxy.bean.KnPayInfo;
 import com.proxy.callback.SdkCallbackListener;
-import com.proxy.service.HttpService;
-import com.proxy.tools.HttpRequestUtil;
 import com.proxy.util.DeviceUtil;
-import com.proxy.util.LoadingFramelayout;
 import com.proxy.util.LogUtil;
 import com.proxy.util.Util;
 import com.rxcqh5.cs.mc.R;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
-import com.tencent.smtt.sdk.QbSdk;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-
 import ren.yale.android.cachewebviewlib.WebViewCacheInterceptorInst;
 
-//import com.game.sdkproxy.R;
 
 @SuppressLint("NewApi")
-public class WebMainHtmlActivity extends Activity {
-
+public class WebMainHtmlTestActivity extends Activity {
 	//传世H5
 	private String m_platform = "android";
 	private String m_appKey = "XovHFMSPKstE0Gwrf8cBudDIV6JN5hC4";
@@ -77,22 +44,17 @@ public class WebMainHtmlActivity extends Activity {
 	private String m_gameName = "cqsjh5";
 	private int m_screenOrientation = 1;
 	private  Activity mativity;
-	private WebView mweview;
-	private ProgressBar progesss;
-	private TextView mtvloding;
+	private X5WebView mweview;
 	private RelativeLayout mbgLayout;
 	OpenSDK m_proxy = OpenSDK.getInstance();
-
+	private FrameLayout  mFrameLayout;
 	public String HtmlUrl;
 	private String roleDate;
-	private String roledata;
 	private boolean isInit = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		/*mLoadingFramelayout = new LoadingFramelayout(this, R.layout.webactivity_main);
-		setContentView(mLoadingFramelayout);*/
 		setContentView(R.layout.webactivity_main);
 		mativity = this;
 		Intent intent = getIntent();//获取传来的intent对象
@@ -102,12 +64,9 @@ public class WebMainHtmlActivity extends Activity {
 	}
 
 	private void init() {
-
-		//H5布局
-		mbgLayout = (RelativeLayout)findViewById(R.id.bgLayout);
-		progesss = (ProgressBar) findViewById(R.id.progesss1);
-		mtvloding = (TextView)findViewById(R.id.tvloading);
-		mweview =(com.tencent.smtt.sdk.WebView) findViewById(R.id.wb);
+		mweview = new X5WebView(this);
+		mFrameLayout = findViewById(R.id.wb);
+		mFrameLayout.addView(mweview);
 		mweview.setBackgroundColor(Color.BLACK);
 		mweview.setLayerType(View.LAYER_TYPE_HARDWARE,null);//开启硬件加速
 
@@ -116,142 +75,14 @@ public class WebMainHtmlActivity extends Activity {
 	// 显示HTML页面
 	private void showHtml(String htmlUrl) {
 
-		initWebViewSettings();
+		//initWebViewSettings();
 		// 设置webView监听回调
-		WebViewListener();
+		//WebViewListener();
+		// 与js协议接口
+		mweview.addJavascriptInterface(new InitGame(), "MCBridge");
 		mweview.loadUrl(htmlUrl);
 		WebViewCacheInterceptorInst.getInstance().loadUrl(htmlUrl,mweview.getSettings().getUserAgentString());
 	}
-
-
-	private void initWebViewSettings() {
-		WebSettings webSettings = mweview.getSettings();
-		webSettings.setJavaScriptEnabled(true);  //支持js
-		webSettings.setDomStorageEnabled(true); //是否支持持久化存储，保存到本地
-		webSettings.setPluginState(WebSettings.PluginState.ON); //是否可使用插件，插件未来将不会得到支持
-		webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);  //提高渲染的优先级
-		//设置自适应屏幕，两者合用
-		webSettings.setUseWideViewPort(true);  //将图片调整到适合webview的大小
-		webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-		webSettings.setSupportZoom(true);  //支持缩放，默认为true。是下面那个的前提。
-		webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。
-		//若上面是false，则该WebView不可缩放，这个不管设置什么都不能缩放。
-		webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
-		webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); //支持内容重新布局
-		webSettings.supportMultipleWindows();  //多窗口
-		webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);  //关闭webview中缓存
-		webSettings.setAllowFileAccess(true);  //设置可以访问文件
-		webSettings.setNeedInitialFocus(true); //当webview调用requestFocus时为webview设置节点
-		webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
-		webSettings.setLoadsImagesAutomatically(true);  //支持自动加载图片
-
-
-
-	}
-
-
-	// 设置webView监听回调
-	private void WebViewListener() {
-
-		mweview.setWebViewClient(new WebViewClient() {
-			/*@Override
-			public WebResourceResponse shouldInterceptRequest(WebView webView, String url) {
-				return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
-						interceptRequest(url));
-			}
-            */
-			@Override
-			public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-
-				return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
-						interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
-			}
-
-			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				LogUtil.log("拦截url:" + url);
-				if (url.startsWith("weixin://wap/pay?")) {
-					LogUtil.log("微信支付拦截回调");
-					Intent intent = new Intent();
-					intent.setAction(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse(url));
-					startActivity(intent);
-					return true;
-
-				} else if (url.startsWith("alipays://")) {
-					LogUtil.log("支付包拦截回调");
-					Intent intent = new Intent();
-					intent.setAction(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse(url));
-					startActivity(intent);
-					return true;
-				}
-
-				return super.shouldOverrideUrlLoading(view, url);
-			}
-
-			// onPageStarted会在WebView开始加载网页时调用
-			@Override
-			public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
-				super.onPageStarted(webView, s, bitmap);
-				//LoadingDialog.show(MainActivity.this, "拼命加载游戏中....", false);
-				mbgLayout.setVisibility(View.VISIBLE);
-				// 与js协议接口
-				mweview.addJavascriptInterface(new InitGame(), "MCBridge");
-			}
-
-			// onPageStarted会在WebView加载网页结束时调用(重定向和加载完 iframes 时都会调用这个方法,判断页面加载完毕不太准确)
-			@Override
-			public void onPageFinished(WebView webView, String url) {
-				super.onPageFinished(webView, url);
-				//LoadingDialog.dismiss();
-				//mbgLayout.setVisibility(View.GONE);
-				LogUtil.log("WebView加载结束时调用url:" + url);
-			}
-
-			// 该方法传回了错误码，根据错误类型可以进行不同的错误分类处理
-			@Override
-			public void onReceivedError(WebView webView, int i, String s,
-										String s1) {
-				super.onReceivedError(webView, i, s, s1);
-				LogUtil.log("错误码：" + i);
-			}
-
-
-		});
-
-		mweview.setWebChromeClient(new WebChromeClient() {
-			@Override
-			public void onProgressChanged(WebView webView, int newProgress) { // 页面加载进度
-				super.onProgressChanged(webView, newProgress);
-				LogUtil.log("加载进度=" + newProgress);
-				if(progesss!=null && newProgress <100){
-					mbgLayout.setVisibility(View.VISIBLE);
-					progesss.setVisibility(View.VISIBLE);
-					mtvloding.setText("正在加载中"+newProgress+"%");
-					progesss.setProgress(newProgress);
-				}else {
-					//Webview加载完成 就隐藏进度条,显示Webview
-					mbgLayout.setVisibility(View.GONE);
-					progesss.setVisibility(View.GONE);
-					mtvloding.setVisibility(View.GONE);
-				}
-			}
-
-			@Override
-			public boolean onConsoleMessage(com.tencent.smtt.export.external.interfaces.ConsoleMessage consoleMessage) { // 查看web
-				// console日志
-				Log.e("console",
-						"[" + consoleMessage.messageLevel() + "] "
-								+ consoleMessage.message() + "("
-								+ consoleMessage.sourceId() + ":"
-								+ consoleMessage.lineNumber() + ")");
-				return super.onConsoleMessage(consoleMessage);
-			}
-		});
-
-	}
-
 
 
 	SdkCallbackListener callbackListener = new SdkCallbackListener<String>() {
@@ -264,7 +95,7 @@ public class WebMainHtmlActivity extends Activity {
 					ThreadPoolUtil.execute(new Runnable() {
 						@Override
 						public void run() {
-							WebMainHtmlActivity.this.runOnUiThread(new Runnable() {
+							WebMainHtmlTestActivity.this.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
 									activateCallback();
@@ -327,7 +158,7 @@ public class WebMainHtmlActivity extends Activity {
 		@JavascriptInterface
 		public void activate() {
 			LogUtil.log("sdk开始初始化=");
-			Map<String, String> json = Util.readHttpData(WebMainHtmlActivity.this);
+			Map<String, String> json = Util.readHttpData(WebMainHtmlTestActivity.this);
 			String gameId = json.get("game_id");
 			GameInfo m_gameInfo = new GameInfo(m_gameName,m_appKey, gameId,m_screenOrientation);
 			//初始化中间件
@@ -387,15 +218,15 @@ public class WebMainHtmlActivity extends Activity {
 
 		@JavascriptInterface
 		public void roleReport(String roleReportContent) {
-			roledata = roleReportContent;
+			roleDate = roleReportContent;
 			ThreadPoolUtil.execute(new Runnable() {
 				@Override
 				public void run() {
-					WebMainHtmlActivity.this.runOnUiThread(new Runnable() {
+					WebMainHtmlTestActivity.this.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							try {
-								JSONObject jsonObject = new JSONObject(roledata);
+								JSONObject jsonObject = new JSONObject(roleDate);
 								LogUtil.log("js传递过来的参数=" + jsonObject.toString());
 								String userId = jsonObject.getString("userId")!=null?jsonObject.getString("userId"):"";// 用户id
 								String serverId = jsonObject.getString("serverId")!=null?jsonObject.getString("serverId"):""; // 服务器Id
@@ -452,7 +283,7 @@ public class WebMainHtmlActivity extends Activity {
 		 */
 		@JavascriptInterface
 		public void u7SystemInfo() {
-			String DisplayMetrics = Util.ImageGalleryAdapter(WebMainHtmlActivity.this);
+			String DisplayMetrics = Util.ImageGalleryAdapter(WebMainHtmlTestActivity.this);
 			JSONObject jsonObject = new JSONObject();
 			try {
 				jsonObject.put("network",DeviceUtil.getNetWorkType()); //当前网络类型
@@ -624,7 +455,7 @@ public class WebMainHtmlActivity extends Activity {
 
 	// 初始化成功返回的对象数据
 	private JSONObject getJson() {
-		Map<String, String> json = Util.readHttpData(WebMainHtmlActivity.this);
+		Map<String, String> json = Util.readHttpData(WebMainHtmlTestActivity.this);
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject.put("reason", "初始化成功");
@@ -640,7 +471,7 @@ public class WebMainHtmlActivity extends Activity {
 	}
 
 	// 调用js接口（上报回调方法）,目前不需要此方法
-	private void roleData(String data) {
+	private void roleData(final String data) {
 
 		final int version = Build.VERSION.SDK_INT;
 		if (version < 18) {
@@ -655,7 +486,7 @@ public class WebMainHtmlActivity extends Activity {
 						public void run() {
 							// 调用js初始化回调
 							mweview.evaluateJavascript(
-									"javascript:roleReportCallback('" + roleDate+"')",
+									"javascript:roleReportCallback('" + data+"')",
 									new com.tencent.smtt.sdk.ValueCallback<String>() {
 										@Override
 										public void onReceiveValue(String value) {
@@ -745,7 +576,7 @@ public class WebMainHtmlActivity extends Activity {
 				} else {
 					LogUtil.log("退出游戏3");
 					AlertDialog.Builder builder = new AlertDialog.Builder(
-							WebMainHtmlActivity.this);
+							WebMainHtmlTestActivity.this);
 					builder.setTitle("游戏");
 					builder.setMessage("真的忍心退出游戏么？");
 					builder.setPositiveButton("忍痛退出",
@@ -773,7 +604,7 @@ public class WebMainHtmlActivity extends Activity {
 			} else {
 				LogUtil.log("退出游戏4");
 				AlertDialog.Builder builder = new AlertDialog.Builder(
-						WebMainHtmlActivity.this);
+						WebMainHtmlTestActivity.this);
 				builder.setTitle("游戏");
 				builder.setMessage("真的忍心退出游戏么？");
 				builder.setPositiveButton("忍痛退出",

@@ -111,8 +111,9 @@ public class SusViewMager {
                         public void onItemClick(final int position, String title) {
 
                             if (position ==0){ //注销账号
-                                //判断是否是首次安装app，注销提示先登录
+                                /*//判断是否是首次安装app，注销提示先登录
                                 final String usernames[] = DBHelper.getInstance().findAllUserName();
+                                DBHelper.getInstance().close();
                                 if( usernames != null && usernames.length >0 ){
                                     username = usernames[0];
                                     KnLog.log("========首次调用注销："+username);
@@ -123,7 +124,7 @@ public class SusViewMager {
                                 if (username== null){
                                     Util.ShowTips(activity,"请登录！");
                                     return;
-                                }
+                                }*/
 
                                 LayoutInflater inflater = LayoutInflater.from(activity);
                                 View v = inflater.inflate(R.layout.mc_float_logout_dialog, null); //绑定手机
@@ -200,12 +201,12 @@ public class SusViewMager {
                         }
                     });
 
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+          /*  new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     refreshDot();
                 }
-            },5000);
+            },5000);*/
 
         }else {
 
