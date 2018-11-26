@@ -185,8 +185,8 @@ public class SplashHtmlActivity extends AppCompatActivity {
 							Util.writeHttpData(mativity, pay_params); // 保存
 						}
 
-						//Intent intent = new Intent(SplashHtmlActivity.this, WebMainHtmlActivity.class);
-						Intent intent = new Intent(SplashHtmlActivity.this, WebMainHtmlTestActivity.class);
+						//Intent intent = new Intent(SplashHtmlActivity.this, WebMainHtmlTestActivity.class);
+						Intent intent = new Intent(SplashHtmlActivity.this, WebMainHtmlHActivity.class);
 						intent.putExtra("HTML_URL",HtmlUrl);
 						startActivity(intent);
 						finish();

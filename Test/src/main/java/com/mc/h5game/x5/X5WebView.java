@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -103,7 +104,9 @@ public class X5WebView extends WebView {
         webSettings.setNeedInitialFocus(true); //当webview调用requestFocus时为webview设置节点
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
         webSettings.setLoadsImagesAutomatically(true);  //支持自动加载图片
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //支持Https和Http的混合模式
+            webSettings.setMixedContentMode(webSettings.getMixedContentMode());
+        }
 
     }
 
@@ -124,7 +127,7 @@ public class X5WebView extends WebView {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             progressBar.setProgress(newProgress);
-            if (progressBar != null && newProgress != 100) {
+            if (progressBar != null && newProgress < 100) {
                 //Webview加载没有完成 就显示我们自定义的加载图
                 progressBar.setVisibility(VISIBLE);
                 tvTitle.setText("加载"+newProgress+"%");

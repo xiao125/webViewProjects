@@ -305,137 +305,141 @@ public class WebMainHtmlTestActivity extends Activity {
 	// 调用js接口（初始化成功回调方法）
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	private void activateCallback() {
-		final int version = Build.VERSION.SDK_INT;
-		if (version < 18) {
-			// 调用js初始化回调
-			mweview.loadUrl("javascript:activateCallback('"+ getJson().toString() + "')");
+		mweview.post(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				final int version = Build.VERSION.SDK_INT;
+				if (version < 18) {
+					// 调用js初始化回调
+					mweview.loadUrl("javascript:activateCallback('"+ getJson().toString() + "')");
 
-		} else { // 该方法在 Android 4.4 版本才可使用，
-			// 调用js初始化回调
-			mweview.evaluateJavascript("javascript:activateCallback('"+ getJson().toString() + "')",
-					new com.tencent.smtt.sdk.ValueCallback<String>() {
-						@Override
-						public void onReceiveValue(String s) {
-						}
-					});
-		}
+				} else { // 该方法在 Android 4.4 版本才可使用，
+					// 调用js初始化回调
+					mweview.evaluateJavascript("javascript:activateCallback('"+ getJson().toString() + "')",
+							new com.tencent.smtt.sdk.ValueCallback<String>() {
+								@Override
+								public void onReceiveValue(String s) {
 
+								}
+							});
+				}
+			}
+		});
 	}
 
 	// 调用js接口（登录回调方法）
 	@TargetApi(Build.VERSION_CODES.KITKAT)
-	private void loginCallback(String openId,String sid) {
-		final int version = Build.VERSION.SDK_INT;
-		if (version < 18) {
-			// 调用js初始化回调
-			mweview.loadUrl("javascript:loginCallback('" + getJson(openId,sid) + "')");
+	private void loginCallback(final String openId, final String sid) {
+		mweview.post(new Runnable() {
+			@Override
+			public void run() {
+				final int version = Build.VERSION.SDK_INT;
+				if (version < 18) {
+					// 调用js初始化回调
+					mweview.loadUrl("javascript:loginCallback('" + getJson(openId,sid) + "')");
+				} else { // 该方法在 Android 4.4 版本才可使用，
+					// 调用js初始化回调
+					mweview.evaluateJavascript("javascript:loginCallback('"
+									+ getJson(openId,sid) + "')",
+							new com.tencent.smtt.sdk.ValueCallback<String>() {
+								@Override
+								public void onReceiveValue(String value) {
 
-		} else { // 该方法在 Android 4.4 版本才可使用，
-			// 调用js初始化回调
-			mweview.evaluateJavascript("javascript:loginCallback('"
-							+ getJson(openId,sid) + "')",
-					new com.tencent.smtt.sdk.ValueCallback<String>() {
-						@Override
-						public void onReceiveValue(String value) {
+								}
+							});
+				}
+			}
+		});
 
-						}
-					});
 
-		}
 	}
 
 	// js接口（游戏回到登录界面）
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	private void logoutCallback() {
-		final int version = Build.VERSION.SDK_INT;
-		if (version < 18) {
-			// 调用js初始化回调
-			mweview.loadUrl("javascript:logoutCallback()");
-
-		} else { // 该方法在 Android 4.4 版本才可使用，
-
-			// 调用js初始化回调
-			mweview.evaluateJavascript("javascript:logoutCallback()",
-					new com.tencent.smtt.sdk.ValueCallback<String>() {
-						@Override
-						public void onReceiveValue(String value) {
-							// TODO Auto-generated method stub
-							LogUtil.log("注销sdk游戏账号11111111");
-
-						}
-					});
-
-		}
-
+		mweview.post(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				final int version = Build.VERSION.SDK_INT;
+				if (version < 18) {
+					// 调用js初始化回调
+					mweview.loadUrl("javascript:logoutCallback()");
+				} else { // 该方法在 Android 4.4 版本才可使用，
+					// 调用js初始化回调
+					mweview.evaluateJavascript("javascript:logoutCallback()",
+							new com.tencent.smtt.sdk.ValueCallback<String>() {
+								@Override
+								public void onReceiveValue(String value) {
+									// TODO Auto-generated method stub
+									LogUtil.log("注销sdk游戏账号11111111");
+								}
+							});
+				}
+			}
+		});
 	}
 
 	// js接口（支付回调）
-
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	private void payCallback() {
-		final int version = Build.VERSION.SDK_INT;
-
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.put("reason", "支付成功");
-			jsonObject.put("code", 0);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-
-		if (version < 18) {
-
-			// 调用js支付回调
-			mweview.loadUrl("javascript:payCallback('" + jsonObject.toString()
-					+ "')");
-
-		} else { // 该方法在 Android 4.4 版本才可使用，
-
-			// 调用js初始化回调
-			mweview.evaluateJavascript(
-					"javascript:payCallback('" + jsonObject.toString() + "')",
-					new com.tencent.smtt.sdk.ValueCallback<String>() {
-
-						@Override
-						public void onReceiveValue(String value) {
-							// TODO Auto-generated method stub
-
-						}
-					});
-		}
+		mweview.post(new Runnable() {
+			@Override
+			public void run() {
+				final int version = Build.VERSION.SDK_INT;
+				JSONObject jsonObject = new JSONObject();
+				try {
+					jsonObject.put("reason", "支付成功");
+					jsonObject.put("code", 0);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				if (version < 18) {
+					// 调用js支付回调
+					mweview.loadUrl("javascript:payCallback('" + jsonObject.toString()
+							+ "')");
+				} else { // 该方法在 Android 4.4 版本才可使用，
+					// 调用js初始化回调
+					mweview.evaluateJavascript(
+							"javascript:payCallback('" + jsonObject.toString() + "')",
+							new com.tencent.smtt.sdk.ValueCallback<String>() {
+								@Override
+								public void onReceiveValue(String value) {
+									// TODO Auto-generated method stub
+								}
+							});
+				}
+			}
+		});
 	}
 
 	// js接口（返回android手机设备相关信息）
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	private void u7gameSystemInfo(final String json) {
-
-		final int version = Build.VERSION.SDK_INT;
-		if (version < 18) {
-			// 调用js初始化回调
-			mweview.loadUrl("javascript:u7gameSystemInfo('" + json+ "')");
-		} else { // 该方法在 Android 4.4 版本才可使用，
-			// 调用js初始化回调
-			ThreadPoolUtil.execute(new Runnable() {
-				@Override
-				public void run() {
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							// 调用js初始化回调
-							mweview.evaluateJavascript("javascript:u7gameSystemInfo('" + json
-											+ "')",
-									new com.tencent.smtt.sdk.ValueCallback<String>() {
-										@Override
-										public void onReceiveValue(String value) {
-											// TODO Auto-generated method stub
-											LogUtil.log("上报手机信息，返回："+value);
-										}
-									});
-						}
-					});
+		mweview.post(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				final int version = Build.VERSION.SDK_INT;
+				if (version < 18) {
+					// 调用js初始化回调
+					mweview.loadUrl("javascript:u7gameSystemInfo('" + json+ "')");
+				} else { // 该方法在 Android 4.4 版本才可使用，
+					// 调用js初始化回调
+					// 调用js初始化回调
+					mweview.evaluateJavascript("javascript:u7gameSystemInfo('" + json
+									+ "')",
+							new com.tencent.smtt.sdk.ValueCallback<String>() {
+								@Override
+								public void onReceiveValue(String value) {
+									// TODO Auto-generated method stub
+									LogUtil.log("上报手机信息，返回："+value);
+								}
+					        });
 				}
-			});
-		}
+			}
+		});
 	}
 
 
@@ -466,47 +470,38 @@ public class WebMainHtmlTestActivity extends Activity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
 		return jsonObject;
 	}
 
 	// 调用js接口（上报回调方法）,目前不需要此方法
 	private void roleData(final String data) {
-
-		final int version = Build.VERSION.SDK_INT;
-		if (version < 18) {
-			mweview.loadUrl("javascript:roleReportCallback('" + data + "')");
-		} else { // 该方法在 Android 4.4 版本才可使用，
-			//主线程调用（ java.lang.IllegalStateException: Calling View methods on another thread than the UI thread.）                                                                          ）
-			ThreadPoolUtil.execute(new Runnable() {
-				@Override
-				public void run() {
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							// 调用js初始化回调
-							mweview.evaluateJavascript(
-									"javascript:roleReportCallback('" + data+"')",
-									new com.tencent.smtt.sdk.ValueCallback<String>() {
-										@Override
-										public void onReceiveValue(String value) {
-
-									}
+		mweview.post(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				final int version = Build.VERSION.SDK_INT;
+				if (version < 18) {
+					mweview.loadUrl("javascript:roleReportCallback('" + data + "')");
+				} else { // 该方法在 Android 4.4 版本才可使用，
+					//主线程调用（ java.lang.IllegalStateException: Calling View methods on another thread than the UI thread.））
+					// 调用js初始化回调
+					mweview.evaluateJavascript(
+							"javascript:roleReportCallback('" + roleDate+"')",
+							new com.tencent.smtt.sdk.ValueCallback<String>() {
+								@Override
+								public void onReceiveValue(String value) {
+								}
 							});
-						}
-					});
 				}
-			});
-
-		}
-
+			}
+		});
 	}
 
 
 	@Override
 	protected void onPause() {
 		mweview.onPause();
-		//mweview.pauseTimers();// 调用pauseTimers()全局停止Js
+		mweview.pauseTimers();// 调用pauseTimers()全局停止Js
 		super.onPause();
 		if (isInit) {
 			m_proxy.onPause();
