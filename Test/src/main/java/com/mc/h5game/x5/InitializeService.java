@@ -43,6 +43,7 @@ public class InitializeService extends IntentService {
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_INIT_WHEN_APP_CREATE.equals(action)) {
+                LogUtil.log("启动Service成功");
                 performInit();
             }
         }
@@ -72,6 +73,7 @@ public class InitializeService extends IntentService {
         builder.setResourceInterceptor(new ResourceInterceptor() {
             @Override
             public boolean interceptor(String url) {
+
                 return true;
             }
         });

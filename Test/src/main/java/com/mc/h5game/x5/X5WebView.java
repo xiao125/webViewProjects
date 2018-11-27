@@ -1,6 +1,7 @@
 package com.mc.h5game.x5;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,9 +14,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.mc.h5game.util.WebResourceRequestAdapter;
 import com.mc.h5game.util.WebResourceResponseAdapter;
 import com.proxy.util.LogUtil;
@@ -29,12 +33,16 @@ import com.tencent.smtt.sdk.WebViewClient;
 
 import ren.yale.android.cachewebviewlib.WebViewCacheInterceptorInst;
 
+/**
+ *  WebView 设置配置
+ */
 public class X5WebView extends WebView {
 
 
     ProgressBar progressBar;
     private TextView tvTitle;
     private RelativeLayout mRelativeLayout;
+    private ImageView mImageView;
     private Context mcontext;
     private static final int MAX_LENGTH = 8;
 
@@ -65,6 +73,11 @@ public class X5WebView extends WebView {
         View headView = LayoutInflater.from(getContext()).inflate(R.layout.loading_layout , null , false) ;
         progressBar = headView.findViewById(R.id.progesss1);
         mRelativeLayout = headView.findViewById(R.id.bgLayout);
+        mImageView = headView.findViewById(R.id.bgImage);
+       //mRelativeLayout.setBackgroundResource(R.drawable.splash1);
+        Glide.with(mcontext).load(R.drawable.splash1).into(mImageView);
+
+
         tvTitle = headView.findViewById(R.id.tvloading);
         addView(headView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         initWebViewSettings();
@@ -83,7 +96,6 @@ public class X5WebView extends WebView {
                 return false;
             }
         });
-
 
         WebSettings webSettings = this.getSettings();
         webSettings.setJavaScriptEnabled(true);  //支持js
@@ -107,7 +119,7 @@ public class X5WebView extends WebView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //支持Https和Http的混合模式
             webSettings.setMixedContentMode(webSettings.getMixedContentMode());
         }
-
+        this.requestFocusFromTouch(); //如果webView中需要用户手动输入用户名、密码或其他
     }
 
     private WebChromeClient chromeClient = new WebChromeClient() {
@@ -152,14 +164,27 @@ public class X5WebView extends WebView {
     };
 
 
+    //腾讯X5内核WebView兼容处理
     private WebViewClient client = new WebViewClient() {
 
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
+            return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+                    interceptRequest(s));
+        }
+
+         // 此方法添加于API21，调用于非UI线程（项目minSdkVersion>=21）
+        // 拦截资源请求并返回数据，返回null时WebView将继续加载资源
+        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
 
             return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
                     interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
         }
+
+
+
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -188,7 +213,7 @@ public class X5WebView extends WebView {
         @Override
         public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
             super.onPageStarted(webView, s, bitmap);
-            // 与js协议接口
+            LogUtil.log("onPageStarted.在WebView开始加载网页时调用");
 
         }
 
@@ -207,6 +232,15 @@ public class X5WebView extends WebView {
             LogUtil.log("错误码：" + i);
         }
 
+        // 将要加载资源(url)
+        @Override
+        public void onLoadResource(WebView webView, String url) {
+
+            if (url.indexOf(".jpg") > 0) {
+                LogUtil.log("将要加载资源(jpg)："+url);
+            }
+            super.onLoadResource(webView, url);
+        }
     };
 
 

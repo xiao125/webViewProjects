@@ -71,20 +71,17 @@ public class WebMainHtmlHActivity extends Activity {
 	}
 
 	private void init() {
-		mweview = new X5WebView(this);
+		//使用 WebView 的时候，不在 XML 里面声明，而是在代码中直接 new 出来，传入 application context 来防止 activity 引用被滥用。
+		mweview = new X5WebView(getApplicationContext());
 		mFrameLayout = findViewById(R.id.wb);
-		mFrameLayout.addView(mweview);
+		mFrameLayout.addView(mweview,0);
 		mweview.setBackgroundColor(Color.BLACK);
-		mweview.setLayerType(View.LAYER_TYPE_HARDWARE,null);//开启硬件加速
 
 	}
 
 	// 显示HTML页面
 	private void showHtml(String htmlUrl) {
 
-		//initWebViewSettings();
-		// 设置webView监听回调
-		//WebViewListener();
 		// 与js协议接口
 		//mweview.addJavascriptInterface(new InitGame(), "MCBridge");
 		webAppInterface = new WebAppInterface(WebMainHtmlHActivity.this,m_gameName,

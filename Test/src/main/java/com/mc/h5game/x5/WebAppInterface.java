@@ -204,7 +204,7 @@ public class WebAppInterface {
                 public void run() {
                     // TODO Auto-generated method stub
                     final int version = Build.VERSION.SDK_INT;
-                    if (version < 18) {
+                    if (version < 19) {
                         // 调用js初始化回调
                         mwebView.loadUrl("javascript:u7gameSystemInfo('" + json+ "')");
                     } else { // 该方法在 Android 4.4 版本才可使用，
@@ -235,7 +235,7 @@ public class WebAppInterface {
             public void run() {
                 // TODO Auto-generated method stub
                 final int version = Build.VERSION.SDK_INT;
-                if (version < 18) {
+                if (version < 19) {
                     // 调用js初始化回调
                     mwebView.loadUrl("javascript:activateCallback('"+ getJson().toString() + "')");
 
@@ -261,7 +261,7 @@ public class WebAppInterface {
             @Override
             public void run() {
                 final int version = Build.VERSION.SDK_INT;
-                if (version < 18) {
+                if (version < 19) {
                     // 调用js初始化回调
                     mwebView.loadUrl("javascript:loginCallback('" + getJson(openId,sid) + "')");
                 } else { // 该方法在 Android 4.4 版本才可使用，
@@ -288,7 +288,7 @@ public class WebAppInterface {
             public void run() {
                 // TODO Auto-generated method stub
                 final int version = Build.VERSION.SDK_INT;
-                if (version < 18) {
+                if (version < 19) {
                     mwebView.loadUrl("javascript:roleReportCallback('" + data + "')");
                 } else { // 该方法在 Android 4.4 版本才可使用，
                     //主线程调用（ java.lang.IllegalStateException: Calling View methods on another thread than the UI thread.））
@@ -314,10 +314,12 @@ public class WebAppInterface {
             public void run() {
                 // TODO Auto-generated method stub
                 final int version = Build.VERSION.SDK_INT;
-                if (version < 18) {
+                if (version < 19) {
                     // 调用js初始化回调
                     mwebView.loadUrl("javascript:logoutCallback()");
                 } else { // 该方法在 Android 4.4 版本才可使用，
+
+                    mwebView.clearHistory(); // 清除
                     // 调用js初始化回调
                     mwebView.evaluateJavascript("javascript:logoutCallback()",
                             new com.tencent.smtt.sdk.ValueCallback<String>() {
@@ -347,7 +349,7 @@ public class WebAppInterface {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                if (version < 18) {
+                if (version < 19) {
                     // 调用js支付回调
                     mwebView.loadUrl("javascript:payCallback('" + jsonObject.toString()
                             + "')");

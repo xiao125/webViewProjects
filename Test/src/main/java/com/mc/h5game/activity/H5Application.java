@@ -16,15 +16,13 @@ public class H5Application extends Application {
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
+		InitializeService.start(this);
 
-		Intent intent = new Intent(H5Application.this,InitializeService.class);
-		startService(intent);
-
-		// 在调用TBS初始化、创建WebView之前进行如下配置，以开启优化方案
+		// 在调用TBS初始化、创建WebView之前进行如下配置，以开启优化方案 （多线程方案）
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
+		// 配置不使用多进程策略，即该方案仅在Android 5.1+系统上生效。
+		map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, false);
 		QbSdk.initTbsSettings(map);
 
 		initX5();

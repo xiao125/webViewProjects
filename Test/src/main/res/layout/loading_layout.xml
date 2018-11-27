@@ -10,9 +10,14 @@
         android:id="@+id/bgLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splash1"
         android:visibility="visible"
         >
+
+        <ImageView
+            android:id="@+id/bgImage"
+            android:background="@drawable/splash1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <ProgressBar
             android:layout_gravity="center_horizontal"

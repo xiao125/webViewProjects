@@ -65,6 +65,6 @@ dependencies {
     //RxJava2
     implementation  'io.reactivex.rxjava2:rxjava:2.1.16'
     compile 'ren.yale.android:cachewebviewlib:2.1.1'
-
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 
 }

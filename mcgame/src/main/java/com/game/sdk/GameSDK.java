@@ -124,7 +124,6 @@ public class GameSDK {
 					}
 				}
 			}
-			KnLog.log("=========自动登录完后2-======="+isAuot);
 			//开启悬浮窗
 			mSusViewMager = SusViewMager.getInstance();
 			if (mSusViewMager !=null){
