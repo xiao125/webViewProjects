@@ -561,11 +561,12 @@ public class FastLoginActivity extends SdkBaseActivity implements RegistView,Log
     public void loginFailed(String code, String data) {
         LoadingDialog.dismiss();
         try {
+            KnLog.log("登录失败:"+data);
             JSONObject obj = new JSONObject(data);
             int dataCode = obj.getInt("code");
             String reason = obj.getString("reason");
-            Delegate.listener.callback(SDKStatusCode.FAILURE,data);
             Util.ShowTips(m_activity,reason);
+            Delegate.listener.callback(SDKStatusCode.FAILURE,data);
         }catch (Exception e) {
             e.printStackTrace();
         }

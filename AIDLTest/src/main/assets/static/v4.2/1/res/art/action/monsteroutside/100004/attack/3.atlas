@@ -1,0 +1,93 @@
+{
+    "frames": {
+        "30000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 165,
+                "h": 188
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 169,
+                "y": 90
+            }
+        },
+        "30001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 191,
+                "w": 141,
+                "h": 193
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 187,
+                "y": 85
+            }
+        },
+        "30002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 386,
+                "w": 119,
+                "h": 164
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 201,
+                "y": 114
+            }
+        },
+        "30003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 552,
+                "w": 159,
+                "h": 140
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 220,
+                "y": 138
+            }
+        },
+        "30004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 694,
+                "w": 106,
+                "h": 118
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 220,
+                "y": 160
+            }
+        }
+    },
+    "meta": {
+        "image": "3_0.png",
+        "prefix":"action/monsteroutside/100004/attack/3/"
+    }
+}

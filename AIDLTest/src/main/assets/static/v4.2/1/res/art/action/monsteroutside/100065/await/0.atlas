@@ -1,0 +1,25 @@
+{
+    "frames": {
+        "00010.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 94,
+                "h": 130
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 210,
+                "y": 142
+            }
+        }
+    },
+    "meta": {
+        "image": "0_0.png",
+        "prefix":"action/monsteroutside/100065/await/0/"
+    }
+}

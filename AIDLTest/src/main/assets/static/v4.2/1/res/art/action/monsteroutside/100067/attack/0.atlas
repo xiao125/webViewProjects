@@ -1,0 +1,110 @@
+{
+    "frames": {
+        "00000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 287,
+                "y": 1,
+                "w": 114,
+                "h": 146
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 212,
+                "y": 138
+            }
+        },
+        "00001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 119,
+                "y": 1,
+                "w": 166,
+                "h": 149
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 221,
+                "y": 133
+            }
+        },
+        "00002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 116,
+                "h": 180
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 221,
+                "y": 101
+            }
+        },
+        "00003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 403,
+                "y": 1,
+                "w": 99,
+                "h": 142
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 207,
+                "y": 139
+            }
+        },
+        "00004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 504,
+                "y": 1,
+                "w": 105,
+                "h": 132
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 200,
+                "y": 149
+            }
+        },
+        "00005.png": {
+            "frame": {
+                "idx": 0,
+                "x": 611,
+                "y": 1,
+                "w": 114,
+                "h": 130
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 201,
+                "y": 151
+            }
+        }
+    },
+    "meta": {
+        "image": "0_0.png",
+        "prefix":"action/monsteroutside/100067/attack/0/"
+    }
+}

@@ -236,7 +236,7 @@ public class HttpRequestUtil {
         /**
          * 在这里使用异步处理
          */
-        checkNet = CheckNetStatueUtil.check_NET(Data.getInstance().getApplicationContex());
+        checkNet = CheckNetStatueUtil.check_NET(Data.getInstance().getGameActivity());
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -271,8 +271,7 @@ public class HttpRequestUtil {
             public void run() {
                 if (callBack != null) {
                     try {
-                        checkNet = CheckNetStatueUtil.check_NET(Data.getInstance().getApplicationContex());
-
+                        checkNet = CheckNetStatueUtil.check_NET(Data.getInstance().getGameActivity());
                         if (checkNet) {
                             callBack.requestSuccess(result);
                         } else {

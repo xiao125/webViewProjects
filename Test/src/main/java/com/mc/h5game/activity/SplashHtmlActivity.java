@@ -188,6 +188,8 @@ public class SplashHtmlActivity extends AppCompatActivity {
 						//Intent intent = new Intent(SplashHtmlActivity.this, WebMainHtmlTestActivity.class);
 						Intent intent = new Intent(SplashHtmlActivity.this, WebMainHtmlHActivity.class);
 						intent.putExtra("HTML_URL",HtmlUrl);
+						//int rabdoms = Rabdoms();
+						//intent.putExtra("HTML_URL","http://111.230.145.106/game.html?r="+rabdoms);
 						startActivity(intent);
 						finish();
 
@@ -381,6 +383,11 @@ public class SplashHtmlActivity extends AppCompatActivity {
 		TimeUtils.sColdStartTime = coldStartTime > 0 ? coldStartTime : 0;
 		TimeUtils.beginTimeCalculate("Splash");
 		LogUtil.log("=======Application启动时间==============="+coldStartTime);
+	}
+
+	private  int Rabdoms(){
+		int num = (int) ((Math.random() * 9 + 1) * 10000000);
+		return num;
 	}
 
 

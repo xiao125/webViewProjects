@@ -64,10 +64,9 @@ public class SdkChannel extends SdkProxy {
 
 		GameInfo info = new GameInfo(mGameInfo.getAppKey(), mGameInfo.getGameId(), mGameInfo.getChannel(), mGameInfo.getPlatform(), mGameInfo.getAdChannel(), mGameInfo.getScreenOrientation() , mGameInfo.getAdChannelTxt());
 		info.setGid(mGameInfo.getGid());
-		LogUtil.log("萌创sdk初始化="+mGameInfo.getAppKey()+ mGameInfo.getGameId()+mGameInfo.getChannel()
+		LogUtil.log("萌创sdk初始化="+mGameInfo.getAppKey()+ "  GameId:"+mGameInfo.getGameId()+"  Channel:" +mGameInfo.getChannel()
 				+mGameInfo.getPlatform()+mGameInfo.getAdChannel()
 				+mGameInfo.getScreenOrientation()+mGameInfo.getAdChannelTxt());
-
 		gameSDK.initSDK(mActivity ,info,new SdkCallbackListener<String>() {
 			@Override
 			public void callback(int code, String response) {

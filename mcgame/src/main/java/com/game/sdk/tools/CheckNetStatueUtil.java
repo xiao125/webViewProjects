@@ -14,6 +14,7 @@ public class CheckNetStatueUtil {
      * 检查是否有网络
      */
     public static boolean check_NET(Context context) {
+
         ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity == null) {
             LoggerUtils.i("NetWork_Statue : " + "ConnectivityManager == null");

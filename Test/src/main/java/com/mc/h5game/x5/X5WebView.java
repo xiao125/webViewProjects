@@ -75,7 +75,7 @@ public class X5WebView extends WebView {
         mRelativeLayout = headView.findViewById(R.id.bgLayout);
         mImageView = headView.findViewById(R.id.bgImage);
        //mRelativeLayout.setBackgroundResource(R.drawable.splash1);
-        Glide.with(mcontext).load(R.drawable.splash1).into(mImageView);
+       // Glide.with(mcontext).load(R.drawable.splash1).into(mImageView);
 
 
         tvTitle = headView.findViewById(R.id.tvloading);
@@ -117,7 +117,7 @@ public class X5WebView extends WebView {
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
         webSettings.setLoadsImagesAutomatically(true);  //支持自动加载图片
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //支持Https和Http的混合模式
-            webSettings.setMixedContentMode(webSettings.getMixedContentMode());
+            webSettings.setMixedContentMode(webSettings.getMixedContentMode()); //此方法是X5内核方法
         }
         this.requestFocusFromTouch(); //如果webView中需要用户手动输入用户名、密码或其他
     }
