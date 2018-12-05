@@ -1,0 +1,93 @@
+{
+    "frames": {
+        "10000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 123,
+                "y": 314,
+                "w": 101,
+                "h": 163
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 189,
+                "y": 114
+            }
+        },
+        "10001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 139,
+                "h": 156
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 151,
+                "y": 121
+            }
+        },
+        "10002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 314,
+                "w": 120,
+                "h": 171
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 193,
+                "y": 106
+            }
+        },
+        "10003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 159,
+                "w": 124,
+                "h": 153
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 187,
+                "y": 124
+            }
+        },
+        "10004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 127,
+                "y": 159,
+                "w": 94,
+                "h": 145
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 220,
+                "y": 132
+            }
+        }
+    },
+    "meta": {
+        "image": "1_0.png",
+        "prefix":"action/monsteroutside/100004/attack/1/"
+    }
+}

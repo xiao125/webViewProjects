@@ -115,7 +115,7 @@
 
 
         <activity
-            android:name="com.mc.h5game.activity.WebMainHtmlHActivity"
+            android:name="com.mc.h5game.activity.WebMainActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
@@ -226,11 +226,7 @@
         </activity>
         <!-- alipay sdk end -->
 
-        <!-- 在AndroidManifest.xml中增加内核首次加载时优化Service声明；    该Service仅在TBS内核首次Dex加载时触发并执行dex2oat任务，任务完成后自动结束。  -->
-      <!--  <service
-        android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
-        android:label="dexopt"
-        android:process=":dexopt" ></service>-->
+
 
 
     </application>

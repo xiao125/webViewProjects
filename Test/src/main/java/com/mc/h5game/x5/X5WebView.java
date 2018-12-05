@@ -76,8 +76,6 @@ public class X5WebView extends WebView {
         mImageView = headView.findViewById(R.id.bgImage);
        //mRelativeLayout.setBackgroundResource(R.drawable.splash1);
        // Glide.with(mcontext).load(R.drawable.splash1).into(mImageView);
-
-
         tvTitle = headView.findViewById(R.id.tvloading);
         addView(headView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         initWebViewSettings();
@@ -235,10 +233,6 @@ public class X5WebView extends WebView {
         // 将要加载资源(url)
         @Override
         public void onLoadResource(WebView webView, String url) {
-
-            if (url.indexOf(".jpg") > 0) {
-                LogUtil.log("将要加载资源(jpg)："+url);
-            }
             super.onLoadResource(webView, url);
         }
     };

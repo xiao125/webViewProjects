@@ -1,0 +1,144 @@
+{
+    "frames": {
+        "40000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 57,
+                "y": 1,
+                "w": 53,
+                "h": 116
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 372,
+                "y": 275
+            }
+        },
+        "40001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 245,
+                "w": 49,
+                "h": 127
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 374,
+                "y": 274
+            }
+        },
+        "40002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 374,
+                "w": 48,
+                "h": 135
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 373,
+                "y": 275
+            }
+        },
+        "40003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 54,
+                "y": 119,
+                "w": 52,
+                "h": 126
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 371,
+                "y": 278
+            }
+        },
+        "40004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 54,
+                "h": 115
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 371,
+                "y": 276
+            }
+        },
+        "40005.png": {
+            "frame": {
+                "idx": 0,
+                "x": 52,
+                "y": 247,
+                "w": 54,
+                "h": 129
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 372,
+                "y": 275
+            }
+        },
+        "40006.png": {
+            "frame": {
+                "idx": 0,
+                "x": 51,
+                "y": 378,
+                "w": 49,
+                "h": 136
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 379,
+                "y": 275
+            }
+        },
+        "40007.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 118,
+                "w": 51,
+                "h": 125
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 376,
+                "y": 277
+            }
+        }
+    },
+    "meta": {
+        "image": "4_0.png",
+        "prefix":"action/clothesoutside/160001_1/run/4/"
+    }
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/load_view"
+    >
+
+    <RelativeLayout
+        android:id="@+id/loading_bgLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        >
+
+        <ImageView
+            android:id="@+id/loading_bg"
+            android:background="@drawable/pmc_splash1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/loading_progesss"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pmc_myprogressbar"
+            android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:maxHeight="50dp"
+            android:minHeight="16dp"
+            android:progress="0"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:progressDrawable="@drawable/pmc_myprogressbar"
+            />
+        <TextView
+            android:id="@+id/loading_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在加载中......."
+            android:textColor="#FFCD52"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

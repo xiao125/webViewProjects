@@ -1,0 +1,76 @@
+{
+    "frames": {
+        "20000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 133,
+                "h": 143
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 152,
+                "y": 143
+            }
+        },
+        "20001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 134,
+                "y": 150,
+                "w": 132,
+                "h": 143
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 154,
+                "y": 143
+            }
+        },
+        "20002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 146,
+                "w": 131,
+                "h": 144
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 154,
+                "y": 141
+            }
+        },
+        "20003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 136,
+                "y": 1,
+                "w": 129,
+                "h": 147
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 154,
+                "y": 139
+            }
+        }
+    },
+    "meta": {
+        "image": "2_0.png",
+        "prefix":"action/monsteroutside/100002/await/2/"
+    }
+}

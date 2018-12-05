@@ -5,7 +5,7 @@ android {
     buildToolsVersion  rootProject.buildToolsVersion
 
     defaultConfig {
-        applicationId 'com.h5game.cs'
+        applicationId     'com.h5game.cs'
         minSdkVersion     rootProject.minSdkVersion
         targetSdkVersion  rootProject.targetSdkVersion
         versionCode 1

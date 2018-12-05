@@ -1,0 +1,76 @@
+{
+    "frames": {
+        "40000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 168,
+                "h": 177
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 154,
+                "y": 91
+            }
+        },
+        "40001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 119,
+                "y": 213,
+                "w": 143,
+                "h": 180
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 163,
+                "y": 74
+            }
+        },
+        "40002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 180,
+                "w": 116,
+                "h": 203
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 224,
+                "y": 152
+            }
+        },
+        "40003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 171,
+                "y": 1,
+                "w": 106,
+                "h": 210
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 218,
+                "y": 154
+            }
+        }
+    },
+    "meta": {
+        "image": "4_0.png",
+        "prefix":"action/monsteroutside/100002/attack/4/"
+    }
+}

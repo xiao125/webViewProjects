@@ -1,0 +1,127 @@
+{
+    "frames": {
+        "20000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 184,
+                "y": 467,
+                "w": 40,
+                "h": 67
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 376,
+                "y": 322
+            }
+        },
+        "20001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 184,
+                "y": 397,
+                "w": 54,
+                "h": 68
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 376,
+                "y": 321
+            }
+        },
+        "20002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 533,
+                "w": 93,
+                "h": 109
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 326,
+                "y": 286
+            }
+        },
+        "20003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 96,
+                "y": 533,
+                "w": 79,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 320,
+                "y": 245
+            }
+        },
+        "20004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 397,
+                "w": 181,
+                "h": 134
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 401,
+                "y": 261
+            }
+        },
+        "20005.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 249,
+                "h": 196
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 412,
+                "y": 212
+            }
+        },
+        "20006.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 199,
+                "w": 242,
+                "h": 196
+            },
+            "sourceSize": {
+                "w": 800,
+                "h": 800
+            },
+            "spriteSourceSize": {
+                "x": 440,
+                "y": 212
+            }
+        }
+    },
+    "meta": {
+        "image": "2_0.png",
+        "prefix":"skill/1001/caster/2/"
+    }
+}

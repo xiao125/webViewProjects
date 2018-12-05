@@ -1,1 +1,1 @@
-include ':app', ':mengchuag3.0', ':H5SDKProxy',':mcSDKProxy',':mengchuangSDK',':mcgame',':Test',':AIDLTest', ':weblib'
+include ':app', ':mengchuag3.0', ':H5SDKProxy',':mcSDKProxy',':mengchuangSDK',':mcgame',':Test',':AIDLTest', ':weblib',':mcSDKProxy1.2.0',':Testapp'

@@ -1,0 +1,73 @@
+apply plugin: 'android-library'
+
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile project(':mengchuangSDK')
+    implementation 'com.android.support:appcompat-v7:26.0.0'
+    implementation 'com.android.support:support-v4:26.0.0'
+}
+
+android {
+
+    compileSdkVersion  26
+    buildToolsVersion  '26.0.2'
+    defaultConfig {
+        minSdkVersion    16
+        targetSdkVersion  26
+        versionCode 1
+        versionName "1.0"
+        flavorDimensions  "1"
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+
+        instrumentTest.setRoot('tests')
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    aaptOptions {
+
+        cruncherEnabled = false
+        useNewCruncher = false
+
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    dexOptions{
+        javaMaxHeapSize "1g"
+    }
+
+}
+
+
+def SDK_BASENAME = "mcProxy"
+def SDK_VERSION = "_v2.1.0"
+def sdkDestinationPath = "build"
+def zipFile = file('build/intermediates/bundles/release/classes.jar')
+
+task deleteBuild(type: Delete) {
+    delete sdkDestinationPath + SDK_BASENAME + SDK_VERSION + ".jar"
+}
+task makeJar(type: Jar) {
+    from zipTree(zipFile)
+    from fileTree(dir: 'src/main',includes: ['assets/**'])//将assets目录打入jar包
+    //去掉不要的类
+    exclude('com/game/sdkproxy/BuildConfig.class')
+    exclude('com/game/sdkproxy/BuildConfig\$*.class')
+    baseName = SDK_BASENAME + SDK_VERSION
+    destinationDir = file(sdkDestinationPath)
+}
+makeJar.dependsOn(build)

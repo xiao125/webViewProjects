@@ -76,7 +76,12 @@ public class WebMainHtmlHActivity extends Activity {
 		mFrameLayout = findViewById(R.id.wb);
 		mFrameLayout.addView(mweview,0);
 		mweview.setBackgroundColor(Color.BLACK);
-
+		final int version = Build.VERSION.SDK_INT;
+		if (version <= 19) {
+			mweview.setLayerType(View.LAYER_TYPE_SOFTWARE, null); //关闭
+		} else {
+			mweview.setLayerType(View.LAYER_TYPE_HARDWARE, null);//开启硬件加速
+		}
 	}
 
 	// 显示HTML页面

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_color_hint">#FFC7C5C5</color>
+    <color name="text_color_white">#FFFFFFFF</color>
+    <color name="text_color_black">#FF000000</color>
+    <color name="transParent">#00000000</color>
+    <color name="Kn_bg_listview_color_select">#F5F2E9</color>
+    <color name="line_color">#ebebe5</color>
+    <color name="line_color_deep">#cccccc</color>
+    <color name="main_text_color">#333333</color>
+    <color name="auxi_text_color">#878377</color>
+    <color name="kn_black">#ff000000</color>
+    <color name="h5pay_top_blue">#0000FF</color>
+    <color name="app_background_color">#FFC0E7FA</color>
+	<color name="text_color_blue">#FF33A7D3</color>
+	<color name="Kn_bgcolor">#ffd1dce9</color>
+	<color name="PopViewDividerColor">#FF33A7D3</color>
+	<color name="invitation">#FFFDFDFE</color>
+    
+</resources>

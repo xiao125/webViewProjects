@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/invite_base_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+    
+    <!-- 添加底层布局 -->
+    <LinearLayout
+        android:id="@+id/invite_back_layout" 
+     	android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+     	android:layout_gravity="center"
+     	android:orientation="vertical"
+     	android:background="@drawable/pmc_invite_background">
+     	
+        
+    
+        <LinearLayout 
+           	android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="60dp"
+			android:orientation="vertical"
+            >
+            
+            <RelativeLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                >
+                
+             <EditText 
+                 android:id="@+id/invite__et"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:background="@drawable/pmc_invite_input"
+				 android:hint="请输入邀请码"
+                 android:imeOptions="actionDone"
+                 android:maxLength="16"
+                 android:paddingLeft="8dp"
+                 android:singleLine="true"
+                 android:textColor="@android:color/white"
+                 android:textColorHint="@color/text_color_white"
+                 android:textSize="15dp"                
+                 />   
+                
+            </RelativeLayout>
+            
+            <RelativeLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                >
+             
+                <Button 
+                    android:id="@+id/invite_submit_bt"
+                    android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                	android:background="@color/pmc_invite_btn_submit_selector"
+                	android:text=" 确  定  "
+                	android:textColor="@color/text_color_white"
+                	android:onClick="submit"
+                    />
+                
+                   <Button 
+                    android:id="@+id/invite_cancel_bt"
+                    android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:layout_marginTop="55dp"
+                	android:background="@color/pmc_invite_btn_cancel_selector"
+                	android:text=" 取  消  "
+                	android:textColor="@color/text_color_white"
+                	android:onClick="cancel"
+                    />
+                 
+             
+ 
+            </RelativeLayout>
+            
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    
+</LinearLayout>
