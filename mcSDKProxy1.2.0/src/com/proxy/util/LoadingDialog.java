@@ -35,14 +35,14 @@ public class LoadingDialog {
 		dismiss();
 		
 		LayoutInflater inflater = LayoutInflater.from(context);
-		View v = inflater.inflate(R.layout.pmc_loading_dialog, null);
+		View v = inflater.inflate(R.layout.mcpr_loading_dialog, null);
 		LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);
 
 		ImageView spaceshipImage = (ImageView) v.findViewById(R.id.loading_img);
 		TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);
 		// 加载动画
 		Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(
-				context, R.anim.pmc_loading_animation);
+				context, R.anim.mcpr_loading_animation);
 		// 使用ImageView显示动画
 		spaceshipImage.startAnimation(hyperspaceJumpAnimation);
 		tipTextView.setText(msg);// 设置加载信息

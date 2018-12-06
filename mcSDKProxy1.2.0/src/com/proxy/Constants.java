@@ -1,5 +1,6 @@
 package com.proxy;
 
+
 public final class Constants {
 		
 	  //请求超时时间  单位毫秒
@@ -16,6 +17,9 @@ public final class Constants {
 	  public static final String JXWY_URL = "oms.uu66.com";
 	  public static final String OMD_URL = "pay.u7game.cn";
 	  public static final String OMD_URL2 = "oms.u7game.cn";
+
+
+
 	  
 	  public static final String Url = Data.getInstance().getGameInfo().getGameId()=="cqsj"?(Integer.parseInt(Data.getInstance().getGameInfo().getAdChannel())<=9999?CSIPN:CSIPW):OMD_URL2;
 	  

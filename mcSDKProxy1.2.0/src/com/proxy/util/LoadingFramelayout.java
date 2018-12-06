@@ -37,7 +37,7 @@ public class LoadingFramelayout extends FrameLayout {
         super(context);
         LayoutInflater mInflater = LayoutInflater.from(context);
         mInflater.inflate(res,this);
-        View rootView = mInflater.inflate(R.layout.pmc_no_network,this);
+        View rootView = mInflater.inflate(R.layout.mcpr_no_network,this);
         mLoadingView = (LinearLayout) rootView.findViewById(R.id.load_view); //布局最外层 LinearLayout
         mIvLoading = (ImageView) rootView.findViewById(R.id.iv_loading);
         mBtnReTry = (Button) rootView.findViewById(R.id.btn_retry);
@@ -54,7 +54,7 @@ public class LoadingFramelayout extends FrameLayout {
         super(context);
         addView(view);
         LayoutInflater mInflater = LayoutInflater.from(context);
-        View rootView = mInflater.inflate(R.layout.pmc_no_network,this);
+        View rootView = mInflater.inflate(R.layout.mcpr_no_network,this);
         mLoadingView = (LinearLayout) rootView.findViewById(R.id.load_view);
         mIvLoading = (ImageView) rootView.findViewById(R.id.iv_loading);
         mBtnReTry = (Button) rootView.findViewById(R.id.btn_retry);
@@ -86,13 +86,13 @@ public class LoadingFramelayout extends FrameLayout {
 
         stopLoading();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.pmc_loading_dialog, null);
+        View v = inflater.inflate(R.layout.mcpr_loading_dialog, null);
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);
         ImageView spaceshipImage = (ImageView) v.findViewById(R.id.loading_img);
         TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);
         // 加载动画
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(
-                context, R.anim.pmc_loading_animation);
+                context, R.anim.mcpr_loading_animation);
         // 使用ImageView显示动画
         spaceshipImage.startAnimation(hyperspaceJumpAnimation);
         tipTextView.setText("获取游戏资源中.....");// 设置加载信息
@@ -145,7 +145,7 @@ public class LoadingFramelayout extends FrameLayout {
         post(new Runnable() {
             @Override
             public void run() {
-                mIvLoading.setImageResource(R.drawable.pmc_erro);
+                mIvLoading.setImageResource(R.drawable.mcpr_erro);
                 mBtnReTry.setVisibility(VISIBLE);
             }
         });

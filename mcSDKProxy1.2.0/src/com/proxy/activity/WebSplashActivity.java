@@ -49,7 +49,7 @@ public class WebSplashActivity extends Activity  implements PermissionInterface 
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		mativity = this;
-		mLoadingFramelayout = new LoadingFramelayout(this, R.layout.pmc_splash);
+		mLoadingFramelayout = new LoadingFramelayout(this, R.layout.mcpr_splash);
 		//初始化并发起权限申请
 		mPermissionHelper = new PermissionHelper(WebSplashActivity.this,this);
 		mPermissionHelper.requestPermissions();

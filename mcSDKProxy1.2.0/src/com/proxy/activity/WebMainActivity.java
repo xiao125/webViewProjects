@@ -53,7 +53,7 @@ public class WebMainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pmc_hactivity_main);
+		setContentView(R.layout.mcpr_hactivity_main);
 		mativity = this;
 		Intent intent = getIntent();//获取传来的intent对象
 		HtmlUrl = intent.getStringExtra("HTML_URL");

@@ -84,7 +84,7 @@ public class SplashActivity extends Activity {
 		mView.setImageBitmap(BitmapFactory.decodeStream(splashFile));
 		mView.setScaleType(ImageView.ScaleType.FIT_XY);
 		LayoutInflater inflater = LayoutInflater.from(this);   
-		final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.pmc_splash, null);  		
+		final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.mcpr_splash, null);
 		FrameLayout.LayoutParams params2 = new FrameLayout.LayoutParams(
 		FrameLayout.LayoutParams.MATCH_PARENT,
 		FrameLayout.LayoutParams.MATCH_PARENT);

@@ -112,7 +112,7 @@ public class WxTools {
 		mActivity = act ;
 		
 		LayoutInflater inflater = act.getLayoutInflater();
-		m_View = inflater.inflate(R.layout.pmc_webview, null);
+		m_View = inflater.inflate(R.layout.mcpr_webview, null);
 		m_view  = (WebView)m_View.findViewById(R.id.pmc_web);
 	    m_view.setWebChromeClient(new WebChromeClient(){
 	
@@ -192,7 +192,7 @@ public class WxTools {
 		mActivity = act ;
 		
 		LayoutInflater inflater = act.getLayoutInflater();
-		m_View = inflater.inflate(R.layout.pmc_webview, null);
+		m_View = inflater.inflate(R.layout.mcpr_webview, null);
 		m_view  = (WebView)m_View.findViewById(R.id.pmc_web);
 	    m_view.setWebChromeClient(new WebChromeClient(){
 	

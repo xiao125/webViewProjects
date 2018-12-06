@@ -23,6 +23,7 @@ import com.proxy.util.TimeUtils;
 import com.proxy.util.Util;
 import com.proxy.x5.WebAppInterface;
 import com.proxy.x5.X5WebView;
+import com.rxcqh5.cs.mc.BuildConfig;
 import com.rxcqh5.cs.mc.R;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +53,7 @@ public class WebMainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pmc_hactivity_main);
+		setContentView(R.layout.mcpr_hactivity_main);
 		mativity = this;
 		Intent intent = getIntent();//获取传来的intent对象
 		HtmlUrl = intent.getStringExtra("HTML_URL");

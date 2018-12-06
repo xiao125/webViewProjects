@@ -75,7 +75,7 @@ public class Invitation extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		//setContentView(R.layout.kn_invite);
-		setContentView(R.layout.pmc_invite);
+		setContentView(R.layout.mcpr_invite);
 		
 		Intent intent = getIntent();
 		if(intent.hasExtra("server_id")){

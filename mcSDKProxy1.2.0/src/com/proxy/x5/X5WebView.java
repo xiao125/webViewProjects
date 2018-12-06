@@ -67,7 +67,7 @@ public class X5WebView extends WebView {
 
         setHorizontalScrollBarEnabled(false);//水平不显示小方块
         setVerticalScrollBarEnabled(false); //垂直不显示小方块
-        View headView = LayoutInflater.from(getContext()).inflate(R.layout.pmc_webloading_layout , null , false) ;
+        View headView = LayoutInflater.from(getContext()).inflate(R.layout.mcpr_webloading_layout , null , false) ;
         progressBar = headView.findViewById(R.id.loading_progesss);
         mRelativeLayout = headView.findViewById(R.id.loading_bgLayout);
         mImageView = headView.findViewById(R.id.loading_bg);

@@ -148,7 +148,7 @@ public class UpdateManager {
 		  android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(mContext);
 		  builder.setTitle("游戏版本更新");
 		  final LayoutInflater inflater = LayoutInflater.from(mContext);
-		  View v = inflater.inflate(R.layout.pmc_progress, null);
+		  View v = inflater.inflate(R.layout.mcpr_progress, null);
 
 		  mProgressBar = (ProgressBar) v.findViewById(R.id.progress);
 		  builder.setView(v);

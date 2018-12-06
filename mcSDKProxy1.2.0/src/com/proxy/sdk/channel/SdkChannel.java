@@ -64,6 +64,7 @@ public class SdkChannel extends SdkProxy {
 
 		GameInfo info = new GameInfo(mGameInfo.getAppKey(), mGameInfo.getGameId(), mGameInfo.getChannel(), mGameInfo.getPlatform(), mGameInfo.getAdChannel(), mGameInfo.getScreenOrientation() , mGameInfo.getAdChannelTxt());
 		info.setGid(mGameInfo.getGid());
+		info.setApiUrl("www.baidu.com");
 		LogUtil.log("萌创sdk初始化="+mGameInfo.getAppKey()+ "  GameId:"+mGameInfo.getGameId()+"  Channel:" +mGameInfo.getChannel()
 				+mGameInfo.getPlatform()+mGameInfo.getAdChannel()
 				+mGameInfo.getScreenOrientation()+mGameInfo.getAdChannelTxt());
@@ -333,7 +334,7 @@ public class SdkChannel extends SdkProxy {
 		super.logout();
 		LogUtil.log("调用sdk注销登录");
 		gameSDK.mcQuit();
-		Delegate.listener.callback(ResultCode.LOGOUT,1);
+		Delegate.listener.callback(ResultCode.LOGOUT,"1");
 	}
 
 	@Override

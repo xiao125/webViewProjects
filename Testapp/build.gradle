@@ -32,7 +32,12 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            res.srcDirs = ['src/main/res']
         }
+
+        //用各自对应的资源文件路径
+        //xiaomi.res.srcDirs = ['src/main/res-xiaomi']
+        //huawei.res.srcDirs = ['src/main/res-huawei']
     }
 
     lintOptions {
@@ -51,6 +56,8 @@ android {
             versionCode 1
             versionName "1.0.1"
             manifestPlaceholders = [app_icon: "@drawable/app_icon"]
+            resValue "string", "app_name", "测试打包"
+            buildConfigField "String", "OMD_URL", '"pay.u7game.cn"'
         }
 
     }

@@ -48,7 +48,7 @@ public class StartWebView extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉应用标题
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.pmc_webvidio);
+		setContentView(R.layout.mcpr_webvidio);
 		initView();
 		initWebView();
 

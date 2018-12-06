@@ -31,7 +31,7 @@ public class ActivationCodeAc extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pmc_acv);
+		setContentView(R.layout.mcpr_acv);
 //		jihuoEdt = (EditText)findViewById(R.id.jihuo_input_edt);
 //		setRequestedOrientation(1);
 		

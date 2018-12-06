@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/pmc_kn_input_frame">
+        android:background="@drawable/mcpr_kn_input_frame">
 
 
 
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/pmc_kn_input_text_bg"
+                    android:background="@drawable/mcpr_kn_input_text_bg"
                     android:hint=""
                     android:imeOptions="actionDone"
                     android:maxLength="16"
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="6dp"
-                    android:background="@drawable/pmc_btn_3"
+                    android:background="@drawable/mcpr_btn_3"
                     android:text=" 确  定  "
                     android:textColor="@color/invitation"
                     android:onClick="submit"

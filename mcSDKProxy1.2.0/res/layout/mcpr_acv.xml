@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/pmc_ac_bg"
+        android:background="@drawable/mcpr_ac_bg"
         android:orientation="vertical">
     	
         <LinearLayout 
@@ -33,7 +33,7 @@
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
                      android:layout_gravity="center_vertical"
-                     android:background="@drawable/pmc_input_text_bg"
+                     android:background="@drawable/mcpr_input_text_bg"
                      android:hint="@string/input_text"
                      android:maxLength="100"
                      android:textColor="@android:color/black"
@@ -58,7 +58,7 @@
                     android:id="@+id/submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/pmc_submit_btn"
+                    android:background="@drawable/mcpr_submit_btn"
                     android:layout_alignParentLeft="true"
                     android:text="@string/submit_text"
                     android:textColor="@color/text_color_white"
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/pmc_close_btn"
+                    android:background="@drawable/mcpr_close_btn"
                     android:focusable="false"
                     android:text="@string/close_text"
                     android:textColor="@color/text_color_white" 

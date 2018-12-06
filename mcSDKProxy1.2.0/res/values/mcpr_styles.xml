@@ -24,10 +24,11 @@
     </style>
 
     <!-- 防止欢迎页白屏或者黑屏，设置图片 -->
-    <style name="PMC_SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/pmc_splash1</item>
+    <style name="PMC_SplashTheme" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@drawable/mcpr_splash1</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Widget.AppCompat.ProgressBar.Horizontal" parent="android:Widget.ProgressBar.Horizontal">
     </style>
 
 </resources>

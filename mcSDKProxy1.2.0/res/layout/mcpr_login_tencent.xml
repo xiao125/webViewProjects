@@ -15,14 +15,14 @@
                  android:id="@+id/weixin_login"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:background="@drawable/pmc_login_weixin" />
+                 android:background="@drawable/mcpr_login_weixin" />
 
              <Button
                  android:layout_marginTop="10dp"
                  android:id="@+id/qq_login"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:background="@drawable/pmc_login_qq" />
+                 android:background="@drawable/mcpr_login_qq" />
              
              
         <!--  <RelativeLayout
@@ -39,7 +39,7 @@
                  android:layout_alignParentRight="true"
                  android:layout_alignParentTop="true"
                  android:layout_marginRight="20dp"
-                 android:background="@drawable/pmc_login_weixin" />
+                 android:background="@drawable/mcpr_login_weixin" />
 
              <Button
                  android:id="@+id/qq_login"
@@ -48,7 +48,7 @@
                  android:layout_alignParentLeft="true"
                  android:layout_alignParentTop="true"
                  android:layout_marginLeft="16dp"
-                 android:background="@drawable/pmc_login_qq" /> 
+                 android:background="@drawable/mcpr_login_qq" /> 
          </RelativeLayout> -->
 
      </LinearLayout>

@@ -14,7 +14,7 @@
 		android:id="@+id/loading_img"
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content" 
-		android:src="@drawable/pmc_loading_dialog"
+		android:src="@drawable/mcpr_loading_dialog"
 		/>
 	<TextView 
 	    android:id="@+id/tipTextView"

@@ -16,11 +16,10 @@ public class GameInfo {
 	private String regKey = "kuniu@!#2014";
 	private int orientation =0;
 	private String adChannelTxt ="0";
-	
-	public GameInfo(){
-		
-	}
+	private String apiUrl ="oms.u7game.cn";
 
+	public GameInfo(){
+	}
 
 	public GameInfo(String gameName, String appKey, String gameId,
 					int screenOrientation) {
@@ -45,6 +44,12 @@ public class GameInfo {
 		this.adChannelTxt = adChannelTxt;
 	}
 
+	public String getApiUrl() {
+		return apiUrl;
+	}
+	public void setApiUrl(String apiUrl) {
+		this.apiUrl = apiUrl;
+	}
 	public int getOrientation() {
 		return orientation;
 	}
