@@ -23,12 +23,12 @@ import com.proxy.util.TimeUtils;
 import com.proxy.util.Util;
 import com.proxy.x5.WebAppInterface;
 import com.proxy.x5.X5WebView;
-import com.rxcqh5.cs.mc.BuildConfig;
 import com.rxcqh5.cs.mc.R;
+
+import ren.yale.android.cachewebviewlib.WebViewCacheInterceptorInst;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Map;
-import ren.yale.android.cachewebviewlib.WebViewCacheInterceptorInst;
 
 
 @SuppressLint("NewApi")

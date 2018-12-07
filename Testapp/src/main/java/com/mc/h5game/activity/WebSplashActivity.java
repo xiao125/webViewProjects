@@ -16,7 +16,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.game.sdkproxy.R;
+
+import com.mcp.*;
 import com.proxy.Data;
 import com.proxy.service.HttpService;
 import com.proxy.tools.HttpRequestUtil;
@@ -27,6 +28,9 @@ import com.proxy.util.PermissionInterface;
 import com.proxy.util.SPreferencesUtil;
 import com.proxy.util.TimeUtils;
 import com.proxy.util.Util;
+import com.rxcqh5.cs.mc.R;
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;

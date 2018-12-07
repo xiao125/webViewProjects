@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"  
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/mcpr_ac_bg"
+        android:orientation="vertical">
+    	
+        <LinearLayout 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:orientation="vertical">
+			
+            <RelativeLayout
+                android:id="@+id/jihuo_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:orientation="horizontal">
+                
+                <EditText
+                     android:id="@+id/jihuo_input_edt"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_vertical"
+                     android:background="@drawable/mcpr_input_text_bg"
+                     android:hint="@string/input_text"
+                     android:maxLength="100"
+                     android:textColor="@android:color/black"
+                     android:textColorHint="@color/text_color_hint"
+                     android:textSize="15dp"
+                     android:onClick="OninPut"
+                    />
+                
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/jihuo_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:orientation="horizontal"
+                >
+                
+                <Button 
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/mcpr_submit_btn"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/submit_text"
+                    android:textColor="@color/text_color_white"
+                    android:onClick="Onsubmit"
+                    />
+
+                <Button
+                    android:id="@+id/close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/mcpr_close_btn"
+                    android:focusable="false"
+                    android:text="@string/close_text"
+                    android:textColor="@color/text_color_white" 
+                    android:onClick="Onclose"
+                    />
+                
+            </RelativeLayout>
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+
+</LinearLayout>
