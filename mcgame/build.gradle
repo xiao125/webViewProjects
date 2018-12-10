@@ -45,7 +45,28 @@ dependencies {
     compile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }
 
+def SDK_BASENAME = "mcsdk"
+def SDK_VERSION = "_v2.1.81"
+def sdkDestinationPath = "build"
+def zipFile = file('build/intermediates/bundles/release/classes.jar')
 
+task deleteBuild(type: Delete) {
+    delete sdkDestinationPath + SDK_BASENAME + SDK_VERSION + ".jar"
+}
+task makeJar(type: Jar) {
+    from zipTree(zipFile)
+   // from fileTree(dir: 'src/main',includes: ['assets/**'])//将assets目录打入jar包
+    //去掉不要的类
+    exclude('com/game/sdkproxy/BuildConfig.class')
+    exclude('com/game/sdkproxy/BuildConfig\$*.class')
+    exclude('com/game/sdk/BuildConfig.class')
+    exclude('com/game/sdk/BuildConfig\$*.class')
+    exclude('com/game/mengcchuang/BuildConfig.class')
+    exclude('com/game/mengcchuang/BuildConfig\$*.class')
+    baseName = SDK_BASENAME + SDK_VERSION
+    destinationDir = file(sdkDestinationPath)
+}
+makeJar.dependsOn(build)
 
 
 

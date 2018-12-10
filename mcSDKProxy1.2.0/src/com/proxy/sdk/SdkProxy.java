@@ -57,9 +57,9 @@ public class SdkProxy {
 		mGameInfo = knData.getGameInfo();
 		mInitListener = kNListener.getInitListener();
 		if(mInitListener==null){
-			LogUtil.e("没有设置初始化回调");
+			//LogUtil.e("没有设置初始化回调");
 		}else{
-			LogUtil.e("设置初始化回调==");
+			//LogUtil.e("设置初始化回调==");
 		}
 		mLoginListener =  kNListener.getLoginListener();
 
@@ -110,7 +110,7 @@ public class SdkProxy {
 
 		if(sceneId.equals("1")){
 			if(mtimer!=null){
-				LogUtil.log("先关闭心跳");
+				//LogUtil.log("先关闭心跳");
 				mtimer.cancel();
 			}
 			mtimer=new Timer();
@@ -236,7 +236,7 @@ public class SdkProxy {
 		LogUtil.i("<============pay================>");
 		mPayListener = kNListener.getPayListener();
 		if(mPayListener == null){
-			LogUtil.e("没有设置支付回调");
+			//LogUtil.e("没有设置支付回调");
 		}
 	}
 
@@ -318,7 +318,7 @@ public class SdkProxy {
 		LogUtil.e("<============pushData================>");
 		mPushDataListener = kNListener.getPushDataListener();
 		if(mPushDataListener == null ){
-			LogUtil.e("没有设置推送回调");
+			//LogUtil.e("没有设置推送回调");
 			return ;
 		}
 	}
@@ -328,7 +328,7 @@ public class SdkProxy {
 		LogUtil.e("<============pushActivation================>");
 		mPushActivationListener = kNListener.getPushActivationListener();
 		if(mPushActivationListener == null ){
-			LogUtil.e("没有设置激活码回调");
+			//LogUtil.e("没有设置激活码回调");
 			return ;
 		}
 		

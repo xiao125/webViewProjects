@@ -3,8 +3,10 @@ package com.game.sdk.floatmenu;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -53,7 +55,6 @@ public class SusViewMager {
     String  CANCELLATION = "注销";
     String[] MENU_ITEMS = {CANCELLATION};
     private int[] menuIcons = new int[]{R.drawable.mc_game_menu_msg};
-
     private boolean islogout =false;
 
     private String username ;
@@ -132,9 +133,11 @@ public class SusViewMager {
                                 final AlertDialog dia = new AlertDialog.Builder(activity).create();
                                 Button close = (Button) v.findViewById(R.id.mc_logout_account); //取消
                                 Button bin = (Button) v.findViewById(R.id.mc_logout_continue);//确定
+                                dia.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                                 dia.show();
                                 //将自定义布局设置进去
                                 dia.setContentView(v);
+
                                 // bind.setText("绑定手机");
                                 close.setOnClickListener(new View.OnClickListener() {
                                     @Override

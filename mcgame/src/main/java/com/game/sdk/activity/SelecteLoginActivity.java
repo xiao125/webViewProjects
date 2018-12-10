@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.game.sdk.GameSDK;
 import com.game.sdk.util.DBHelper;
 import com.game.sdkproxy.R;
+
 public class SelecteLoginActivity extends Activity implements OnClickListener {
 private ImageButton account_login,ks_login;
 private ImageView imageView;

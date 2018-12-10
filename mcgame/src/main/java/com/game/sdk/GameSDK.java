@@ -24,6 +24,7 @@ import com.game.sdk.floatmenu.SusViewMager;
 import com.game.sdk.listener.PayListener;
 import com.game.sdk.service.HttpService;
 import com.game.sdk.task.SDK;
+import com.game.sdk.tools.CheckNetStatueUtil;
 import com.game.sdk.tools.HttpRequestUtil;
 import com.game.sdk.util.DBHelper;
 import com.game.sdk.util.KnLog;
@@ -34,6 +35,7 @@ import java.io.IOException;
 
 public class GameSDK {
 
+	private boolean checkNet;
 	public volatile static GameSDK instance = null;
 	private int mOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE; //横竖屏
 	private boolean isInited = false; //初始化标识
@@ -101,6 +103,11 @@ public class GameSDK {
 		if(isInited){
 			String[] usernames = DBHelper.getInstance().findAllUserName();
 			Intent intent = null;
+			checkNet = CheckNetStatueUtil.check_NET(Data.getInstance().getGameActivity());
+			if(!checkNet){
+				Util.ShowTips(activity,"请检查网络");
+				return;
+			}
 			//	数据库中获取用户数据量
 			if (usernames.length == 0) {
 				intent = new Intent(activity.getApplicationContext(), FastLoginActivity.class);

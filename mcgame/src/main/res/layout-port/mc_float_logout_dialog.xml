@@ -1,11 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_40"
+    android:gravity="center"
+    android:id="@+id/mc_float_logout_dialog"
+    >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="240dp"
+    <LinearLayout
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/mc_bg"
-        android:id="@+id/mc_float_logout_dialog"
-        style="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
         android:orientation="vertical">
 
         <LinearLayout
@@ -15,14 +20,14 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/dp_10">
 
-           <!--<TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_20"
-                android:textColor="@color/mc_kn_selecte_log"
-                android:textSize="@dimen/sp_20" />-->
+            <!--<TextView
+                 android:id="@+id/textView3"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_marginTop="@dimen/dp_20"
+                 android:textColor="@color/mc_kn_selecte_log"
+                 android:textSize="@dimen/sp_20" />-->
 
             <TextView
                 android:id="@+id/username"
@@ -61,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_40"
                 android:layout_weight="1"
-                android:background="@drawable/mc_bg"
+                android:background="@color/mc_float"
                 android:text="@string/mc_tips_106"
                 android:textColor="#5CACEE" />
 
@@ -76,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_40"
                 android:layout_weight="1"
-                android:background="@drawable/mc_bg"
+                android:background="@color/mc_float"
                 android:text="@string/mc_tips_84"
                 android:textColor="#5CACEE" />
 
@@ -85,3 +90,6 @@
 
 
     </LinearLayout>
+
+
+</LinearLayout>

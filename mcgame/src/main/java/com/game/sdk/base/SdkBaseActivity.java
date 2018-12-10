@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.game.sdk.config.ConfigInfo;
 import com.game.sdk.tools.ActivityUtils;
 import com.game.sdkproxy.R;
-
 /**
  * Activity基类
  */

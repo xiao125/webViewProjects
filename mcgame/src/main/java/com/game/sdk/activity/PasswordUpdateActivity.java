@@ -24,7 +24,6 @@ import com.game.sdk.util.KnLog;
 import com.game.sdk.util.LoadingDialog;
 import com.game.sdk.util.Util;
 import com.game.sdkproxy.R;
-
 import java.util.Timer;
 import java.util.TimerTask;
 

@@ -16,8 +16,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import com.mcp.*;
 import com.proxy.Data;
 import com.proxy.service.HttpService;
 import com.proxy.tools.HttpRequestUtil;

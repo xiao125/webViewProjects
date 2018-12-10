@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.game.sdkproxy.R;
 import com.proxy.Data;
+import com.proxy.McProxyApplication;
 import com.proxy.service.HttpService;
 import com.proxy.tools.HttpRequestUtil;
 import com.proxy.util.LoadingFramelayout;
@@ -49,12 +50,12 @@ public class WebSplashActivity extends Activity  implements PermissionInterface 
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		mativity = this;
+		Data.getInstance().setGameActivity((Activity)mativity);
 		mLoadingFramelayout = new LoadingFramelayout(this, R.layout.mcpr_splash);
 		//初始化并发起权限申请
 		mPermissionHelper = new PermissionHelper(WebSplashActivity.this,this);
 		mPermissionHelper.requestPermissions();
 		setContentView(mLoadingFramelayout);
-		Data.getInstance().setGameActivity(mativity);
 		calculateStartTime();
 	}
 

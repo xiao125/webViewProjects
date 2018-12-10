@@ -23,7 +23,6 @@ import com.game.sdk.util.KnLog;
 import com.game.sdk.util.LoadingDialog;
 import com.game.sdk.util.Util;
 import com.game.sdkproxy.R;
-
 /**
  * 忘记密码选择找回密码方式
  * Created

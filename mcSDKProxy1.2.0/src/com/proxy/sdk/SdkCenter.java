@@ -163,7 +163,7 @@ public class SdkCenter {
 	}
 
 	public void login(final Activity activity,final Map<String, Object> params) {
-		LogUtil.e("登录接口login ++");
+		LogUtil.e("登录接口login ++"+params);
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {

@@ -37,7 +37,6 @@ import com.game.sdk.util.LoadingDialog;
 import com.game.sdk.util.TodayTimeUtils;
 import com.game.sdk.util.Util;
 import com.game.sdkproxy.R;
-
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;

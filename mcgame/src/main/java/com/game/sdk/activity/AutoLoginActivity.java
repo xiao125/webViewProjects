@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.game.sdk.GameSDK;
+import com.game.sdkproxy.R;
 import com.game.sdk.base.SdkBaseActivity;
 import com.game.sdk.call.Delegate;
 import com.game.sdk.config.SDKStatusCode;
@@ -40,7 +41,6 @@ import com.game.sdk.util.DBHelper;
 import com.game.sdk.util.KnLog;
 import com.game.sdk.util.TodayTimeUtils;
 import com.game.sdk.util.Util;
-import com.game.sdkproxy.R;
 import org.json.JSONObject;
 import java.util.ArrayList;
 

@@ -64,10 +64,10 @@ public class OpenSDK {
 		Data.getInstance().setGameActivity(activity); //设置全局Actvity
 		Data.getInstance().setGameInfo(gameInfo);
 		LogUtil.setLogEnable(true);
+		this.onCreate(activity);
+		isInited = true;
 		Delegate.listener = callback;
 		callback.callback(ResultCode.INIT_SUCCESS,"初始化成功");
-		this.isInited = true;
-		this.onCreate(activity);
 	}
 	
 	//	开始创建SDK检测工具日志
@@ -81,11 +81,15 @@ public class OpenSDK {
 	 * @param activity	游戏的Activity
 	 */
 	public void login(Activity activity){
+
+		LogUtil.log("中间件初始化标识isInited========:"+isInited);
 		if(isInited){
+			Map<String,Object> paras = new HashMap<>();
+			paras.put("login",1);
 			Util.writeErrorLog("login");
-			sdkCenter.login(activity , null);
-			Util.writeErrorLog("login");
-			Util.writeInfoLog("SDK接入测试结果如下:");
+			sdkCenter.login(activity , paras);
+			//Util.writeErrorLog("login");
+			//Util.writeInfoLog("SDK接入测试结果如下:");
 
 		}else {
 			Delegate.listener.callback(ResultCode.INIT_FAIL,"初始化失败");
@@ -224,7 +228,7 @@ public class OpenSDK {
 	 * @return  proxy 版本号
 	 */
 	public String getProxyVersion(){
-		return "1.0.0";
+		return "2.1.0";
 	}
 	
 	/**
@@ -319,10 +323,12 @@ public class OpenSDK {
 			@Override
 			public void requestFailure(String request, IOException e) {
 				LogUtil.log("=========doPushData Failure========"+request);
+
 			}
 			@Override
 			public void requestNoConnect(String msg, String data) {
 				LogUtil.log("=========doPushData Failure========"+msg);
+
 			}
 		});
 
