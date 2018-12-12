@@ -228,7 +228,7 @@ public class OpenSDK {
 	 * @return  proxy 版本号
 	 */
 	public String getProxyVersion(){
-		return "2.1.0";
+		return "1.0.0";
 	}
 	
 	/**

@@ -120,6 +120,13 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
 
+        <!-- 在AndroidManifest.xml中增加内核首次加载时优化Service声明；
+        该Service仅在TBS内核首次Dex加载时触发并执行dex2oat任务，任务完成后自动结束-->
+        <service
+        android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+        android:label="dexopt"
+        android:process=":dexopt" ></service>
+
         <!--sdk配置开始-->
 
         <activity
@@ -164,6 +171,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <service
+            android:name="com.game.sdk.service.RemindService">
+        </service>
 
         <!-- alipay sdk begin -->
 

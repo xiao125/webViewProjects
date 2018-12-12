@@ -10,11 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.game.sdk.base.SdkBaseActivity;
+import com.game.sdk.bean.Data;
 import com.game.sdk.config.SDKStatusCode;
 import com.game.sdk.mvp.Imp.BindCellPresenterImp;
 import com.game.sdk.mvp.Imp.SendCodePresenterImp;
 import com.game.sdk.mvp.view.BindCellView;
 import com.game.sdk.mvp.view.SendCodeView;
+import com.game.sdk.service.RemindService;
 import com.game.sdk.util.KnLog;
 import com.game.sdk.util.LoadingDialog;
 import com.game.sdk.util.Util;
@@ -46,7 +48,6 @@ public class BindCellActivity  extends SdkBaseActivity implements BindCellView,S
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		m_activity = this ;
-
 	}
 
 	private void initView() {
@@ -145,6 +146,9 @@ public class BindCellActivity  extends SdkBaseActivity implements BindCellView,S
 		LoadingDialog.dismiss();
 		switch (code) {
 			case SDKStatusCode.SUCCESS:
+				//关闭service
+				Intent stopIntent = new Intent(Data.getInstance().getGameActivity(),RemindService.class);
+				stopService(stopIntent);
 				Util.ShowTips(m_activity,data);
 				m_activity.finish();
 				m_activity = null ;

@@ -39,6 +39,7 @@ public class RegistPresenterImp implements RegistPresenter {
         this.mRegistView = null;
     }
 
+    //用户名注册
     @Override
     public void RegistAccount(String username, String pasword, Context context) {
         final String  name = username;
@@ -79,6 +80,7 @@ public class RegistPresenterImp implements RegistPresenter {
         });
     }
 
+    //手机注册
     @Override
     public void RegistPhone(String phone, String pasword, String code, Context context) {
            final String  name = phone;

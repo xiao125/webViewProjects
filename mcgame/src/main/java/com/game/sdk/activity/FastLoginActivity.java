@@ -31,6 +31,7 @@ import com.game.sdk.mvp.view.LoginView;
 import com.game.sdk.mvp.view.QueryBindView;
 import com.game.sdk.mvp.view.RegistView;
 import com.game.sdk.mvp.view.SendCodeView;
+import com.game.sdk.service.RemindService;
 import com.game.sdk.util.DBHelper;
 import com.game.sdk.util.KnLog;
 import com.game.sdk.util.LoadingDialog;
@@ -539,7 +540,9 @@ public class FastLoginActivity extends SdkBaseActivity implements RegistView,Log
         LoadingDialog.dismiss();
         //登录成功之后就保存账号密码
        // DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
-        Delegate.listener.callback( SDKStatusCode.SUCCESS,data);
+
+
+     /*   Delegate.listener.callback( SDKStatusCode.SUCCESS,data);
 
         //是否首次登陆
         String[] usernames = DBHelper.getInstance().findAllUserName();
@@ -552,7 +555,13 @@ public class FastLoginActivity extends SdkBaseActivity implements RegistView,Log
         }else {
             DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
             finishActivity();
-        }
+        }*/
+
+        Delegate.listener.callback( SDKStatusCode.SUCCESS,data);
+        DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
+        //查询账号是否绑定手机号
+        queryBindPresenterImp.queryBindAccont(m_userName,m_activity);
+
 
     }
 
@@ -585,7 +594,16 @@ public class FastLoginActivity extends SdkBaseActivity implements RegistView,Log
                     finishActivity();
                 } else {
 
-                    Util.SetDialogs(m_activity,m_userName,m_passWord,Spname);
+                    KnLog.log("启动Service");
+                    Intent startIntent = new Intent(this,RemindService.class);
+                    //通过Intent将传递给Service
+                    startIntent.putExtra("userName",m_userName);
+                    startIntent.putExtra("passWord",m_passWord);
+                    startIntent.putExtra("spName",Spname);
+                    startService(startIntent);
+                    finishActivity();
+
+                   // Util.SetDialogs(m_activity,m_userName,m_passWord,Spname);
 
                   /*  LayoutInflater inflater = LayoutInflater.from(m_activity);
                     View v = inflater.inflate(R.layout.mc_bind_mobile_dialog_ts, null); //绑定手机

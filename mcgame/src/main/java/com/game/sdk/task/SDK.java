@@ -11,7 +11,7 @@ public class SDK {
 	public static final int READ_TIMEOUT = 25000;
 	//public static final String OMD_URL = "pay.u7game.cn";
 	//public static final String OMD_URL = "oms.u7game.cn";
-	public static final String OMD_URL =  GameSDK.getInstance().getGameInfo().getApiUrl();
+	public static final String OMD_URL =  GameSDK.getInstance().getGameInfo().getApiUrl() == null?"oms.u7game.cn":GameSDK.getInstance().getGameInfo().getApiUrl();
 
 	public static String LOGIN_URL = "http://"+OMD_URL+"/api/login_check.php"; //登录
 	public static String REG_URL = "http://"+OMD_URL+"/api/user_reg.php";//注册

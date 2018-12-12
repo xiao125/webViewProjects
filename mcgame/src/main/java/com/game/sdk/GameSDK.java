@@ -23,6 +23,7 @@ import com.game.sdk.config.SDKStatusCode;
 import com.game.sdk.floatmenu.SusViewMager;
 import com.game.sdk.listener.PayListener;
 import com.game.sdk.service.HttpService;
+import com.game.sdk.service.RemindService;
 import com.game.sdk.task.SDK;
 import com.game.sdk.tools.CheckNetStatueUtil;
 import com.game.sdk.tools.HttpRequestUtil;
@@ -151,6 +152,7 @@ public class GameSDK {
 	 * @param logoutListener
 	 */
 	public void mcLogout(SusViewMager.OnLogoutListener logoutListener){
+		StopService();
 		mSusViewMager = SusViewMager.getInstance();
 		if (mSusViewMager !=null){
 			mSusViewMager.setOnLogoutListener(logoutListener);
@@ -174,12 +176,20 @@ public class GameSDK {
 	}
 
 
+	//停止绑定手机service
+	public void  StopService(){
+		Intent stopIntent = new Intent(Data.getInstance().getGameActivity(),RemindService.class);
+		Data.getInstance().getGameActivity().stopService(stopIntent);
+	}
+
+
 	/**
 	 * 4. sdk退出接口 :  游戏退出时，调用此接口
 	 */
 	public void  mcQuit(){
 		//注销
 		KnLog.log("sdk退出");
+		StopService();
 		HttpService.doCancel(activity, "1", new HttpRequestUtil.DataCallBack() {
 			@Override
 			public void requestSuccess(String result) throws Exception {
@@ -192,8 +202,6 @@ public class GameSDK {
 			}
 		});
 	}
-
-
 
 
 
@@ -329,5 +337,13 @@ public class GameSDK {
 		return isInited;
 	}
 
+
+	public void onStop(){
+
+	}
+
+	public void onDestroy(){
+		StopService();
+	}
 
 }

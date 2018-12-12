@@ -172,10 +172,15 @@ public class HttpService {
 					params.put("extra",json.toString()); //商品名称
 				}
 			}
+
+			params.put("productName", knPayInfo.getProductName());
 			params.put("lv", String.valueOf(gamuser.getUserLevel()));
 			params.put("nick_name", gamuser.getUsername());
 			params.put("price" , String.valueOf(knPayInfo.getPrice()));
 			params.put("extraInfo", knPayInfo.getExtraInfo());
+			/*LogUtil.log("支付sig签名："+"game_id:"+game_id + " channel:"+channel +" platform:"+ platform +
+					"  uid:"+uid + "  open_id:"+open_id+"  server_id:"
+					+ server_id + "  AppKey:"+gameInfo.getAppKey());*/
 			params.put(
 					"sign",
 					Md5Util.getMd5(game_id + channel + platform + uid + open_id
@@ -186,6 +191,7 @@ public class HttpService {
 				Util.ShowTips(activity,"请检查网络是否连接");
 				return ;
 			}
+
 			HttpRequestUtil.okPostFormRequest( Constants.APPLY_ORDER, params,callBack);
 
 		} catch (Exception e) {

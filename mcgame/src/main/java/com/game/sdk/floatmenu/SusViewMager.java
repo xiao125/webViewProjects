@@ -22,11 +22,13 @@ import android.widget.TextView;
 
 import com.game.sdk.activity.AutoLoginActivity;
 import com.game.sdk.activity.AutomaticLoginActivity;
+import com.game.sdk.bean.Data;
 import com.game.sdk.config.HttpUrlConstants;
 import com.game.sdk.config.SDKStatusCode;
 import com.game.sdk.floatmenu.customfloat.BaseFloatDailog;
 import com.game.sdk.listener.BaseListener;
 import com.game.sdk.service.HttpService;
+import com.game.sdk.service.RemindService;
 import com.game.sdk.tools.HttpRequestUtil;
 import com.game.sdk.util.DBHelper;
 import com.game.sdk.util.KnLog;
@@ -169,6 +171,10 @@ public class SusViewMager {
 //
 //                                            }
 //                                        },1000);
+
+                                        //关闭Service
+                                        Intent i = new Intent(Data.getInstance().getGameActivity(), RemindService.class);
+                                        Data.getInstance().getGameActivity().stopService(i);
                                         TodayTimeUtils.setLogout(mActivity,"true");
                                         //注销
                                         HttpService.doCancel(mActivity, "2", new HttpRequestUtil.DataCallBack() {

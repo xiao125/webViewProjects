@@ -27,6 +27,7 @@ import com.proxy.tools.HttpRequestUtil;
 import com.proxy.util.DeviceUtil;
 import com.proxy.util.LoadingDialog;
 import com.proxy.util.LogUtil;
+import com.proxy.util.Util;
 
 public class SdkChannel extends SdkProxy {
 
@@ -164,8 +165,7 @@ public class SdkChannel extends SdkProxy {
 	public void onDestroy() {
 		gameSDK.destoryFloat();
 		super.onDestroy();
-		LogUtil.log("onDestroy");
-
+		gameSDK.onDestroy();
 
 	}
 
@@ -264,23 +264,27 @@ public class SdkChannel extends SdkProxy {
 				JSONObject obj1 = null;
 				try {
 					obj1 = new JSONObject(result.toString());
-					final String order = obj1.getString("order_no");
-					String gamepay = obj1.getString("isGamePay");
 					String code = obj1.getString("code");
-					//下单成功返回的数据
-					Delegate.listener.callback(ResultCode.APPLY_ORDER_SUCCESS,code);
-
-					double price = knPayInfo.getPrice();
-					final int  priceInt=Integer.parseInt(new java.text.DecimalFormat("0").format(price/100));
-					final String num = Integer.toString(priceInt);
-					final String gameId = Data.getInstance().getGameInfo().getGameId();
-					LogUtil.log("order = "+order +"  num = "+num +"  gameId= "+gameId);
-					//根据返回isGamePay字段判断微信或爱贝
-					if (Integer.valueOf(gamepay) == 1) {
-						String url = obj1.getString("webPayUrl"); //web支付总界面url
-						String wxUrl = obj1.getString("wimipayUrl");//微信支付跳转url
-						LogUtil.log("支付url = "+url+"  wxUrl="+wxUrl);
-						OpenSDK.getInstance().openWeb(mActivity,url,wxUrl);
+					if("0".equals(code)){
+						final String order = obj1.getString("order_no");
+						String gamepay = obj1.getString("isGamePay");
+						//下单成功返回的数据
+						Delegate.listener.callback(ResultCode.APPLY_ORDER_SUCCESS,code);
+						double price = knPayInfo.getPrice();
+						final int  priceInt=Integer.parseInt(new java.text.DecimalFormat("0").format(price/100));
+						final String num = Integer.toString(priceInt);
+						final String gameId = Data.getInstance().getGameInfo().getGameId();
+						LogUtil.log("order = "+order +"  num = "+num +"  gameId= "+gameId);
+						//根据返回isGamePay字段判断微信或爱贝
+						if (Integer.valueOf(gamepay) == 1) {
+							String url = obj1.getString("webPayUrl"); //web支付总界面url
+							String wxUrl = obj1.getString("wimipayUrl");//微信支付跳转url
+							LogUtil.log("支付url = "+url+"  wxUrl="+wxUrl);
+							OpenSDK.getInstance().openWeb(mActivity,url,wxUrl);
+						}
+					}else {
+						Util.ShowTips(mActivity,result);
+						Delegate.listener.callback(ResultCode.APPLY_ORDER_FAIL,result);
 					}
 
 				} catch (Exception e) {
@@ -312,6 +316,7 @@ public class SdkChannel extends SdkProxy {
 		gameSDK.mcLogout(new SusViewMager.OnLogoutListener() {
 			@Override
 			public void onExitFinish() {
+
 				Delegate.listener.callback(ResultCode.LOGOUT,"2");
 			}
 		});

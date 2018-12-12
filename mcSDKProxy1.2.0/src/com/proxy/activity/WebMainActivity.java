@@ -217,6 +217,7 @@ public class WebMainActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
+		LogUtil.log("==========onDestroy()===========");
 		if (mweview != null) {
 			mweview.clearHistory();
 			((ViewGroup) mweview.getParent()).removeView(mweview);
@@ -224,9 +225,9 @@ public class WebMainActivity extends Activity {
 			mweview = null;
 		}
 		super.onDestroy();
-		/*if (isInit) {
+		if (isInit) {
 			m_proxy.onDestroy();
-		}*/
+		}
 	}
 
 	@Override
