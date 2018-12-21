@@ -66,6 +66,10 @@ public abstract class BaseWebviewFragment extends BaseFragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutRes(), container, false);
         webView = view.findViewById(R.id.web_view);
+
+
+
+
         return view;
     }
 

@@ -64,10 +64,11 @@ public class OpenSDK {
 		Data.getInstance().setGameActivity(activity); //设置全局Actvity
 		Data.getInstance().setGameInfo(gameInfo);
 		LogUtil.setLogEnable(true);
+		Delegate.listener = callback;
 		this.onCreate(activity);
 		isInited = true;
-		Delegate.listener = callback;
-		callback.callback(ResultCode.INIT_SUCCESS,"初始化成功");
+
+	/*	callback.callback(ResultCode.INIT_SUCCESS,"初始化成功");*/
 	}
 	
 	//	开始创建SDK检测工具日志

@@ -1,0 +1,110 @@
+{
+    "frames": {
+        "00000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 150,
+                "y": 286,
+                "w": 136,
+                "h": 136
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 189,
+                "y": 123
+            }
+        },
+        "00001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 150,
+                "y": 147,
+                "w": 137,
+                "h": 137
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 188,
+                "y": 122
+            }
+        },
+        "00002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 155,
+                "y": 1,
+                "w": 136,
+                "h": 144
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 188,
+                "y": 122
+            }
+        },
+        "00003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 131,
+                "w": 147,
+                "h": 157
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 190,
+                "y": 122
+            }
+        },
+        "00004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 290,
+                "w": 144,
+                "h": 134
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 190,
+                "y": 121
+            }
+        },
+        "00005.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 152,
+                "h": 128
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 189,
+                "y": 121
+            }
+        }
+    },
+    "meta": {
+        "image": "0_0.png",
+        "prefix":"skill/3002/gethit/0/"
+    }
+}

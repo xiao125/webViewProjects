@@ -1,1 +1,1 @@
-include  ':mcSDKProxy',':mengchuangSDK',':mcgame',':Test',':AIDLTest', ':weblib',':mcSDKProxy1.2.0',':Testapp',':mcSDKProxy1.2.1'
+include  ':mcSDKProxy',':mengchuangSDK',':mcgame',':Test',':AIDLTest', ':weblib',':mcSDKProxy1.2.0',':Testapp',':mcSDKProxyjierban',':ucalisdk'

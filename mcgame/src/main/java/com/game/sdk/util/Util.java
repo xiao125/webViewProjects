@@ -829,6 +829,7 @@ public class Util {
 		if(activity!=null){
 			dia.show();
 			dia.setContentView(v);
+			dia.setCancelable(false);
 		}
 		cont.setOnClickListener(new View.OnClickListener() {
 			@Override

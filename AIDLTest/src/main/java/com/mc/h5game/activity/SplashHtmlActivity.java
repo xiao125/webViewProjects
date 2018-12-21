@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -11,6 +13,7 @@ import android.view.Window;
 import android.widget.Toast;
 import com.mc.h5game.util.SPreferencesUtil;
 import com.mc.h5game.util.TimeUtils;
+import com.mc.weblib.H5Application;
 import com.mc.weblib.utils.WebConstants;
 import com.proxy.Data;
 import com.proxy.service.HttpService;
@@ -165,6 +168,7 @@ public class SplashHtmlActivity extends AppCompatActivity {
 						WebActivity.start(SplashHtmlActivity.this,HtmlUrl, WebConstants.LEVEL_BASE);
 						finish();
 
+
 					}else {
 						RestartUrl();
 					}
@@ -288,6 +292,34 @@ public class SplashHtmlActivity extends AppCompatActivity {
 		int num = (int) ((Math.random() * 9 + 1) * 10000000);
 		return num;
 	}
+
+
+	/*private void doPolling() {
+		Message msg = new Message();
+		msg.what=1;
+		mHandler.sendMessage(msg);
+	}*/
+
+
+	/*private Handler mHandler = new Handler(new Handler.Callback() {
+		@Override
+		public boolean handleMessage(Message msg) {
+			switch (msg.what){
+				case 1:
+					LogUtil.log("是否初始化成功了"+H5Application.getInstance().isInit);
+					if(H5Application.getInstance().isInit){
+						WebActivity.start(SplashHtmlActivity.this,HtmlUrl, WebConstants.LEVEL_BASE);
+						finish();
+					}else {
+						H5Application.getInstance().initX5();
+						doPolling();
+					}
+					break;
+			}
+			return false;
+		}
+	});*/
+
 
 
 }

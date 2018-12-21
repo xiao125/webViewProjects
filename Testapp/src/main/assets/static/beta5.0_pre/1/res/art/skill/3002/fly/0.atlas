@@ -1,0 +1,59 @@
+{
+    "frames": {
+        "00000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 165,
+                "y": 1,
+                "w": 79,
+                "h": 141
+            },
+            "sourceSize": {
+                "w": 80,
+                "h": 150
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "00001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 80,
+                "h": 141
+            },
+            "sourceSize": {
+                "w": 80,
+                "h": 150
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "00002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 83,
+                "y": 1,
+                "w": 80,
+                "h": 141
+            },
+            "sourceSize": {
+                "w": 80,
+                "h": 150
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    "meta": {
+        "image": "0_0.png",
+        "prefix":"skill/3002/fly/0/"
+    }
+}

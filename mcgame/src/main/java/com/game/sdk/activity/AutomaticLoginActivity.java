@@ -117,10 +117,9 @@ public class AutomaticLoginActivity extends SdkBaseActivity implements LoginView
 
     @Override
     public void loginSuccess(String msg, String data) {
-
+        LoadingDialog.dismiss();//关闭
         //登录成功之后就保存账号密码
         Delegate.listener.callback( SDKStatusCode.SUCCESS,data);
-        LoadingDialog.dismiss();//关闭
         Util.ShowTips(m_activity,username+"登录成功！");
         //查询账号是否绑定手机号
         queryBindPresenterImp.queryBindAccont(username,m_activity);

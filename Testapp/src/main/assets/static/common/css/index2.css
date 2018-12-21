@@ -1,0 +1,297 @@
+
+@charset "utf-8";
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+html {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Lato',Calibri,Arial,sans-serif;
+    text-align: center;
+    font-size: 20px;
+    background: #000;
+}
+body {
+    background: #000;
+}
+body {
+    height: 100%;
+    /* max-width: 640px; */
+    margin: 0 auto;
+    box-sizing: border-box;
+    background: #000000;
+    background-size: 100% auto;
+    text-align: center;
+}
+#main {
+    max-width: 640px;
+    background: url("../images/login_bg.jpg") 0 0 no-repeat;
+    background-size:100% auto;
+    margin:0 auto;
+}
+.section{
+    position: relative;
+    height: 100%;
+}
+.btnbox{
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+.choose{
+    width: 80%;
+    height: 70px;
+    margin: 20px auto;
+    text-indent: 1rem;
+    line-height: 70px;
+    font-size: 1rem;
+    background: url("../images/choose_bg.png") center no-repeat;
+    background-size: 100% 100%;
+}
+.choose span{
+    color: #fbd953;
+    line-height: 60px;
+}
+.choose a{
+    color: #61e43e;
+}
+footer {
+    color: #8e6f53;
+    margin-top: .8rem;
+}
+footer p {
+    line-height: 1.5;
+    font-size: .6rem;
+}
+/*选择区服*/
+.serverBox{
+    display: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 90%;
+    margin: 0 auto;
+    height:491px;
+    max-width: 498px;
+    padding-top: 12%;
+    padding-left: 5%;
+    clear: both;
+    background: url("../images/choose_selserbg.png") center top no-repeat;
+    background-size: 100%;
+    z-index: 1001;
+}
+#cg_bg{
+    display: none;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+    z-index: 1000;
+}
+.serverBox .cate {
+    width: 35%;
+    margin-right: 3%;
+}
+.serverBox>div {
+    float: left;
+    height: 100%;
+    text-align: center;
+    overflow-x: hidden;
+}
+.cate .cur {
+    color: #E7A929;
+    background-image: url("../images/curbg.png");
+}
+.cur img{
+    position: absolute;
+    top: 0;
+    right: -5px;
+    height: 100%;
+}
+.cate b {
+    position: relative;
+    color: #98816A;
+    font-size: .65rem;
+    background: url("../images/catebg.png") no-repeat;
+    background-size: 100% 100%;
+}
+.serverBox b {
+    display: block;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: .8rem;
+    font-weight: normal;
+    margin-top: 4px;
+}
+.serverBox .serverList {
+    width: 56%;
+}
+.serverList b {
+    position: relative;
+    color: #DAB481;
+    background: url("../images/serbg.png") no-repeat;
+    background-size: 100% 100%;
+}
+.statusImg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+.back {
+    position: absolute;
+    right:0px;
+    top: 12px;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+}
+.back img{
+    width: 40px;
+    height: 40px;
+}
+.start_game_div {
+    margin-top:-38px;
+}
+.start_game_div img{
+    top:-50px;
+    width: 60%;
+}
+
+/*公告*/
+#btn_notice {
+    float: right;
+    width: 15%;
+    margin: 4% 2% 0 0;
+}
+.noticeBox{
+    display: block;
+    position: relative;
+    top: 0%;
+    left: 0%;
+    box-sizing: border-box;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 498px;
+    z-index: 1001;
+    height: 75%;
+    padding-top: 11%;
+    clear: both;
+    background: url("../images/selserbg.png") center top no-repeat;
+    background-size: 100%;
+}
+.noticeBanner{
+    width: 95%;
+    margin: 0 auto;
+}
+.noticeBanner img{
+    width: 100%;
+}
+.notice_text{
+    width: 90%;
+    height: 57%;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 0.8rem;
+    color: #8e6f53;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: auto;
+}
+.indent{
+    text-indent: 2em;
+}
+.sm{
+    text-align: right;
+}
+/*进度条*/
+.wraper{
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1100;
+    width:100%;
+    height:100%;
+}
+#loadWrap{
+    text-align:center;
+    background:#000 url("../images/login_bg.jpg") 0 0 no-repeat;
+    background-size:100% auto;
+}
+.lamLoading>b{
+    font-weight:normal;
+    margin-left:.5em;color:#e6e1bb;
+    font-size: 16px;
+}
+.lamLoading>b>i{
+    font-style: normal;
+    color: #63e441;
+}
+.lamLoading>b>span{
+    color: #63e441;
+}
+#loading_status {
+    color:#ffffff;
+}
+
+#progress{
+    position:relative;
+    width:90%;
+    margin:0 auto 20px;
+    background-size:100% 100%;
+    background-image:url("../images/bar_bg.png");
+}
+#progress div{
+    margin:0 auto;
+    width: 97%;
+}
+#progress kbd{
+    position:relative;
+    display:block;
+    width:0;
+    height:29px;
+    margin:0;
+    background:url("../images/bar.png") repeat-x;
+}
+#progress b{
+    position:absolute;
+    top:-30px;
+    right:-20px;
+    z-index:6;
+    width:41px;
+    height:83px;
+    background:url("../images/bareff.png") no-repeat;
+}
+.jdt{
+    position:absolute;
+    left:0;
+    bottom:10px;
+    width:100%;
+    text-align:center;
+    color:#f1aa55;
+}
+.jdt>p{
+    line-height:1.5;
+    font-size:.6rem;
+}
+#load_progress_num {
+    width : 0.5em;
+}
+

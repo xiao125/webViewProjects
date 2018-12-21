@@ -1,0 +1,178 @@
+{
+    "frames": {
+        "00000.png": {
+            "frame": {
+                "idx": 0,
+                "x": 856,
+                "y": 1,
+                "w": 134,
+                "h": 106
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 189,
+                "y": 176
+            }
+        },
+        "00001.png": {
+            "frame": {
+                "idx": 0,
+                "x": 792,
+                "y": 795,
+                "w": 225,
+                "h": 153
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 142,
+                "y": 152
+            }
+        },
+        "00002.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 848,
+                "w": 318,
+                "h": 195
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 93,
+                "y": 128
+            }
+        },
+        "00003.png": {
+            "frame": {
+                "idx": 0,
+                "x": 429,
+                "y": 263,
+                "w": 421,
+                "h": 236
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 36,
+                "y": 112
+            }
+        },
+        "00004.png": {
+            "frame": {
+                "idx": 0,
+                "x": 429,
+                "y": 1,
+                "w": 425,
+                "h": 260
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 34,
+                "y": 94
+            }
+        },
+        "00005.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 1,
+                "w": 426,
+                "h": 274
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 32,
+                "y": 87
+            }
+        },
+        "00006.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 277,
+                "w": 415,
+                "h": 283
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 44,
+                "y": 83
+            }
+        },
+        "00007.png": {
+            "frame": {
+                "idx": 0,
+                "x": 404,
+                "y": 795,
+                "w": 386,
+                "h": 273
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 67,
+                "y": 86
+            }
+        },
+        "00008.png": {
+            "frame": {
+                "idx": 0,
+                "x": 1,
+                "y": 562,
+                "w": 401,
+                "h": 284
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 54,
+                "y": 83
+            }
+        },
+        "00009.png": {
+            "frame": {
+                "idx": 0,
+                "x": 418,
+                "y": 501,
+                "w": 407,
+                "h": 292
+            },
+            "sourceSize": {
+                "w": 512,
+                "h": 512
+            },
+            "spriteSourceSize": {
+                "x": 46,
+                "y": 81
+            }
+        }
+    },
+    "meta": {
+        "image": "0_0.png",
+        "prefix":"skill/2004/caster/0/"
+    }
+}

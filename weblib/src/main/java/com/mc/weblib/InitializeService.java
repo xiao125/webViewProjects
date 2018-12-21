@@ -8,6 +8,7 @@ import com.mc.weblib.utils.TimeUtils;
 import com.proxy.util.LogUtil;
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.TbsListener;
 
 import java.io.File;
 import java.util.HashMap;
@@ -91,6 +92,23 @@ public class InitializeService extends IntentService {
     private void initX5() {
         QbSdk.setDownloadWithoutWifi(true);
         QbSdk.initX5Environment(this, cb);
+
+        QbSdk.setTbsListener(new TbsListener() {
+            @Override
+            public void onDownloadFinish(int i) {
+                LogUtil.log("X5内核 下载结束");
+            }
+
+            @Override
+            public void onInstallFinish(int i) {
+                LogUtil.log("X5内核 安装完成");
+            }
+
+            @Override
+            public void onDownloadProgress(int i) {
+                LogUtil.log("X5内核 下载进度:%"+i);
+            }
+        });
     }
 
     private void preinitX5WebCore() {
@@ -101,6 +119,8 @@ public class InitializeService extends IntentService {
 
         }
     }
+
+
 
     QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
         @Override

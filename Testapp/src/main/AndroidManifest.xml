@@ -73,6 +73,7 @@
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
             android:hardwareAccelerated="true"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             >
         </activity>
@@ -102,8 +103,6 @@
             >
         </activity>-->
 
-
-        <service android:name="com.proxy.x5.InitializeService"/>
         <!-- 加载web支付 -->
         <activity
             android:name="com.proxy.activity.StartWebView"
@@ -120,6 +119,8 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
 
+        <service android:name="com.proxy.x5.InitializeService"/>
+
         <!-- 在AndroidManifest.xml中增加内核首次加载时优化Service声明；
         该Service仅在TBS内核首次Dex加载时触发并执行dex2oat任务，任务完成后自动结束-->
         <service
@@ -129,7 +130,7 @@
 
         <!--sdk配置开始-->
 
-        <activity
+       <!-- <activity
             android:name="com.game.sdk.activity.AutomaticLoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
             android:launchMode="singleTop"
@@ -174,11 +175,11 @@
 
         <service
             android:name="com.game.sdk.service.RemindService">
-        </service>
+        </service>-->
 
         <!-- alipay sdk begin -->
 
-        <activity
+        <!--<activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
@@ -190,7 +191,7 @@
             android:exported="false"
             android:screenOrientation="behind" >
         </activity>
-        <activity android:name="com.mc.h5game.activity.WebSplashActivity" />
+        -->
         <!-- alipay sdk end -->
 
 

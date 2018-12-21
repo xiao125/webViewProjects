@@ -5,6 +5,8 @@ dependencies {
     compile project(':mengchuangSDK')
     implementation 'com.android.support:appcompat-v7:26.0.0'
     implementation 'com.android.support:support-v4:26.0.0'
+
+
 }
 
 android {

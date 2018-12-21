@@ -1,8 +1,5 @@
 package com.proxy.sdk.channel;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 
@@ -16,7 +13,6 @@ import com.proxy.Data;
 import com.proxy.OpenSDK;
 import com.proxy.ResultCode;
 import com.proxy.bean.KnPayInfo;
-import com.proxy.bean.Result;
 import com.proxy.bean.User;
 import com.proxy.call.Delegate;
 import com.proxy.listener.BaseListener;
@@ -24,10 +20,14 @@ import com.proxy.listener.InitListener;
 import com.proxy.sdk.SdkProxy;
 import com.proxy.service.HttpService;
 import com.proxy.tools.HttpRequestUtil;
-import com.proxy.util.DeviceUtil;
 import com.proxy.util.LoadingDialog;
 import com.proxy.util.LogUtil;
 import com.proxy.util.Util;
+
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class SdkChannel extends SdkProxy {
 
@@ -74,6 +74,7 @@ public class SdkChannel extends SdkProxy {
 				switch (code) {
 					case SDKStatusCode.SUCCESS:
 						LogUtil.log("萌创SDK初始化成功");
+						Delegate.listener.callback(ResultCode.INIT_SUCCESS,"初始化成功");
 						break;
 					case SDKStatusCode.FAILURE:
 						LogUtil.log("萌创SDK初始化失败");

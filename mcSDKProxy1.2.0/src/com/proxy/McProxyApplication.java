@@ -2,11 +2,14 @@ package com.proxy;
 import android.app.Application;
 import android.content.Context;
 
+import com.proxy.sdk.channel.GameApplication;
 import com.proxy.util.LogUtil;
 import com.proxy.util.TimeUtils;
 import com.proxy.x5.InitializeService;
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.TbsListener;
+import com.tencent.smtt.utils.TbsLogClient;
 
 import java.util.HashMap;
 
@@ -14,9 +17,10 @@ import java.util.HashMap;
  * 自定义Application
  */
 
-public class McProxyApplication extends Application{
+public class McProxyApplication extends GameApplication{
 
     private static McProxyApplication homeApplication;
+
 
     public static McProxyApplication getInstance(){
         return homeApplication;
@@ -50,8 +54,41 @@ public class McProxyApplication extends Application{
     }
 
     private void initX5() {
+
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                // TODO Auto-generated method stub
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                LogUtil.log("x5內核初始化完成的回调："+arg0);
+
+            }
+
+            @Override
+            public void onCoreInitFinished() {
+
+            }
+        };
+        QbSdk.setTbsListener(new TbsListener() {
+            @Override
+            public void onDownloadFinish(int i) {
+                LogUtil.log("X5内核 下载结束");
+            }
+
+            @Override
+            public void onInstallFinish(int i) {
+                LogUtil.log("X5内核 安装完成");
+            }
+
+            @Override
+            public void onDownloadProgress(int i) {
+                LogUtil.log("X5内核 下载进度:%"+i);
+            }
+        });
+
         QbSdk.setDownloadWithoutWifi(true);
         QbSdk.initX5Environment(getApplicationContext(), cb);
+
     }
 
     private void preinitX5WebCore() {
@@ -63,19 +100,11 @@ public class McProxyApplication extends Application{
         }
     }
 
-    QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
-        @Override
-        public void onViewInitFinished(boolean arg0) {
-            // TODO Auto-generated method stub
-            //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
-            LogUtil.log("x5內核初始化完成的回调："+arg0);
-        }
 
-        @Override
-        public void onCoreInitFinished() {
 
-        }
-    };
+
+
+
 
     @Override
     protected void attachBaseContext(Context base) {
