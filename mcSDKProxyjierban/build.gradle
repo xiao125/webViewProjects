@@ -65,7 +65,7 @@ android {
 def SDK_BASENAME = "mcProxy"
 def SDK_VERSION = "_v2.1.0"
 def sdkDestinationPath = "build"
-def zipFile = file('build/intermediates/packaged-classes/release/classes.jar')
+def zipFile = file('build/intermediates/bundles/release/classes.jar')
 
 task deleteBuild(type: Delete) {
     delete sdkDestinationPath + SDK_BASENAME + SDK_VERSION + ".jar"

@@ -129,56 +129,56 @@
 
         <!--sdk配置开始-->
 
-       <!-- <activity
-            android:name="com.game.sdk.activity.AutomaticLoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/McTheme.FloatActivity"
+         <activity
+             android:name="com.game.sdk.activity.AutomaticLoginActivity"
+             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+             android:launchMode="singleTop"
+             android:screenOrientation="portrait"
+             android:theme="@style/McTheme.FloatActivity"
 
-            />
+             />
 
-        <activity
-            android:name="com.game.sdk.activity.AutoLoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+         <activity
+             android:name="com.game.sdk.activity.AutoLoginActivity"
+             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+             android:launchMode="singleTop"
+             android:screenOrientation="portrait"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
-        <activity
-            android:name="com.game.sdk.activity.BindCellActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+         <activity
+             android:name="com.game.sdk.activity.BindCellActivity"
+             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+             android:launchMode="singleTop"
+             android:screenOrientation="portrait"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
-        <activity
-            android:name="com.game.sdk.activity.FastLoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+         <activity
+             android:name="com.game.sdk.activity.FastLoginActivity"
+             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+             android:launchMode="singleTop"
+             android:screenOrientation="portrait"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
 
-        <activity
-            android:name="com.game.sdk.activity.ForgotPasswordActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+         <activity
+             android:name="com.game.sdk.activity.ForgotPasswordActivity"
+             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+             android:screenOrientation="portrait"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
-        <activity
-            android:name="com.game.sdk.activity.PasswordUpdateActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+         <activity
+             android:name="com.game.sdk.activity.PasswordUpdateActivity"
+             android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+             android:screenOrientation="portrait"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
-        <service
-            android:name="com.game.sdk.service.RemindService">
-        </service>-->
+         <service
+             android:name="com.game.sdk.service.RemindService">
+         </service>
 
         <!-- alipay sdk begin -->
 
-        <!--<activity
+        <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
@@ -190,7 +190,6 @@
             android:exported="false"
             android:screenOrientation="behind" >
         </activity>
-        -->
         <!-- alipay sdk end -->
 
 

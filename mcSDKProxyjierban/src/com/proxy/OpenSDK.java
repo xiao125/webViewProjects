@@ -7,9 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
+
 import com.proxy.activity.Invitation;
 import com.proxy.activity.StartWebView;
 import com.proxy.bean.FuncButton;
@@ -24,7 +22,6 @@ import com.proxy.tools.HttpRequestUtil;
 import com.proxy.util.DeviceUtil;
 import com.proxy.util.LogUtil;
 import com.proxy.util.Util;
-import com.proxy.util.WxTools;
 
 /**
  * 萌创sdk
@@ -448,16 +445,6 @@ public class OpenSDK {
 		// TODO Auto-generated method stub
 		sdkCenter.onBackPressed();
 	}
-	
-	public boolean onKeyUp(int keyCode, KeyEvent event){
-		View m_baseView = WxTools.getIntance().getM_View();
-		if(m_baseView!=null){
-			((ViewGroup)m_baseView.getParent()).removeView(m_baseView);
-			WxTools.getIntance().setM_View(null);
-			return true;
-		}else{
-			return false ;
-		}
-	}
+
 
 }
