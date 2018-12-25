@@ -1,16 +1,12 @@
 package com.proxy.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
-import com.proxy.*;
+
+import com.proxy.Constants;
+import com.proxy.Data;
+import com.proxy.OpenSDK;
+import com.proxy.ResultCode;
 import com.proxy.bean.GameInfo;
 import com.proxy.bean.GameUser;
 import com.proxy.bean.KnPayInfo;
@@ -19,12 +15,21 @@ import com.proxy.call.Delegate;
 import com.proxy.listener.BaseListener;
 import com.proxy.task.CommonAsyncTask;
 import com.proxy.tools.HttpRequestUtil;
-import com.proxy.tools.HttpUrlConstants;
 import com.proxy.util.DeviceUtil;
 import com.proxy.util.LoadingDialog;
 import com.proxy.util.LogUtil;
-import com.proxy.util.Util;
 import com.proxy.util.Md5Util;
+import com.proxy.util.Util;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HttpService {
 
@@ -45,7 +50,7 @@ public class HttpService {
 							+ platform + content.toString()
 							+ gameInfo.getAppKey()));
 			LogUtil.e("AppKey"+gameInfo.getAppKey());
-			LogUtil.e("game_id"+Data.getInstance().getGameInfo().getGameId());
+			LogUtil.e("game_id"+ Data.getInstance().getGameInfo().getGameId());
 			LogUtil.e("game_id = "+game_id+"  channel="+channel+"  AppKey="+gameInfo.getAppKey());
 			HttpRequestUtil.okPostFormRequest(Constants.LOGIN, params,callBack);
 		} catch (Exception e) {
@@ -54,7 +59,7 @@ public class HttpService {
 	}
 
 	//请求支付订单
-	public static void applyOrder( Activity activity ,KnPayInfo knPayInfo,HttpRequestUtil.DataCallBack callBack) {
+	public static void applyOrder(Activity activity , KnPayInfo knPayInfo, HttpRequestUtil.DataCallBack callBack) {
 		try {
 
 			User userInfo = Data.getInstance().getUser();
@@ -71,6 +76,7 @@ public class HttpService {
 
 			if(Util.getGameName(activity).equals("fmsg")){
 				params.put("extra_info", knPayInfo.getExtraInfo());
+				LogUtil.log("======封魔三国的订单号："+knPayInfo.getExtraInfo());
 			}else {
 				//params.put("extra_info", knPayInfo.getOrderNo());
 				if(knPayInfo.getExtraInfo()!=null ||("").equals(knPayInfo.getExtraInfo())){
@@ -88,19 +94,20 @@ public class HttpService {
 					params.put("amount",String.valueOf((knPayInfo.getPrice()/100)));
 					params.put("extend","充值元宝");
 					params.put("appid","et51ba58d87527a539");
-					params.put("gameArea",Data.getInstance().getGameUser().getServerName());
+					params.put("gameArea", Data.getInstance().getGameUser().getServerName());
 					params.put("gameAreaId",String.valueOf(Data.getInstance().getGameUser().getServerId()));
-					params.put("roleId",Data.getInstance().getGameUser().getUid());
-					params.put("userRole",Data.getInstance().getGameUser().getUsername());
+					params.put("roleId", Data.getInstance().getGameUser().getUid());
+					params.put("userRole", Data.getInstance().getGameUser().getUsername());
 					params.put("gameLevel",String.valueOf(Data.getInstance().getGameUser().getUserLevel()));
 
 				}if (Util.getChannle(activity).equals("uc")) {
 					double price=knPayInfo.getPrice();
 					params.put("amount",String.valueOf(Integer.parseInt(new java.text.DecimalFormat("0").format(price))/100));
-					params.put("accountId",Data.getInstance().getUser().getExtraInfo1());
+					params.put("accountId", Data.getInstance().getUser().getExtraInfo1());
 					params.put("callbackInfo","自定义信息");
-					LogUtil.log("支付请求参数accountId====="+Data.getInstance().getUser().getExtraInfo1()+"amount="+String.valueOf(Integer.parseInt(new java.text.DecimalFormat("0").format(price))/100));
+					LogUtil.log("支付请求参数accountId====="+ Data.getInstance().getUser().getExtraInfo1()+"amount="+String.valueOf(Integer.parseInt(new java.text.DecimalFormat("0").format(price))/100));
 				}
+
 				if (Util.getChannle(activity).equals("vivo")) {
 					double price=knPayInfo.getPrice();
 					params.put("vivo_title",knPayInfo.getProductName());
@@ -246,9 +253,10 @@ public class HttpService {
 			String channel =(String) data.get("channel");
 			String platform    = (String) data.get("platform");
 			String time = (String) data.get("time");
-			params.put("sign",Md5Util.getMd5(game_id+channel+platform+time+appkey));
+			params.put("sign", Md5Util.getMd5(game_id+channel+platform+time+appkey));
 			//LogUtil.log("请求地址数据地址:"+Constants.HTMLURL);
-			String URL = "http://oms.u7game.cn/api/get_h5_url.php"; //此时SDK没有初始化，读取静态变量时避免出现java.lang.ExceptionInInitializerError
+			String Url = Util.getGameChanelParameter("sdk_url");
+			String URL = "http://"+Url+"/api/get_h5_url.php"; //此时SDK没有初始化，读取静态变量时避免出现java.lang.ExceptionInInitializerError
 			HttpRequestUtil.okPostFormRequest(URL , params,callBack);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -269,7 +277,7 @@ public class HttpService {
 			String channel =(String) data.get("channel");
 			String platform    = (String) data.get("platform");
 			String getH5url ="http://oms.u7game.cn/api/game/control_channel.php";
-			params.put("sign",Md5Util.getMd5(game_id+channel+platform+app_secret));
+			params.put("sign", Md5Util.getMd5(game_id+channel+platform+app_secret));
 			new CommonAsyncTask(null,getH5url, listener).execute(new Map[] { params, null, null });
 		}catch(Exception e){
 			e.printStackTrace();
@@ -297,7 +305,7 @@ public class HttpService {
 			}
 			key += "app_secret="+app_secret;
 			//LogUtil.log("key="+key);
-			params.put("verify",Md5Util.getMd5(key));
+			params.put("verify", Md5Util.getMd5(key));
 			HttpRequestUtil.okPostFormRequest( Constants.HEARTBRAT, params,callBack);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -321,7 +329,7 @@ public class HttpService {
 				game_id =gameInfo.getGameId();
 			}
 			params.put("app_key",appkey);
-			params.put("sign",Md5Util.getMd5(game_id+appkey+imei));
+			params.put("sign", Md5Util.getMd5(game_id+appkey+imei));
 			LogUtil.log("请求地址数据地址:"+params.toString());
 			String URL = "http://oms.u7game.cn/api/record_activate.php"; //此时SDK没有初始化，读取静态变量时避免出现java.lang.ExceptionInInitializerError
 			HttpRequestUtil.okPostFormRequest(Constants.PUSH_DATA, params,callBack);
@@ -359,7 +367,7 @@ public class HttpService {
 				key += list.get(i)+"="+params.get(list.get(i))+"&";
 			}
 			key += "app_secret="+app_secret;
-			params.put("sign",Md5Util.getMd5(key));
+			params.put("sign", Md5Util.getMd5(key));
 			//LogUtil.log("排序字段:"+key);
 			HttpRequestUtil.okPostFormRequest( Constants.CANCEL, params,callBack);
 		} catch (Exception e) {
@@ -426,7 +434,7 @@ public class HttpService {
 
 		String msi = DeviceUtil.getDeviceId();
 		String time = Util.getTimes();
-		String ip =DeviceUtil.getIPAddress(); //手机ip地址
+		String ip = DeviceUtil.getIPAddress(); //手机ip地址
 		String product = DeviceUtil.getProduct();
 		String mode = DeviceUtil.getPhoneType();
 		String DisplayMetrics = Util.ImageGalleryAdapter(context.getApplicationContext());
@@ -472,8 +480,8 @@ public class HttpService {
 		params.put("versionCode", Util.getJsonStringByName(appInfo, "versionCode") );
 		params.put("ip",ip); //手机型号
 		params.put("time",time); //当前时间
-		params.put("system",Util.getSystemVersion()); //手机系统版本
-		params.put("memory",Util.getTotalMemorySize()); //手机内存大小
+		params.put("system", Util.getSystemVersion()); //手机系统版本
+		params.put("memory", Util.getTotalMemorySize()); //手机内存大小
 		params.put("resolution",DisplayMetrics); //当前手机分辨率
 		return params;
 

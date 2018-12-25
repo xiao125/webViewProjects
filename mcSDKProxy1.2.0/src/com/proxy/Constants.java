@@ -1,13 +1,13 @@
 package com.proxy;
 
 
+import com.proxy.util.Util;
+
 public final class Constants {
 		
 	  //请求超时时间  单位毫秒
 	  public static final int CONNECT_TIMEOUT = 15000;
-	  
 	  public static final int READ_TIMEOUT = 25000;
-	  
 	  public static final String CSIPW = "oms.cqsj.sdo.com:8080";
 	  public static final String CSIPN = "omstest.cqsj.sdo.com:8080";
 //	  public static final String CSIP = "115.182.4.32";
@@ -18,11 +18,9 @@ public final class Constants {
 	  public static final String OMD_URL = "pay.u7game.cn";
 	  public static final String OMD_URL2 = "oms.u7game.cn";
 
-
-
-	  
-	  public static final String Url = Data.getInstance().getGameInfo().getGameId()=="cqsj"?(Integer.parseInt(Data.getInstance().getGameInfo().getAdChannel())<=9999?CSIPN:CSIPW):OMD_URL2;
-	  
+	  public static final String Url = Util.getGameChanelParameter("sdk_url");
+	  public static final String heartbeatUrl  =  Util.getGameChanelParameter("heartbeat");
+	//public static final String Url = Data.getInstance().getGameInfo().getGameId()=="cqsj"?(Integer.parseInt(Data.getInstance().getGameInfo().getAdChannel())<=9999?CSIPN:CSIPW):OMD_URL2;
 	  public static final String yqmUrl = Data.getInstance().getGameInfo().getGameId()=="cqsj"?(Integer.parseInt(Data.getInstance().getGameInfo().getAdChannel())<=9999?CENTER_CSIPN:CENTER_CSIPW):"gameapi.szkuniu.com";
 	  public static final String versionUprl = Data.getInstance().getGameInfo().getGameId()=="cqsj"?"gameversion.cqsj.sdo.com:8080":"gameversion.szkuniu.com";
 
@@ -36,15 +34,14 @@ public final class Constants {
 	  public static  String PAYDATAURL = "http://pay.u7game.cn/api/open_platform/channel/yunding/send_pay.php";
 	  public static  String ACTIVATIONS = "http://"+Url+"/api/cdk_active.php" ;  //请求激活设备
 	  public static  String ISACTIVATIONS = "http://"+Url+"/api/is_imei_active.php" ; //验证设备是否被激活
-	  public static  String GETHTMLURL = "http://oms.u7game.cn/api/get_h5_url.php"; //热血传奇获取打包测试url
-	  public static  String HEARTBRAT = "http://111.230.170.150:21888/heartbeat"; //在线心跳包协议
-	  public static  String CANCEL="http://oms.u7game.cn/api/open_platform/datacenter/cancel.php";//注销接口
-	  public static  String HTMLURL="http://oms.u7game.cn/api/get_h5_url.php";//获取H5URL接口
+	  public static  String GETHTMLURL = "http://"+Url+"/api/get_h5_url.php"; //热血传奇获取打包测试url
+	 // public static  String HEARTBRAT = "http://111.230.170.150:21888/heartbeat"; //在线心跳包协议
+	  public static  String HEARTBRAT = "http://"+heartbeatUrl+"/heartbeat"; //在线心跳包协议
+	  public static  String CANCEL="http://"+Url+"/api/open_platform/datacenter/cancel.php";//注销接口
+	  public static  String HTMLURL="http://"+Url+"/api/get_h5_url.php";//获取H5URL接口
 
-	  
 	  public static final int LANDSCAPE = 0;							//横屏		
 	  public static final int PORTRAIT = 1;								//竖屏
-	  
 	  public static final String USER_ID = "userId";						//用户ID
 	  public static final String SERVER_ID = "serverId";					//用户所属服务器ID
 	  public static final String USER_LEVEL = "userLv";						//用户等级

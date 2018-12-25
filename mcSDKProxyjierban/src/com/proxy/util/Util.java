@@ -1,5 +1,31 @@
 package com.proxy.util;
 
+import android.app.Activity;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.proxy.Data;
+import com.proxy.sdk.channel.GameApplication;
+import com.proxy.sdk.channel.SDKConfig;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,33 +52,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.proxy.Data;
-import com.proxy.sdk.channel.GameApplication;
-import com.proxy.sdk.channel.SDKConfig;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.Toast;
 
 public class Util {
 
@@ -244,32 +243,37 @@ public class Util {
 	}
 
 
-	public static String getGameAPPID(){ //渠道 appid
+	public static String getGameChanelParameter(String parameter){ //获取渠道参数
+
+		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
+		return getJsonStringByName(jsonStr,parameter);
+	}
+
+
+	public static String getGameAPPID(){ //appid
 
 		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
 		return getJsonStringByName(jsonStr,"appid");
 
 	}
 
-	public static String getGameAPPKEY( ){ //渠道 appkey
+	public static String getGameAPPKEY( ){ //appkey
 
 		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
 		return getJsonStringByName(jsonStr,"appkey");
 	}
 
-
-	public static String getGameAPPNOTIFY(){ //渠道 支付回调地址
+	public static String getGameAPPNOTIFY(){ //回到地址
 
 		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
 		return getJsonStringByName(jsonStr,"notify");
 	}
 
 
-	public static String getGameAPPSECRET( ){ //渠道  APPSECRET
+	public static String getGameAPPSECRET( ){ // APPSECRET
 		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
 		return getJsonStringByName(jsonStr,"appsecret");
 	}
-
 
 	public static String getGameName( Context ctx ){
 
@@ -473,6 +477,9 @@ public class Util {
 	}
 
 	public static String getJsonStringByNameNew(String json, String name) {
+
+
+
 		try {
 			JSONObject obj = new JSONObject(json);
 
@@ -492,9 +499,14 @@ public class Util {
 
 
 	public static String getJsonStringByName(String json, String name) {
+
+
+
 		try {
 			JSONObject obj = new JSONObject(json);
+
 			String retStr = obj.getString(name);
+
 			if (retStr == null) {
 				return "";
 			}
@@ -529,7 +541,7 @@ public class Util {
 
 	public static void exit( final Activity  act ,  DialogInterface.OnClickListener submit , DialogInterface.OnClickListener cancel  ){
 
-		AlertDialog.Builder builder = new Builder(act);
+		Builder builder = new Builder(act);
 		builder.setMessage("点击确认退出游戏");
 		builder.setTitle("系统提示");
 		builder.setPositiveButton("确定", submit );
@@ -746,7 +758,7 @@ public class Util {
 
 		}
 		sign = sign+"&app_secret="+app_secret;
-		update_params.put("sign",Md5Util.getMd5(sign).toLowerCase());
+		update_params.put("sign", Md5Util.getMd5(sign).toLowerCase());
 		return 		update_params;
 	}
 
