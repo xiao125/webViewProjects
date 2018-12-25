@@ -71,7 +71,6 @@ public class HttpService {
 
 			if(Util.getGameName(activity).equals("fmsg")){
 				params.put("extra_info", knPayInfo.getExtraInfo());
-				LogUtil.log("======封魔三国的订单号："+knPayInfo.getExtraInfo());
 			}else {
 				//params.put("extra_info", knPayInfo.getOrderNo());
 				if(knPayInfo.getExtraInfo()!=null ||("").equals(knPayInfo.getExtraInfo())){
@@ -96,12 +95,17 @@ public class HttpService {
 					params.put("gameLevel",String.valueOf(Data.getInstance().getGameUser().getUserLevel()));
 
 				}if (Util.getChannle(activity).equals("uc")) {
-
 					double price=knPayInfo.getPrice();
 					params.put("amount",String.valueOf(Integer.parseInt(new java.text.DecimalFormat("0").format(price))/100));
-					params.put("accountId",Data.getInstance().getGameUser().getExtraInfo());
+					params.put("accountId",Data.getInstance().getUser().getExtraInfo1());
 					params.put("callbackInfo","自定义信息");
-					LogUtil.log("支付请求参数accountId====="+Data.getInstance().getGameUser().getExtraInfo()+"amount="+String.valueOf(Integer.parseInt(new java.text.DecimalFormat("0").format(price))/100));
+					LogUtil.log("支付请求参数accountId====="+Data.getInstance().getUser().getExtraInfo1()+"amount="+String.valueOf(Integer.parseInt(new java.text.DecimalFormat("0").format(price))/100));
+				}
+				if (Util.getChannle(activity).equals("vivo")) {
+					double price=knPayInfo.getPrice();
+					params.put("vivo_title",knPayInfo.getProductName());
+					params.put("vivo_desc",knPayInfo.getCoinName());
+					params.put("vivo_price",String.valueOf(Integer.parseInt(new java.text.DecimalFormat("0").format(price))));
 				}
 
 				if (Util.getChannle(activity).equals("mz")) {

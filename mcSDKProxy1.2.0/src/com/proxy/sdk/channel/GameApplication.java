@@ -15,6 +15,6 @@ public class GameApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        proxyApplication=this;
     }
 }

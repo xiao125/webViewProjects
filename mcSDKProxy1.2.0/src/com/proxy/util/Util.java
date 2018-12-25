@@ -244,32 +244,37 @@ public class Util {
 	}
 
 
-	public static String getGameAPPID(){ //渠道 appid
+	public static String getGameChanelParameter(String parameter){ //获取渠道参数
+
+		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
+		return getJsonStringByName(jsonStr,parameter);
+	}
+
+
+	public static String getGameAPPID(){ //appid
 
 		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
 		return getJsonStringByName(jsonStr,"appid");
 
 	}
 
-	public static String getGameAPPKEY( ){ //渠道 appkey
+	public static String getGameAPPKEY( ){ //appkey
 
 		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
 		return getJsonStringByName(jsonStr,"appkey");
 	}
 
-
-	public static String getGameAPPNOTIFY(){ //渠道 支付回调地址
+	public static String getGameAPPNOTIFY(){ //回到地址
 
 		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
 		return getJsonStringByName(jsonStr,"notify");
 	}
 
 
-	public static String getGameAPPSECRET( ){ //渠道  APPSECRET
+	public static String getGameAPPSECRET( ){ // APPSECRET
 		String jsonStr = getAssetsFileContent(GameApplication.getInstance(),"SDKFile/adChannel.png");
 		return getJsonStringByName(jsonStr,"appsecret");
 	}
-
 
 	public static String getGameName( Context ctx ){
 
@@ -473,6 +478,9 @@ public class Util {
 	}
 
 	public static String getJsonStringByNameNew(String json, String name) {
+
+
+
 		try {
 			JSONObject obj = new JSONObject(json);
 
@@ -492,9 +500,14 @@ public class Util {
 
 
 	public static String getJsonStringByName(String json, String name) {
+
+
+
 		try {
 			JSONObject obj = new JSONObject(json);
+
 			String retStr = obj.getString(name);
+
 			if (retStr == null) {
 				return "";
 			}

@@ -65,6 +65,17 @@
     public <init>(android.content.Context, android.util.AttributeSet, int);
 }
 
+-keepclasseswithmembers class * {
+    ... *JNI*(...);
+}
+
+-keepclasseswithmembernames class * {
+	... *JRI*(...);
+}
+
+-keep class **JNI* {*;}
+
+
 
 #表示不混淆任何一个View中的setXxx()和getXxx()方法，
 #因为属性动画需要有相应的setter和getter的方法实现，混淆了就无法工作了。
@@ -247,17 +258,22 @@
 
 #-------------------------------------------定制化区域----------------------------------------------
 #---------------------------------1.实体类---------------------------------
--keep class com.game.sdk.base.** { *; }
--keep class com.game.sdk.bean.** { *; }
--keep class com.game.sdk.call.** { *; }
--keep class com.game.sdk.callback.** { *; }
--keep class com.game.sdk.config.** { *; }
--keep class com.game.sdk.floatmenu.SusViewMager{ *; }
--keep class com.game.sdk.mvp.model.**{ *; }
--keep class com.game.sdk.GameSDK{ *; }
--keep interface com.game.sdk.floatmenu.SusViewMager$OnLogoutListener {
-    public <methods>;
-}
+-keep class com.proxy.bean.** { *; }
+-keep class com.proxy.call.** { *; }
+-keep class com.proxy.callback.** { *; }
+-keep class com.proxy.listener.** { *; }
+-keep class com.proxy.sdk.** { *; }
+-keep class com.proxy.service.** { *; }
+-keep class com.proxy.tools.**{ *; }
+-keep class com.proxy.util.** { *; }
+-keep class com.proxy.x5.** { *; }
+-keep class com.proxy.OpenSDK{ *; }
+-keep class com.proxy.ResultCode{ *; }
+-keep class com.proxy.Listener{ *; }
+-keep class com.proxy.Data{ *; }
+-keep class com.proxy.Splash{ *; }
+-keep class com.proxy.Constants{ *; }
+
 
 #########################################################第三方的配置开始#######################
 ############shareSDK混淆配置################
@@ -370,7 +386,20 @@ public static final int *;
 -keep class com.google.** {*;}
 -keep class okhttp3.** {*;}
 -keep class okio.** {*;}
+-keep class com.tencent.** {*;}
 -dontwarn org.apache.http.**
+
+#############CacheWebview
+-dontwarn ren.yale.android.cachewebviewlib.**
+-keep class ren.yale.android.cachewebviewlib.**{*;}
+#okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+#okio
+-dontwarn okio.**
+-keep class okio.**{*;}
+#############CacheWebview
+
 
 #########################################################第三方的配置结束#######################
 
@@ -453,11 +482,263 @@ public static final int *;
 -keep class * implements com.google.gson.JsonDeserializer
 # Application classes that will be serialized/deserialized over Gson
 
-
 ##---------------End: proguard configuration for Gson  ----------
 
+# Addidional for x5.sdk classes for apps
+
+-keep class com.tencent.smtt.export.external.**{
+    *;
+}
+
+-keep class com.tencent.tbs.video.interfaces.IUserStateChangedListener {
+	*;
+}
+
+-keep class com.tencent.smtt.sdk.CacheManager {
+	public *;
+}
+
+-keep class com.tencent.smtt.sdk.CookieManager {
+	public *;
+}
+
+-keep class com.tencent.smtt.sdk.WebHistoryItem {
+	public *;
+}
+
+-keep class com.tencent.smtt.sdk.WebViewDatabase {
+	public *;
+}
+
+-keep class com.tencent.smtt.sdk.WebBackForwardList {
+	public *;
+}
+
+-keep public class com.tencent.smtt.sdk.WebView {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.WebView$HitTestResult {
+	public static final <fields>;
+	public java.lang.String getExtra();
+	public int getType();
+}
+
+-keep public class com.tencent.smtt.sdk.WebView$WebViewTransport {
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.WebView$PictureListener {
+	public <fields>;
+	public <methods>;
+}
 
 
+-keepattributes InnerClasses
 
+-keep public enum com.tencent.smtt.sdk.WebSettings$** {
+    *;
+}
+
+-keep public enum com.tencent.smtt.sdk.QbSdk$** {
+    *;
+}
+
+-keep public class com.tencent.smtt.sdk.WebSettings {
+    public *;
+}
+
+
+-keepattributes Signature
+-keep public class com.tencent.smtt.sdk.ValueCallback {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.WebViewClient {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.DownloadListener {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.WebChromeClient {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.WebChromeClient$FileChooserParams {
+	public <fields>;
+	public <methods>;
+}
+
+-keep class com.tencent.smtt.sdk.SystemWebChromeClient{
+	public *;
+}
+# 1. extension interfaces should be apparent
+-keep public class com.tencent.smtt.export.external.extension.interfaces.* {
+	public protected *;
+}
+
+# 2. interfaces should be apparent
+-keep public class com.tencent.smtt.export.external.interfaces.* {
+	public protected *;
+}
+
+-keep public class com.tencent.smtt.sdk.WebViewCallbackClient {
+	public protected *;
+}
+
+-keep public class com.tencent.smtt.sdk.WebStorage$QuotaUpdater {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.WebIconDatabase {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.WebStorage {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.DownloadListener {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.QbSdk {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.QbSdk$PreInitCallback {
+	public <fields>;
+	public <methods>;
+}
+-keep public class com.tencent.smtt.sdk.CookieSyncManager {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.Tbs* {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.utils.LogFileUtils {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.utils.TbsLog {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.utils.TbsLogClient {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.CookieSyncManager {
+	public <fields>;
+	public <methods>;
+}
+
+# Added for game demos
+-keep public class com.tencent.smtt.sdk.TBSGamePlayer {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.TBSGamePlayerClient* {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.TBSGamePlayerClientExtension {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.TBSGamePlayerService* {
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.tencent.smtt.utils.Apn {
+	public <fields>;
+	public <methods>;
+}
+-keep class com.tencent.smtt.** {
+	*;
+}
+# end
+
+
+-keep public class com.tencent.smtt.export.external.extension.proxy.ProxyWebViewClientExtension {
+	public <fields>;
+	public <methods>;
+}
+
+-keep class MTT.ThirdAppInfoNew {
+	*;
+}
+
+-keep class com.tencent.mtt.MttTraceEvent {
+	*;
+}
+
+# Game related
+-keep public class com.tencent.smtt.gamesdk.* {
+	public protected *;
+}
+
+-keep public class com.tencent.smtt.sdk.TBSGameBooter {
+        public <fields>;
+        public <methods>;
+}
+
+-keep public class com.tencent.smtt.sdk.TBSGameBaseActivity {
+	public protected *;
+}
+
+-keep public class com.tencent.smtt.sdk.TBSGameBaseActivityProxy {
+	public protected *;
+}
+
+-keep public class com.tencent.smtt.gamesdk.internal.TBSGameServiceClient {
+	public *;
+}
+#---------------------------------------------------------------------------
+
+#################### ailipay sdk  start############################
+-keep class com.alipay.android.app.IAlixPay{*;}
+-keep class com.alipay.android.app.IAlixPay$Stub{*;}
+-keep class com.alipay.android.app.IRemoteServiceCallback{*;}
+-keep class com.alipay.android.app.IRemoteServiceCallback$Stub{*;}
+-keep class com.alipay.sdk.app.PayTask{ public *;}
+-keep class com.alipay.sdk.app.AuthTask{ public *;}
+-keep class com.alipay.sdk.app.H5PayCallback {
+    <fields>;
+    <methods>;
+}
+-keep class com.alipay.android.phone.mrpc.core.** { *; }
+-keep class com.alipay.apmobilesecuritysdk.** { *; }
+-keep class com.alipay.mobile.framework.service.annotation.** { *; }
+-keep class com.alipay.mobilesecuritysdk.face.** { *; }
+-keep class com.alipay.tscenter.biz.rpc.** { *; }
+-keep class org.json.alipay.** { *; }
+-keep class com.alipay.tscenter.** { *; }
+-keep class com.ta.utdid2.** { *;}
+-keep class com.ut.device.** { *;}
+#################### ailipay sdk end############################
 
 

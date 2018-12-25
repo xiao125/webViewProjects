@@ -38,7 +38,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+   /* provided fileTree(include: ['*.jar'], dir: 'libs')*/
+    provided files('libs/logging-interceptor-3.8.1.jar')
+    provided files('libs/okhttp-3.10.0.jar')
+    provided files('libs/okio-1.14.1.jar')
+    provided files('libs/gson-2.2.2.jar')
+
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'junit:junit:4.12'
     compile 'com.android.support.test:runner:0.5'
