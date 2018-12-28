@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"  
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical" >
      <LinearLayout 
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+         android:layout_gravity="center"
+         android:orientation="vertical">
 
          
-         <Button
+       <!--  <Button
                  android:id="@+id/weixin_login"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
@@ -22,34 +22,32 @@
                  android:id="@+id/qq_login"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:background="@drawable/mcpr_login_qq" />
-             
-             
-        <!--  <RelativeLayout
-             android:layout_width="wrap_content"
+                 android:background="@drawable/mcpr_login_qq" />-->
+
+
+         <RelativeLayout
+             android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_marginLeft="5dp"
-             android:layout_marginTop="120dp"
-             android:orientation="horizontal" >
+             >
+
+             <Button
+                 android:id="@+id/qq_login"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="60dp"
+                 android:background="@drawable/mcpr_login_qq" />
 
              <Button
                  android:id="@+id/weixin_login"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:layout_alignParentRight="true"
-                 android:layout_alignParentTop="true"
-                 android:layout_marginRight="20dp"
+                 android:layout_marginRight="60dp"
                  android:background="@drawable/mcpr_login_weixin" />
 
-             <Button
-                 android:id="@+id/qq_login"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_alignParentLeft="true"
-                 android:layout_alignParentTop="true"
-                 android:layout_marginLeft="16dp"
-                 android:background="@drawable/mcpr_login_qq" /> 
-         </RelativeLayout> -->
+
+         </RelativeLayout>
 
      </LinearLayout>
 </LinearLayout>
