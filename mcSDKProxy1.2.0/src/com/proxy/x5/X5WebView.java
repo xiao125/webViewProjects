@@ -124,9 +124,9 @@ public class X5WebView extends WebView {
                 return;
             }
             if (title != null && title.length() > MAX_LENGTH) {
-                tvTitle.setText(title.subSequence(0, MAX_LENGTH));
+               // tvTitle.setText(title.subSequence(0, MAX_LENGTH));
             } else {
-                tvTitle.setText(title);
+                //tvTitle.setText(title);
             }
         }
 
@@ -137,7 +137,7 @@ public class X5WebView extends WebView {
             if (progressBar != null && newProgress < 100) {
                 //Webview加载没有完成 就显示我们自定义的加载图
                 progressBar.setVisibility(VISIBLE);
-                tvTitle.setText("加载"+newProgress+"%");
+               // tvTitle.setText("加载"+newProgress+"%");
             } else if (progressBar != null) {
                 //Webview加载完成 就隐藏进度条,显示Webview
                 progressBar.setVisibility(GONE);

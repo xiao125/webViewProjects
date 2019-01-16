@@ -855,7 +855,7 @@ public class Util {
 				} else {
 					//KnLog.log("读取标识："+TodayTimeUtils.getChecked(activity));
 					if(TodayTimeUtils.getChecked(activity).equals("true")){
-						//KnLog.log("保存今日不提醒账号1111:isChecked="+TodayTimeUtils.getChecked(activity)+"  Spnames="+Spnames+"  names+"+names);
+						//KnLog.log("保存今日不提醒账号1111:isChecked="+TodayTimeUtils.getChecked(activity)+"  Spnames="+Spnames+"  names="+names);
 						//保存勾选后的日期
 						TodayTimeUtils.saveExitTime(activity);
 						TodayTimeUtils.saveExitName(activity,Spnames,names);

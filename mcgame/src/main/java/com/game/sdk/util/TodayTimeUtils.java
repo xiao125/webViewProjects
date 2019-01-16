@@ -43,7 +43,7 @@ public class TodayTimeUtils {
 
     //保存勾选后的账号
     public static void saveExitName(Activity activity,String fistname, String lastName) {
-        KnLog.log("保存账号"+fistname+"  "+lastName);
+       // KnLog.log("保存账号"+fistname+"  "+lastName);
         SpUtil.put(activity,fistname,lastName);
 
     }

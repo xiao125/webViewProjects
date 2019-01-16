@@ -52,7 +52,7 @@ public class AutomaticLoginActivity extends SdkBaseActivity implements LoginView
     private String lastTime; //退出日期
     private String todayTime;//当前日期
     private String lastName; //最后退出名字
-
+    private  String Spname; //存入sp中的key名
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,11 +82,11 @@ public class AutomaticLoginActivity extends SdkBaseActivity implements LoginView
         queryBindPresenterImp.attachView(this);
 
         LoadingDialog.show(m_activity,"正在登录中...",false); //开启提示自动登录中
+
+
         AutLogin();
-        lastTime =String.valueOf(TodayTimeUtils.LastTime(m_activity));
-        lastName = String.valueOf(TodayTimeUtils.LastName(m_activity,username));
-        todayTime = TodayTimeUtils.TodayTime();
-        KnLog.log("==========lastTime========"+lastName+"  ============lastName="+lastName);
+
+
     }
 
     @Override
@@ -101,6 +101,13 @@ public class AutomaticLoginActivity extends SdkBaseActivity implements LoginView
             username = usernames[0]; //获得到用户名
             password = DBHelper.getInstance().findPwdByUsername(username); //密码
             KnLog.log("自动登录");
+
+            Spname = username;
+            lastTime =String.valueOf(TodayTimeUtils.LastTime(m_activity));
+            lastName = String.valueOf(TodayTimeUtils.LastName(m_activity,username));
+            todayTime = TodayTimeUtils.TodayTime();
+            KnLog.log("==========lastTime========"+lastTime+"  ============lastName="+lastName);
+
             //账号登录
             LoginBean bean = new LoginBean(username, password);
             loginPresenterImp.login(bean,m_activity);
@@ -148,13 +155,15 @@ public class AutomaticLoginActivity extends SdkBaseActivity implements LoginView
                 finishActivity();
                 break;
             case SDKStatusCode.QUERY_BIND_NOT:
+
+               // KnLog.log("今天不提醒,今天日期"+todayTime+" 最后保存日期:"+lastTime+" 现在登录的账号:"+username+" 最后保存的账号:"+lastName);
+
                 if (lastTime.equals(todayTime) && lastName.equals(username)) { //如果两个时间段相等
-                    // KnLog.log("今天不提醒,今天日期"+todayTime+" 最后保存日期:"+lastTime+" 现在登录的账号:"+username+" 最后保存的账号:"+lastName);
                     Util.ShowTips(m_activity, username + ",已登录成功");
                     finishActivity();
                 } else {
 
-                    Util.SetDialogs(m_activity, username, password, lastName);
+                    Util.SetDialogs(m_activity, username, password, Spname);
 
                   /*  LayoutInflater inflater = LayoutInflater.from(m_activity);
                     View v = inflater.inflate(R.layout.mc_bind_mobile_dialog_ts, null); //绑定手机

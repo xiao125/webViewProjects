@@ -256,7 +256,7 @@ public class AutoLoginActivity extends SdkBaseActivity implements LoginView,Quer
 				break;
 			case SDKStatusCode.QUERY_BIND_NOT:
 				if(lastTime.equals(todayTime) && lastName.equals( etname )){ //如果两个时间段相等
-					KnLog.log("今天不提醒,今天日期"+todayTime+" 最后保存日期:"+lastTime+" 现在登录的账号:"+etname+" 最后保存的账号:"+lastName);
+					//KnLog.log("今天不提醒,今天日期"+todayTime+" 最后保存日期:"+lastTime+" 现在登录的账号:"+etname+" 最后保存的账号:"+lastName);
 					TomastUser();
 					finishActivity();
 				}else {
