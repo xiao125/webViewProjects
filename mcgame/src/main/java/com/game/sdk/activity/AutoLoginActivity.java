@@ -70,6 +70,7 @@ public class AutoLoginActivity extends SdkBaseActivity implements LoginView,Quer
 	private String todayTime;//当前日期
 	private String lastName; //最后退出名字
 	private  String Spname; //存入sp中的key名
+	private long lastClickTime = 0;
 
 	@SuppressLint("NewApi")
 	@Override

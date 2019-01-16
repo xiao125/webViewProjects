@@ -26,6 +26,7 @@ import com.game.sdkproxy.R;
 public abstract class SdkBaseActivity extends Activity implements View.OnClickListener{
 
     private SparseArray<View> mViews;
+    private long lastClickTime = 0;
 
     //  获取布局id(setContentView)
     public abstract int getLayoutId();
@@ -39,7 +40,12 @@ public abstract class SdkBaseActivity extends Activity implements View.OnClickLi
     public abstract void processClick(View v);
 
     public void onClick(View v) {
-        processClick(v);
+        long now = System.currentTimeMillis();
+        if(now - lastClickTime >1000){
+            lastClickTime = now;
+            processClick(v);
+        }
+
     }
 
     @Override
