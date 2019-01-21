@@ -1,11 +1,11 @@
 // 萌创SDK
 CQGAME.sdk = {};
-CQGAME.sdk.sdk = new u7gameSdk();
+// CQGAME.sdk.sdk = new u7gameSdk();
 CQGAME.sdk.init = function() {
 	// CQGAME.sdk.hasReportRole = false;
 	try {
-		var data = JSON.stringify({"x": -20,"y":12});
-		CQGAME.sdk.sdk.activate(data);
+		var data = JSON.stringify({"gameid":CQGAME.game,"channelid":CQGAME.channelid,"x": -20,"y":12});
+		u7gameSdkActivate(data);
 	} catch(e) {
 		alert(e);
 	}
@@ -18,7 +18,7 @@ CQGAME.sdk.pay = function(data) {
 		var json = JSON.stringify(data);
 		console.log("PAY DATA: " + json);
 		
-		CQGAME.sdk.sdk.pay(json);
+		u7gameSdk.pay(json);
 	} catch(e) {
 		alert(e);
 	}
@@ -27,7 +27,7 @@ CQGAME.sdk.pay = function(data) {
 // 数据上报
 CQGAME.sdk.report = function(data) {
 	data.serverId = CQGAME.server_id;
-	CQGAME.sdk.sdk.roleReport(JSON.stringify(data));
+	u7gameSdk.roleReport(JSON.stringify(data));
 };
 
 // 上报进服
@@ -41,12 +41,12 @@ CQGAME.sdk.reportRole = function(data) {
 // 初始化回调
 function activateCallback(data) {
 	var info = JSON.parse(data);
-	// alert(info.code);
+	// alert("LOGIN CALLBACK: " + info.code);
 	if(info.code == 0) {
 		// 初始化成功 
-		// alert(CQGAME.sdk.sdk.ad_channel);
-		if(CQGAME.sdk.sdk.ad_channel && CQGAME.sdk.sdk.ad_channel.length > 0) {
-			CQGAME.adChannel = CQGAME.sdk.sdk.ad_channel;
+		// alert(u7gameSdk.ad_channel);
+		if(u7gameSdk.ad_channel && u7gameSdk.ad_channel.length != "") {
+			CQGAME.adChannel = u7gameSdk.ad_channel;
 		}
 
 		console.info("初始化成功, adChannel: " + CQGAME.adChannel);

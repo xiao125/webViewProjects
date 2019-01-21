@@ -15,6 +15,7 @@
 })();
 
 
+
 var CQGAME = {};
 
 try{
@@ -29,7 +30,8 @@ CQGAME.channel = window.serverChannel || CQGAME_CHANNEL;
 
 CQGAME.appid = 1025;
 CQGAME.game = "cqsjh5";
-CQGAME.adChannel = 10001;
+CQGAME.channelid = 1028;
+CQGAME.adChannel = 1;
 // CQGAME.channel = "inside";
 CQGAME.openid = null;
 CQGAME.sid = null;
@@ -50,7 +52,7 @@ CQGAME.preloaded = 0;
 CQGAME.loaded = 0;
 CQGAME.max = 0;
 CQGAME.preloadlist = [
-	"common/libs/all.libs.min.js",
+	"common/libs/all_v2.libs.min.js",
 	"common/libs/sproto.min.js"
 ];
 
@@ -177,6 +179,8 @@ CQGAME.startgame = function() {
 		CQGAME.loading();
 
 		CQGAME.statlog("show_loadingview");
+
+		document.title = CQGAME.server_name + " | " + document.title;
 	} else {
 		if(CQGAME.sdk) {
 			if(!CQGAME.openid || CQGAME.openid == "" || !CQGAME.sid || CQGAME.sid == "") {
@@ -245,7 +249,10 @@ CQGAME.getServerList = function() {
 				var type = "index";
 				if(server_info.name.indexOf("预发布") == 0) type = "preview";
 				else if(server_info.name.indexOf("测试 -") == 0) type = "test";
-				else if(server_info.name.indexOf("私服 -") == 0) type = "private";
+				else if(server_info.name.indexOf("私服 -") == 0) {
+					type = "private";
+					// CQGAME.serverList[server_info.server_id]["clientVersion"] = "beta5.0_pre";
+				}
 				else if(server_info.name.match(/.+? - [0-9]+服/)) type = "develop";
 
 				if(!CQGAME.serverGroupList[type]) {
@@ -802,3 +809,38 @@ Zepto(document).ready(function() {
 	}
 });
 
+
+
+// 错误上报
+window.errorReporterTimer = null;
+window.errorReporterTimes = 0;
+window.onerror = function(msg , url , line , column , detail) {
+	if(CQGAME.env == "develop") return;
+
+	// 每30秒，最多上报5个错误
+	window.errorReporterTimes++;
+	if(window.errorReporterTimes > 5) {
+		return;
+	}
+
+	if(window.errorReporterTimer) {
+		clearTimeout(window.errorReporterTimer);
+		window.errorReporterTimer = null;
+	}
+	setTimeout(function() {
+		window.errorReporterTimes = 0;
+		window.errorReporterTimer = null;
+	} , 30000);
+
+	
+
+	// line , column 可能不存在
+	var server_id = CQGAME.server_id || 0;
+	var server_name = CQGAME.server_name || "";
+	var openid = CQGAME.openid || "";
+	var clientVersion = CQGAME.clientVersion || "";
+
+	var query = "serverId=" + server_id + "&server_name=" + encodeURIComponent(server_name) + "&openid=" + openid + "&clientVersion=" + encodeURIComponent(clientVersion);
+	query += "&msg=" + encodeURIComponent(msg) + "&stack=" + encodeURIComponent(detail) + "&times=" + window.errorReporterTimes;
+	Zepto("body").append('<img src="//data.u7game.cn/h5cq/errorlog.php?' + query + '" style="display:none" onerror="Zepto(this).remove()" />');
+}

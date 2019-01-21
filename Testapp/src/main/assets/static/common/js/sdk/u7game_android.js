@@ -35,7 +35,6 @@ function activateCallback(data) {
 	// {"reason":"初始化成功","code":0,"ad_channel":"20180928","channel":"u7game","imei":"867305031304947"}
 	if(info.code == 0) {
 		// 初始化成功 
-		// alert(CQGAME.sdk.sdk.ad_channel);
 		if(info.ad_channel && info.ad_channel.length > 0) {
 			CQGAME.adChannel = info.ad_channel;
 		}

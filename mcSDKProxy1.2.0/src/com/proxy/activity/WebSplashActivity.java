@@ -196,6 +196,15 @@ public class WebSplashActivity extends Activity  implements PermissionInterface 
 		if (adchannel.equals("39008002")) {
 			m_platform = "android4";
 		}
+		if (adchannel.equals("39009002")) {
+			m_platform = "android5";
+		}
+		if (adchannel.equals("39010001")) {
+			m_platform = "android6";
+		}
+		if (adchannel.equals("39010002")) {
+			m_platform = "android7";
+		}
 
 		return m_platform;
 	}
