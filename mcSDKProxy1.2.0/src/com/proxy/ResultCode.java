@@ -13,6 +13,7 @@ public class ResultCode {
 	public static final int APPLY_ORDER_FAIL = 4001;
 	public static final int LOGOUT = 5000; //退出回调
 	public static final int XF_LOGOUT = 6000; //悬浮窗注销退出回调
+	public static final int XF_RELOAD = 7000; //悬浮窗H5刷新回调
 	public static final int UNKNOW	= 2;
 	public static final int NET_DISCONNET = 401;
 }

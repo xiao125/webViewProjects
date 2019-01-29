@@ -20,6 +20,6 @@ public final class HttpUrlConstants {
     public static final String NET_NO_LINKING = "请检查网络链接";
 
     //  后台服务器错误(!--服务器宕机--!)
-    public static final String SERVER_ERROR = "啊哦~服务器去月球了";
+    public static final String SERVER_ERROR = "网络繁忙，请稍后再试！";
 
 }

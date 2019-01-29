@@ -247,6 +247,11 @@ public class SdkChannel extends SdkProxy {
 				Delegate.listener.callback(ResultCode.XF_LOGOUT,"1");
 				camcel();
 			}
+
+			@Override
+			public void onRotate() {
+
+			}
 		});
 	}
 
@@ -313,6 +318,11 @@ public class SdkChannel extends SdkProxy {
 			@Override
 			public void onExitFinish() {
 				Delegate.listener.callback(ResultCode.LOGOUT,"2");
+			}
+
+			@Override
+			public void onRotate() {
+
 			}
 		});
 

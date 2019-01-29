@@ -142,6 +142,9 @@ public class WebMainActivity extends Activity {
 				case ResultCode.XF_LOGOUT:  //SDK悬浮窗切换账号
 					webAppInterface.logoutCallback();
 					break;
+				case ResultCode.XF_RELOAD:  //SDK悬浮窗刷新H5页面
+					mweview.reload();
+					break;
 				default:
 					break;
 			}
@@ -153,8 +156,10 @@ public class WebMainActivity extends Activity {
 		public void wvLogin() {
 			LogUtil.log("点击登录");
 			if (!isInit) {
+				LogUtil.log("点击登录1:"+isInit);
 				return;
 			} else {
+				LogUtil.log("点击登录2:"+isInit);
 				m_proxy.login(mativity);
 			}
 		}

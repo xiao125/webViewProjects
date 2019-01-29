@@ -55,8 +55,9 @@ public class SusViewMager {
     private Activity mActivity;
 
     String  CANCELLATION = "注销";
-    String[] MENU_ITEMS = {CANCELLATION};
-    private int[] menuIcons = new int[]{R.drawable.mc_game_menu_msg};
+    String  CANCELLATION_ROTATE = "刷新";
+    String[] MENU_ITEMS = {CANCELLATION,CANCELLATION_ROTATE};
+    private int[] menuIcons = new int[]{R.drawable.mc_game_menu_msg,R.drawable.mc_game_menu_rotate};
     private boolean islogout =false;
 
     private String username ;
@@ -64,6 +65,7 @@ public class SusViewMager {
   //回调接口
     public interface  OnLogoutListener{
         void onExitFinish();
+        void onRotate();
     }
     public OnLogoutListener mListener;
 
@@ -128,85 +130,16 @@ public class SusViewMager {
                                     Util.ShowTips(activity,"请登录！");
                                     return;
                                 }*/
+                                rotate(activity,0);
 
-                                LayoutInflater inflater = LayoutInflater.from(activity);
-                                View v = inflater.inflate(R.layout.mc_float_logout_dialog, null); //绑定手机
-                                LinearLayout layout = (LinearLayout) v.findViewById(R.id.mc_float_logout_dialog);
-                                final AlertDialog dia = new AlertDialog.Builder(activity).create();
-                                Button close = (Button) v.findViewById(R.id.mc_logout_account); //取消
-                                Button bin = (Button) v.findViewById(R.id.mc_logout_continue);//确定
-                                dia.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                                dia.show();
-                                //将自定义布局设置进去
-                                dia.setContentView(v);
-
-                                // bind.setText("绑定手机");
-                                close.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dia.dismiss();
-                                    }
-                                });
-
-                                bin.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        if (null !=mListener){
-                                            mListener.onExitFinish();
-                                            KnLog.log("sdk注销账号了1");
-                                        }
-                                        dia.dismiss();
-                                        //延迟1.5S游戏跳转到登录界面后弹出登录框
-//                                        new Handler().postDelayed(new Runnable() {
-//                                            @Override
-//                                            public void run() {
-//
-//                                                //防止第一没有账号就点击注销
-//                                                    Intent intent1 = new Intent(activity, AutoLoginActivity.class);
-//                                                    // intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                                    intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                                    intent1.putExtra("logout","logout");
-//                                                    activity.startActivity(intent1);
-//                                                    KnLog.log("sdk注销账号了2");
-//
-//                                            }
-//                                        },1000);
-
-                                        //关闭Service
-                                        Intent i = new Intent(Data.getInstance().getGameActivity(), RemindService.class);
-                                        Data.getInstance().getGameActivity().stopService(i);
-                                        TodayTimeUtils.setLogout(mActivity,"true");
-                                        //注销
-                                        HttpService.doCancel(mActivity, "2", new HttpRequestUtil.DataCallBack() {
-                                            @Override
-                                            public void requestSuccess(String result) throws Exception {
-
-                                            }
-
-                                            @Override
-                                            public void requestFailure(String request, IOException e) {
-                                            }
-
-                                            @Override
-                                            public void requestNoConnect(String msg, String data) {
-                                            }
-                                        });
-
-                                        KnLog.log("注销接口完成");
-
-                                    }
-                                });
-
+                            }else if(position ==1){ //H5 刷新页面
+                                rotate(activity,1);
                             }
-
-
                         }
 
                         @Override
                         public void dismiss() {
-
                             KnLog.log("收缩悬浮窗");
-
                         }
                     });
 
@@ -224,6 +157,85 @@ public class SusViewMager {
 
     }
 
+
+    //H5刷新页面
+    private void rotate(Activity activity,int position){
+
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        View v = inflater.inflate(R.layout.mc_float_logout_dialog, null); //绑定手机
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.mc_float_logout_dialog);
+        final AlertDialog dia = new AlertDialog.Builder(activity).create();
+        TextView textView = v.findViewById(R.id.username); // 显示文字
+        Button close = (Button) v.findViewById(R.id.mc_logout_account); //取消
+        Button bin = (Button) v.findViewById(R.id.mc_logout_continue);//确定
+        dia.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        if(position ==0){
+            dia.show();
+            //将自定义布局设置进去
+            dia.setContentView(v);
+
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dia.dismiss();
+                }
+            });
+
+            bin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (null !=mListener){
+                        mListener.onExitFinish();
+                        KnLog.log("sdk注销账号了1");
+                    }
+                    dia.dismiss();
+
+                    //关闭Service
+                    Intent i = new Intent(Data.getInstance().getGameActivity(), RemindService.class);
+                    Data.getInstance().getGameActivity().stopService(i);
+                    TodayTimeUtils.setLogout(mActivity,"true");
+                    //注销
+                    HttpService.doCancel(mActivity, "2", new HttpRequestUtil.DataCallBack() {
+                        @Override
+                        public void requestSuccess(String result) throws Exception {
+                        }
+                        @Override
+                        public void requestFailure(String request, IOException e) {
+                        }
+                        @Override
+                        public void requestNoConnect(String msg, String data) {
+                        }
+                    });
+                    KnLog.log("注销接口完成");
+                }
+            });
+
+        }else if(position == 1){
+            textView.setText("您确定要刷新当前游戏页面吗？");
+            dia.show();
+            //将自定义布局设置进去
+            dia.setContentView(v);
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dia.dismiss();
+                }
+            });
+            bin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (null !=mListener){
+                        mListener.onRotate();
+                        KnLog.log("H5 刷新页面了！");
+                    }
+                    dia.dismiss();
+                    //关闭Service
+                    Intent i = new Intent(Data.getInstance().getGameActivity(), RemindService.class);
+                    Data.getInstance().getGameActivity().stopService(i);
+                }
+            });
+        }
+    }
 
 
     public void refreshDot() {

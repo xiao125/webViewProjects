@@ -2,9 +2,9 @@ apply plugin: 'android-library'
 
 dependencies {
    /* compile fileTree(include: '*.jar', dir: 'libs')*/
-    api files('libs/alipaySdk-20180601.jar')
-    api files('libs/cachewebviewlib-2.1.1.jar')
-    api files('libs/tbs_sdk_thirdapp_v3.6.0.1352_43618_sharewithdownload_withoutGame_obfs_20180918_120327.jar')
+    provided  files('libs/alipaySdk-20180601.jar')
+    provided files('libs/cachewebviewlib-2.1.1.jar')
+    provided files('libs/tbs_sdk_thirdapp_v3.6.0.1371_43624_sharewithdownload_withoutGame_obfs_20181106_121046.jar')
     api project(':mengchuangSDK')
     implementation 'com.android.support:appcompat-v7:26.0.0'
     implementation 'com.android.support:support-v4:26.0.0'

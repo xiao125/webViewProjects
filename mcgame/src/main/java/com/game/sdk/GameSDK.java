@@ -125,11 +125,13 @@ public class GameSDK {
 					TodayTimeUtils.setLogout(activity, "false");
 				} else {
 					KnLog.log("=========自动登录1-======="+isAuot);
-					if (!isAuot) {
+					/*if (!isAuot) {
 						intent = new Intent(activity, AutomaticLoginActivity.class);
 						activity.startActivity(intent);
 						isAuot = false;
-					}
+					}*/
+					intent = new Intent(activity, AutomaticLoginActivity.class);
+					activity.startActivity(intent);
 				}
 			}
 			//开启悬浮窗
